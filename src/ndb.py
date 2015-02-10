@@ -98,3 +98,8 @@ class UserRating(ndb.Model):
   repo_full_name_id = ndb.StringProperty()
   repo_hash = ndb.StringProperty()
   rating_value = ndb.FloatProperty()
+
+# Entidad Tarjeta de Usuario
+class Tarjeta_usuario(ndb.Model):
+	nombre_usuario = ndb.StringProperty()
+	red_social = ndb.StringProperty()
