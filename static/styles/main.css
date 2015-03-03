@@ -1,137 +1,45 @@
+
 body,html {
 	height: 100%;
+	margin:0;
+	color:whitesmoke;
 }
-html{
-	min-width: 1024px;
-
-}
-body {
-	margin: 0;
-	font-family: 'Lora', Trebuched;
-	background-color: #E9E9E9;
+html {
+	background: url('http://hdwallpaperfun.com/wp-content/uploads/2014/12/People-Happy-Jump-Wallpaper-Computer-Desktop-Background-27363.jpg');
+	background-size: 100%;
+	background-repeat: no-repeat;
 }
 
-/*}*/
-.wrapper {
-	min-height:100%; /* gives layout 100% height */
-	margin:0; /* centers #wrapper */
-	background:#CCC;
+core-toolbar {
+	background-color: transparent;
+	padding: 3px 10%;
+	color:antiquewhite;
 }
-a:link,a:visited{
-	text-decoration: none;
-	color: inherit;
+.logo {
+	height: 100%;
 }
 
 .search{
-	font-size: 60%;
-	margin:0px;
-	vertical-align: bottom;
-	padding-bottom: 15px;
-}
-
-.search /deep/ .focused-underline
-{
-	/* line color when the input is unfocused */
-	background-color: white;
-}
-.search /deep/ ::-webkit-input-placeholder {
-	/* platform specific rules for placeholder text */
-	color: inherit;
-}
-.search /deep/ ::-moz-placeholder {
-	color: inherit;
-}
-.search /deep/ :-ms-input-placeholder {
-	color: inherit;
-}
-
-.views {
-	width: 50%;
-	margin: 0 auto;
-	padding: 125px 5% 10% 5%;
-	background-color: transparent;
-	background: transparent;
-}
-
-.titulo {
-	font-size: 130%;
-	font-style: italic;
-}
-paper-button {
-	font-size: 60%;	
-}
-paper-button:hover {
-	background: #448AFF;
-	color: white;
-}
-
-.pieContenido {
-	background-color: #303F9F;
-	font-size: 18px;
-	color: white;
-
-}
-
-.logo {
-	height: inherit;
-	width: auto;
-	cursor: pointer;
-}
-
-.footer{
-	height: 150px;
-	margin-top:-151px; /* -80px sucks it back in & auto centers it */
-}
-
-star-rate {
-	color: orange;
-	stroke: red;
-	stroke-width: 0.4px;
-}
-.g-signin{
-	padding: 10px 0px 10px 0px;
-}
-
-.g-signout {
-	background-color: #666;
-	box-shadow: 2px 2px 1px #111;
-	padding: 0px;
-}
-.g-signout::shadow core-icon > div{
 	border-radius: 100%;
+	width:38px;
+	height:38px;
+	background-color: #B71C1C;
 }
-.g-signout::shadow  #icon{
-	width: 30px;
-	height: 30px;
-}
-.g-signout {
-	border-radius: 100%;	
-}
-.g-signout:hover{
-	box-shadow: 3px 3px 5px #111; 
-}
-#userName {
-	font-size: 65%	
-}
-#userName:hover {
-	text-decoration: underline;
-	cursor: pointer;
-}
+.content {
+	margin: 5% 15%;
+	padding: 3px 45px;
+	font-size: 22px;
+	height: 50%;
+	width: inherit;
+	background: -moz-radial-gradient(center, ellipse cover,  rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 84%, rgba(0,0,0,0) 85%); /* FF3.6+ */
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(0,0,0,0.7)), color-stop(84%,rgba(0,0,0,0)), color-stop(85%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+	background: -webkit-radial-gradient(center, ellipse cover,  rgba(0,0,0,0.7) 0%,rgba(0,0,0,0) 84%,rgba(0,0,0,0) 85%); /* Chrome10+,Safari5.1+ */
+	background: -o-radial-gradient(center, ellipse cover,  rgba(0,0,0,0.7) 0%,rgba(0,0,0,0) 84%,rgba(0,0,0,0) 85%); /* Opera 12+ */
+	background: -ms-radial-gradient(center, ellipse cover,  rgba(0,0,0,0.7) 0%,rgba(0,0,0,0) 84%,rgba(0,0,0,0) 85%); /* IE10+ */
+	background: radial-gradient(ellipse at center,  rgba(0,0,0,0.7) 0%,rgba(0,0,0,0) 84%,rgba(0,0,0,0) 85%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3000000', endColorstr='#00000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 
-.copyright {
-	color: inherit;
-	background-color: inherit;	
-}
-#header {
-	position:fixed;
-	width: 100%;
-	z-index: 1;
-	top: 0px;
-}
-core-toolbar {
-	background-color: #303F9F;
-	color: white;
-}
-#login {
-	margin-top: 8px;
+
+
+
 }
