@@ -13,7 +13,7 @@
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <title>twitter-login Demo</title>
 
-  <script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
+  <script src="../webcomponentsjs/webcomponents.min.js"></script>
   <link rel="import" href="twitter-login.html">
 
 </head>
@@ -22,8 +22,11 @@
   <p>An example of using <code>&lt;twitter-login&gt;</code>:</p>
 
   <twitter-login>
-
   </twitter-login>
-
+<script>
+	document.querySelector('body').addEventListener('twitter-logged',function(e){
+		console.log(e);
+	});
+	</script>
 </body>
 </html>

@@ -32,7 +32,7 @@
       scope:'',
       response: function(e, d, s){
           this.accessToken = s.response;
-          this.fire('on-github-login',{token:this.accessToken});
+          this.fire('github-logged',{token:this.accessToken});
       },
       login: function(event, detail, sender){
         // Generamos la direccion donde vamos a realizar la peticion

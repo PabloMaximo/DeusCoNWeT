@@ -116,7 +116,10 @@ limitations under the License.
 							var patron = "access_token"+"=([^&#]*)";
 							var exp = new RegExp(patron);
 							back.acToken = exp.exec(url)[1];
-							back.fire('response',{token: back.acToken});
+							back.fire('google-logged',{token: back.acToken});
+							back.$.button.className="disconnect";
+							back.textLogin='Log out';
+							back.$.button.disabled = true;
 							win.close();
 
 						}
@@ -124,7 +127,7 @@ limitations under the License.
 					}
 				}, 100);
 
-			//	window.location.assign(this.callback);
+				//	window.location.assign(this.callback);
 				this.$.button.className="disconnect";
 				this.textLogin='Log out';
 			},
