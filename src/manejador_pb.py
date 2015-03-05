@@ -495,16 +495,16 @@ class OAuthTwitterHandler(webapp2.RequestHandler):
 
         action = self.request.get('action',
                                   default_value='request_token')
-        consumer_key = 'tuprQMrGCdGyz7QDVKdemEWXl'
+        consumer_key = 'J4bjMZmJ6hh7r0wlG9H90cgEe'
         consumer_secret = \
-            'byQEyUYKZm1R7ZatsSWoFLX0lYn8hRONBU4AAyGLFRDWVg7rzm'
+            '8HIPpQgL6d3WWQMDN5DPTHefjb5qfvTFg78j1RdZbR19uEPZMf'
         request_token_url = \
             'https://api.twitter.com/oauth/request_token'
         base_authorization_url = \
             'https://api.twitter.com/oauth/authorize'
 
         client = oauth.TwitterClient(consumer_key, consumer_secret,
-                'http://cool-poly-lab.appspot.com/oauth/twitter?action=authorization'
+                'http://example-project-13.appspot.com/oauth/twitter?action=authorization'
                 )
         if action == 'request_token':
             self.response.content_type = 'application/json'

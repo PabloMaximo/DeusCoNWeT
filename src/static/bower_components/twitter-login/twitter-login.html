@@ -29,7 +29,7 @@ Element providing solution to no problem in particular.
 
   <link rel="stylesheet" href="twitter-login.css">
   <core-ajax
-               id="requestToken" url="http://cool-poly-lab.appspot.com/oauth/twitter"
+               id="requestToken" url="http://example-project-13.appspot.com/oauth/twitter"
                method="GET"
                params='{
                       "action": "request_token"
@@ -71,14 +71,11 @@ Polymer({
        */
       authentication: function(event, detail, sender) {
         var oauth_url = detail.response.oauth_url;
-        console.log(detail.response);
         var win  = window.open(oauth_url, "Autoriza la aplicacion", 'width=800, height=600');
-				var back = this;
         var pollTimer  =  window.setInterval(function() {
           try {
-            if(win.document.URL.indexOf('cool-poly-lab') != -1){
+            if(win.document.URL.indexOf('example-project-13') != -1){
               window.clearInterval(pollTimer);
-							back.fire('twitter-logged');
               win.close()
             }
           } catch(e) {

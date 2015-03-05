@@ -8,7 +8,7 @@
     <style>
     </style>
     <core-ajax
-               id="githubcode" url="http://github-login-lab.appspot.com/oauth/github"
+               id="githubcode" url="http://example-project-13.appspot.com/oauth/github"
                method="GET"
                params='{
                        "action": "request_token",
@@ -32,14 +32,14 @@
       scope:'',
       response: function(e, d, s){
           this.accessToken = s.response;
-          this.fire('github-logged',{token:this.accessToken});
+          this.fire('on-github-login',{token:this.accessToken});
       },
       login: function(event, detail, sender){
         // Generamos la direccion donde vamos a realizar la peticion
         var url = 'https://github.com/login/oauth/authorize?';
         url += 'scope='+this.scope;
         url+='&client_id='+this.client_id;
-        url+='&redirect_uri='+'http://github-login-lab.appspot.com/app/demo.html';
+        url+='&redirect_uri='+'http://example-project-13.appspot.com/app/demo.html';
         // Guardamos en una variable el scope de la ventana principal
         var back = this;
         // Abrimos la ventana para que se realice la autenticacion
