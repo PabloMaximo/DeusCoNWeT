@@ -1,5 +1,5 @@
 application: example-project-13
-version: stable
+version: test-frontend3
 runtime: python27
 threadsafe: true
 api_version: 1
@@ -11,6 +11,11 @@ handlers:
   upload: favicon\.ico
 
 - url: /
+  static_files: static/index.html
+  upload: index\.html
+  secure: always
+
+- url: /selectId
   static_files: static/index.html
   upload: index\.html
   secure: always

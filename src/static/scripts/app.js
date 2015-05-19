@@ -42,6 +42,10 @@
       templateUrl: 'views/privacy.html',
       controller: 'privacyCtrl'
     })
+    .when('/selectId', {
+      templateUrl: 'views/selectId.html',
+      controller: 'selectIdCtrl'
+    })
       .otherwise({redirectTo: '/'})
     ;
     $locationProvider.html5Mode(true)

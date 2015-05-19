@@ -1,7 +1,3 @@
-@font-face {
-  font-family: myFont;
-  src: url(../font/font.ttf);
-}
 
 body,html {
   margin:0;
@@ -84,7 +80,6 @@ paper-button {
 #name {
   letter-spacing: 10px;
   font-size: 45px; 
-  font-family: myFont, serif;
 }
 #name:hover{
   cursor: pointer;
