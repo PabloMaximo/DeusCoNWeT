@@ -20,8 +20,7 @@
 """
 
 from google.appengine.ext import ndb
-import json
-import webapp2
+import json, webapp2, time
 
 # Definimos la lista de redes sociales con las que trabajamos
 
@@ -207,7 +206,7 @@ def getToken(entity_key, rs):  # FUNCIONA
     if not rs in rs_list:
       return 'La red social no esta contemplada'
     for token in tokens:
-      print "DEBUG: TOKEN ACTUAL ", token.nombre_rs 
+      # print "DEBUG: TOKEN ACTUAL ", token.nombre_rs 
       if token.nombre_rs == rs:
         res = token
 
@@ -442,19 +441,32 @@ def usuarioSuscrito(email):
     return False
 
 
- class MainPage(webapp2.RequestHandler):
-   def get(self):
+class MainPage(webapp2.RequestHandler):
+  def get(self):
     self.response.headers['Content-Type'] = 'text/plain'
     #PARTE 1: INSERCION DE 1 USUARIO, INSERCION 1 TOKEN, MOSTRAR TOKENS
     datos = {"email":"lruiz@conwet.com", 
               "telefono": 61472589, 
               "descripcion":"Este es mi perfil personal", 
               "imagen": "www.example.com/mi-foto.jpg"}
+    # Inicia contador
+    emp_ins_usu = time.time() * 1000
     key = insertaUsuario("twitter", "lrr9204", "asdfghjklm159753", datos)
+    fin_ins_usu = time.time() * 1000
+    time_ins_usu = fin_ins_usu - emp_ins_usu
+    print "TIEMPO Insertar Usuario --> " + str(time_ins_usu)
+    emp_get_tok = time.time() * 1000
     tok = getToken(key, "twitter")
+    fin_get_tok = time.time() * 1000
+    time_get_tok = fin_get_tok - emp_get_tok
+    print "TIEMPO Get Token --> " + str(time_get_tok)
     self.response.write(tok.nombre_rs + "--> identificador: " + tok.identificador + "; token: " + tok.token)
     self.response.write("\n")
+    emp_ins_tok = time.time() * 1000
     insertaToken(key, "facebook", "poiuytrewq12345", "Luis Ruiz")
+    fin_ins_tok = time.time() * 1000
+    time_ins_tok = fin_ins_tok - emp_ins_tok
+    print "TIEMPO Insertar Token --> " + str(time_ins_tok)
     tok_f = getToken(key, "facebook")
     self.response.write(tok_f.nombre_rs + "--> identificador: " + tok_f.identificador + "; token: " + tok_f.token)
     self.response.write("\n")
@@ -462,8 +474,16 @@ def usuarioSuscrito(email):
     #PARTE 2: INSERTAR GRUPO, RED Y COMPONENTE, MOSTRAR TODOS
     datos_grupo = {"descripcion": "Grupo de prueba para usuario 1",
                     "usuarios": ["luis", "ana", "miguel", "enrique"]}
+    emp_ins_gru = time.time() * 1000
     insertaGrupo(key, "DEUS", datos_grupo)
+    fin_ins_gru = time.time() * 1000
+    time_ins_gru = fin_ins_gru - emp_ins_gru
+    print "TIEMPO Insertar Grupo --> " + str(time_ins_gru)
+    emp_bus_gru = time.time() * 1000
     grupo = buscaGrupos(key)
+    fin_bus_gru = time.time() * 1000
+    time_bus_gru = fin_bus_gru - emp_bus_gru
+    print "TIEMPO Buscar Grupo --> " + str(time_bus_gru)
     grupo = json.loads(grupo)
     keys = grupo.keys()
     for key_group in keys:
@@ -472,18 +492,30 @@ def usuarioSuscrito(email):
                   "seguidores": 50,
                   "url_seg": "api.twitter.com/get_followers",
                   "url_sig": "api.twitter.com/get_following"}
-
+    emp_ins_red = time.time() * 1000
     insertaRed(key, "twitter", datos_red)
-
+    fin_ins_red = time.time() * 1000
+    time_ins_red = fin_ins_red - emp_ins_red
+    print "TIEMPO Insertar Red --> " + str(time_ins_red)
+    emp_bus_red = time.time() * 1000
     red = buscaRed(key)
+    fin_bus_red = time.time() * 1000
+    time_bus_red = fin_bus_red - emp_bus_red
+    print "TIEMPO Buscar Red --> " + str(time_bus_red)
     red = json.loads(red)
     red_keys = red.keys()
     for key_network in keys:
       self.response.write("Redes " + key_network + ": " + red[key_network] + "\n")
-
+    emp_ins_com = time.time() * 1000
     insertarComponente(key, "login_twitter", coord_x=12, coord_y=15, url="https://github.com/deus/login_twitter", height="120px", width="50px", entrada="entero", salida="string")
-
+    fin_ins_com = time.time() * 1000
+    time_ins_com = fin_ins_com - emp_ins_com
+    print "TIEMPO Insertar Componente --> " + str(time_ins_com)
+    emp_get_com = time.time() * 1000
     comp = getComponente(key, "login_twitter")
+    fin_get_com = time.time() * 1000
+    time_get_com = fin_get_com - emp_get_com
+    print "TIEMPO Get Componente --> " + str(time_get_com)
     comp = json.loads(comp)
     keys = comp.keys()
     self.response.write("Componente " + comp["nombre"] + ":\n")
@@ -492,24 +524,48 @@ def usuarioSuscrito(email):
         self.response.write("\t" + key_comp + ": " + str(comp[key_comp]) + "\n")
 
     #PARTE 3: MODIFICACION DE ENTIDADES
+    emp_mod_tok = time.time() * 1000
     new_key = modificaToken("lrr9204", "mnbvcxzmnbvcxz1234", "twitter")
+    fin_mod_tok = time.time() * 1000
+    time_mod_tok = fin_mod_tok - emp_mod_tok
+    print "TIEMPO Modificar Token --> " + str(time_mod_tok)
     tok = getToken(key, "twitter")
     self.response.write(tok.nombre_rs + "--> identificador: " + tok.identificador + "; token: " + tok.token)
     self.response.write("\n")
 
+    emp_bus_tok = time.time() * 1000
     token_param = buscaToken("lrr9204", "twitter")
+    fin_bus_tok = time.time() * 1000
+    time_bus_tok = fin_bus_tok - emp_bus_tok
+    print "TIEMPO Buscar Token --> " + str(time_bus_tok)
     self.response.write(token_param)
     self.response.write("\n")
 
+    emp_bus_usu = time.time() * 1000
     info_user = buscaUsuario(key)
+    fin_bus_usu = time.time() * 1000
+    time_bus_usu = fin_bus_usu - emp_bus_usu
+    print "TIEMPO Buscar Usuario --> " + str(time_bus_usu)
     info_user = json.loads(info_user)
     keys = info_user.keys()
     for key_user in keys:
       self.response.write("Datos usuario --> " + str(key_user) + ": " + str(info_user[key_user]) + "\n")
 
+    emp_add_usu = time.time() * 1000
     addUsuarioAGrupo(key, "DEUS", "pepe")
+    fin_add_usu = time.time() * 1000
+    time_add_usu = fin_add_usu - emp_add_usu
+    print "TIEMPO Add Usuario --> " + str(time_add_usu)
+    emp_add_des = time.time() * 1000
     addDescripcionAGrupo(key, "DEUS", "Grupo UPM")
+    fin_add_des = time.time() * 1000
+    time_add_des = fin_add_des - emp_add_des
+    print "TIEMPO Add Descripcion --> " + str(time_add_des)
+    emp_bus_gru = time.time() * 1000
     grupo = buscaGrupos(key)
+    fin_bus_gru = time.time() * 1000
+    time_bus_gru = fin_bus_gru - emp_bus_gru
+    print "TIEMPO Buscar Grupo --> " + str(time_bus_gru)
     grupo = json.loads(grupo)
     keys = grupo.keys()
     for key_group in keys:
