@@ -484,115 +484,115 @@ def usuarioSuscrito(email):
 
 class MainPage(webapp2.RequestHandler):
   def get(self):
-    self.response.write('Ejecucion correcta\n')
+    # self.response.write('Ejecucion correcta\n')
 
     # Insertar usuario beta
-    # key = nuevoUsuarioBeta("jfsalca", "JuanFran", "Salamanca")
-    # lista = usuarioSuscrito("jfsalcasda")
-    # self.response.write(lista)
+    key = nuevoUsuarioBeta("jfsalca", "JuanFran", "Salamanca")
+    lista = usuarioSuscrito("jfsalcasda")
+    self.response.write(lista)
     
     # Insertar usuario
-    # datos={"email":"jfsalca","telefono":667994811, "descripcion":"Prueba"}
-    # key = insertarUsuario("facebook", "pepe_1", "token_1", datos)
-    # key = insertarUsuario("twitter", "pepe_2", "token_2", datos)
-    # key = insertarUsuario("google", "pepe_3", "token_3", datos)
-    # key = insertarUsuario("stack-overflow", "pepe_4", "token_4", datos)
-    # key = insertarUsuario("linkedin", "pepe_5", "token_5", datos)
-    # key = insertarUsuario("github", "pepe_6", "token_6", datos)
-    # key = insertarUsuario("instagram", "pepe_7", "token_7", datos)
-    # self.response.write(key.get().token_tw_usuario)
+    datos={"email":"jfsalca","telefono":667994811, "descripcion":"Prueba"}
+    key = insertarUsuario("facebook", "pepe_1", "token_1", datos)
+    key = insertarUsuario("twitter", "pepe_2", "token_2", datos)
+    key = insertarUsuario("google", "pepe_3", "token_3", datos)
+    key = insertarUsuario("stack-overflow", "pepe_4", "token_4", datos)
+    key = insertarUsuario("linkedin", "pepe_5", "token_5", datos)
+    key = insertarUsuario("github", "pepe_6", "token_6", datos)
+    key = insertarUsuario("instagram", "pepe_7", "token_7", datos)
+    self.response.write(key.get().token_tw_usuario)
 
-    # if key == "La red social solicitada no esta contemplada":
-    #   self.response.write(key)
+    if key == "La red social solicitada no esta contemplada":
+      self.response.write(key)
 
     # Insertar token
-    # respuesta = insertarToken(key, "facebook", "token_fb_usuario")
+    respuesta = insertarToken(key, "facebook", "token_fb_usuario")
 
     # Modificar token
-    # respuesta = modificarToken(key, "twitter", "token_cambiado")
-    # self.response.write(key.get().token_tw_usuario)
+    respuesta = modificarToken(key, "twitter", "token_cambiado")
+    self.response.write(key.get().token_tw_usuario)
     
     # Buscar token
-    # respuesta = getToken(key, "facebook")
-    # self.response.write(respuesta)
+    respuesta = getToken(key, "facebook")
+    self.response.write(respuesta)
 
     # Buscar token por id
-    # respuesta = getTokenbyId("facebook", "pepe_1")
-    # self.response.write(respuesta)
-    # respuesta = getTokenbyId("twitter", "pepe_2")
-    # self.response.write(respuesta)
-    # respuesta = getTokenbyId("google", "pepe_3")
-    # self.response.write(respuesta)
-    # respuesta = getTokenbyId("stack-overflow", "pepe_4")
-    # self.response.write(respuesta)
-    # respuesta = getTokenbyId("linkedin", "pepe_5")
-    # self.response.write(respuesta)
-    # respuesta = getTokenbyId("github", "pepe_6")
-    # self.response.write(respuesta)
-    # respuesta = getTokenbyId("instagram", "pepe_7")
-    # self.response.write(respuesta)
+    respuesta = getTokenbyId("facebook", "pepe_1")
+    self.response.write(respuesta)
+    respuesta = getTokenbyId("twitter", "pepe_2")
+    self.response.write(respuesta)
+    respuesta = getTokenbyId("google", "pepe_3")
+    self.response.write(respuesta)
+    respuesta = getTokenbyId("stack-overflow", "pepe_4")
+    self.response.write(respuesta)
+    respuesta = getTokenbyId("linkedin", "pepe_5")
+    self.response.write(respuesta)
+    respuesta = getTokenbyId("github", "pepe_6")
+    self.response.write(respuesta)
+    respuesta = getTokenbyId("instagram", "pepe_7")
+    self.response.write(respuesta)
 
 
     # Insertar id
-    # respuesta = insertarIdRS(key, "instagram", "id_ins")
-    # self.response.write(respuesta)
+    respuesta = insertarIdRS(key, "instagram", "id_ins")
+    self.response.write(respuesta)
     
     # Buscar id
-    # respuesta = getIdRS(key, "asd")
-    # self.response.write(respuesta)
+    respuesta = getIdRS(key, "asd")
+    self.response.write(respuesta)
 
     # Insertar grupo
-    #grupo=["grupo1", "grupo2"]
-    #descripcion=["", "grupo pintura"]
-    #respuesta=insertarGrupo(key,grupo,descripcion)
-    #self.response.write(key.get().descripcion_grupo_pertenece_usuario)
+    grupo=["grupo1", "grupo2"]
+    descripcion=["", "grupo pintura"]
+    respuesta=insertarGrupo(key,grupo,descripcion)
+    self.response.write(key.get().descripcion_grupo_pertenece_usuario)
 
     # Anadir descripcion a grupo
-    #desc = addDescripcionAGrupo(key, "grupo2", "desc_grupo_X")
-    #self.response.write(key.get().descripcion_grupo_pertenece_usuario )
+    desc = addDescripcionAGrupo(key, "grupo2", "desc_grupo_X")
+    self.response.write(key.get().descripcion_grupo_pertenece_usuario )
 
     # Buscar grupo
-    # busqueda=buscarGrupo(key)
-    # if not busqueda == "No existen grupos para este usuario":
-    #   busqueda=json.loads(busqueda)
-    # self.response.write(busqueda)
+    busqueda=buscarGrupo(key)
+    if not busqueda == "No existen grupos para este usuario":
+      busqueda=json.loads(busqueda)
+    self.response.write(busqueda)
 
     # Insertar red
-    # datos_red = {"siguiendo": 123, "seguidores": 50, "url_sig": "api.twitter.com/get_following"}
-    # respuesta = insertarRed(key, "facebook", datos_red)
+    datos_red = {"siguiendo": 123, "seguidores": 50, "url_sig": "api.twitter.com/get_following"}
+    respuesta = insertarRed(key, "facebook", datos_red)
 
-    # datos_red2 = {"siguiendo": 111, "seguidores": 555, "url_seg": "pene", "url_sig": "api.twitter.com/get_following"}
-    # insertarRed(key, "twitter", datos_red2)
+    datos_red2 = {"siguiendo": 111, "seguidores": 555, "url_seg": "pene", "url_sig": "api.twitter.com/get_following"}
+    insertarRed(key, "twitter", datos_red2)
 
-    # self.response.write(key.get().siguiendo_rs_pertenece_usuario)
-    # self.response.write(key.get().seguidores_rs_pertenece_usuario)
-    # self.response.write(key.get().url_sig_rs_pertenece_usuario)
-    # self.response.write(key.get().url_seg_rs_pertenece_usuario)
+    self.response.write(key.get().siguiendo_rs_pertenece_usuario)
+    self.response.write(key.get().seguidores_rs_pertenece_usuario)
+    self.response.write(key.get().url_sig_rs_pertenece_usuario)
+    self.response.write(key.get().url_seg_rs_pertenece_usuario)
 
     # Buscar red
-    # busqueda = buscarRed(key)
-    # busqueda = json.loads(busqueda)
-    # self.response.write(busqueda)
+    busqueda = buscarRed(key)
+    busqueda = json.loads(busqueda)
+    self.response.write(busqueda)
 
     # Anadir datos a red
-    # modificarRS(key, "facebook", 20, 30)
+    modificarRS(key, "facebook", 20, 30)
 
     # Insertar componente
-    # insertarComponente(key, "nombre_comp", 2.0, 2.0, "url", "45px", "45px")
+    insertarComponente(key, "nombre_comp", 2.0, 2.0, "url", "45px", "45px")
 
-    # Modificar componentes
-      # insertarComponente(key, "nombre_comp3", 2.0, 2.0, "url", "2.0", "2.0")
-    # datos={"url":"asdasd", "coord_x":4.82, "width": "45px"}
-    # datos2={"height":"345px", "coord_y":1}
-    # modificarComponente(key, "nombre_comp", datos)
-    # modificarComponente(key, "nombre_comp3", datos2)
+    #Modificar componentes
+    insertarComponente(key, "nombre_comp3", 2.0, 2.0, "url", "2.0", "2.0")
+    datos={"url":"asdasd", "coord_x":4.82, "width": "45px"}
+    datos2={"height":"345px", "coord_y":1}
+    modificarComponente(key, "nombre_comp", datos)
+    modificarComponente(key, "nombre_comp3", datos2)
 
     # Buscar componente
-    # busqueda = getComponente(key, "nombre_comp")
-    # self.response.write(busqueda)
-    # if not busqueda == "No existe un componente con ese nombre":
-    #   busqueda = json.loads(busqueda)
-    # self.response.write(busqueda["width"])
+    busqueda = getComponente(key, "nombre_comp")
+    self.response.write(busqueda)
+    if not busqueda == "No existe un componente con ese nombre":
+      busqueda = json.loads(busqueda)
+    self.response.write(busqueda["width"])
 
 application = webapp2.WSGIApplication([
     ('/', MainPage),
