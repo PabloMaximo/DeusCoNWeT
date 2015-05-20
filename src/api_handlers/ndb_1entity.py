@@ -487,13 +487,21 @@ class MainPage(webapp2.RequestHandler):
     # self.response.write('Ejecucion correcta\n')
 
     # Insertar usuario beta
+    emp_nue_bet = time.time() * 1000
     key = nuevoUsuarioBeta("jfsalca", "JuanFran", "Salamanca")
+    fin_nue_bet = time.time() * 1000
+    time_nue_bet = fin_nue_bet - emp_nue_bet
+    print "TIEMPO Nuevo Usuario Beta --> " + str(time_nue_bet)
     lista = usuarioSuscrito("jfsalcasda")
     self.response.write(lista)
     
     # Insertar usuario
     datos={"email":"jfsalca","telefono":667994811, "descripcion":"Prueba"}
+    emp_ins_usu = time.time() * 1000
     key = insertarUsuario("facebook", "pepe_1", "token_1", datos)
+    fin_ins_usu = time.time() * 1000
+    time_ins_usu = fin_ins_usu - emp_ins_usu
+    print "TIEMPO Insertar Usuario --> " + str(time_ins_usu)
     key = insertarUsuario("twitter", "pepe_2", "token_2", datos)
     key = insertarUsuario("google", "pepe_3", "token_3", datos)
     key = insertarUsuario("stack-overflow", "pepe_4", "token_4", datos)
@@ -506,32 +514,27 @@ class MainPage(webapp2.RequestHandler):
       self.response.write(key)
 
     # Insertar token
+    emp_ins_tok = time.time() * 1000
     respuesta = insertarToken(key, "facebook", "token_fb_usuario")
+    fin_ins_tok = time.time() * 1000
+    time_ins_tok = fin_ins_tok - emp_ins_tok
+    print "TIEMPO Insertar Token --> " + str(time_ins_tok)
 
     # Modificar token
+    emp_mod_tok = time.time() * 1000
     respuesta = modificarToken(key, "twitter", "token_cambiado")
+    fin_mod_tok = time.time() * 1000
+    time_mod_tok = fin_mod_tok - emp_mod_tok
+    print "TIEMPO Modificar Token --> " + str(time_mod_tok)
     self.response.write(key.get().token_tw_usuario)
     
     # Buscar token
+    emp_get_tok = time.time() * 1000
     respuesta = getToken(key, "facebook")
+    fin_get_tok = time.time() * 1000
+    time_get_tok = fin_get_tok - emp_get_tok
+    print "TIEMPO Get Token --> " + str(time_get_tok)
     self.response.write(respuesta)
-
-    # Buscar token por id
-    respuesta = getTokenbyId("facebook", "pepe_1")
-    self.response.write(respuesta)
-    respuesta = getTokenbyId("twitter", "pepe_2")
-    self.response.write(respuesta)
-    respuesta = getTokenbyId("google", "pepe_3")
-    self.response.write(respuesta)
-    respuesta = getTokenbyId("stack-overflow", "pepe_4")
-    self.response.write(respuesta)
-    respuesta = getTokenbyId("linkedin", "pepe_5")
-    self.response.write(respuesta)
-    respuesta = getTokenbyId("github", "pepe_6")
-    self.response.write(respuesta)
-    respuesta = getTokenbyId("instagram", "pepe_7")
-    self.response.write(respuesta)
-
 
     # Insertar id
     respuesta = insertarIdRS(key, "instagram", "id_ins")
