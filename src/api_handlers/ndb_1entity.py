@@ -19,8 +19,7 @@
 
 from google.appengine.ext import ndb
 
-import webapp2
-import json
+import webapp2, json, time
 """NDB Instances """
 
 class Usuario(ndb.Model):
@@ -553,23 +552,38 @@ class MainPage(webapp2.RequestHandler):
 		# Insertar grupo
 		grupo=["grupo1", "grupo2"]
 		descripcion=["", "grupo pintura"]
+    emp_ins_gru = time.time() * 1000
 		respuesta=insertaGrupo(key,grupo,descripcion)
+    fin_ins_gru = time.time() * 1000
+    time_ins_gru = fin_ins_gru - emp_ins_gru
+    print "TIEMPO Insertar Grupo --> " + str(time_ins_gru)
 		self.response.write(key.get().descripcion_grupo_pertenece_usuario)
 
 		# Anadir descripcion a grupo
+    emp_add_des = time.time() * 1000
 		desc = addDescripcionAGrupo(key, "grupo2", "desc_grupo_X")
+    fin_add_des = time.time() * 1000
+    time_add_des = fin_add_des - emp_add_des
+    print "TIEMPO Add Descripcion Grupo --> " + str(time_add_des)
 		self.response.write(key.get().descripcion_grupo_pertenece_usuario )
 
 		# Buscar grupo
+    emp_bus_gru = time.time() * 1000
 		busqueda=buscaGrupo(key)
+    fin_bus_gru = time.time() * 1000
+    time_bus_gru = fin_bus_gru - emp_bus_gru
+    print "TIEMPO Busca Usuario --> " + str(time_bus_gru)
 		if not busqueda == "No existen grupos para este usuario":
 		  busqueda=json.loads(busqueda)
 		self.response.write(busqueda)
 
 		# Insertar red
 		datos_red = {"siguiendo": 123, "seguidores": 50, "url_sig": "api.twitter.com/get_following"}
+    emp_ins_red = time.time() * 1000
 		respuesta = insertaRed(key, "facebook", datos_red)
-
+    fin_ins_red = time.time() * 1000
+    time_ins_red = fin_ins_red - emp_ins_red
+    print "TIEMPO Get Token --> " + str(time_ins_red)
 		datos_red2 = {"siguiendo": 111, "seguidores": 555, "url_seg": "pene", "url_sig": "api.twitter.com/get_following"}
 		insertaRed(key, "twitter", datos_red2)
 
@@ -579,7 +593,11 @@ class MainPage(webapp2.RequestHandler):
 		self.response.write(key.get().url_seg_rs_pertenece_usuario)
 
 		# Buscar red
+    emp_bus_red = time.time() * 1000
 		busqueda = buscaRed(key)
+    fin_bus_red = time.time() * 1000
+    time_bus_red = fin_bus_red - emp_ins_red
+    print "TIEMPO Buscar Red --> " + str(time_bus_red)
 		busqueda = json.loads(busqueda)
 		self.response.write(busqueda)
 
@@ -587,7 +605,11 @@ class MainPage(webapp2.RequestHandler):
 		modificaRS(key, "facebook", 20, 30)
 
 		# Insertar componente
+    emp_ins_com = time.time() * 1000
 		insertarComponente(key, "nombre_comp", 2.0, 2.0, "url", "45px", "45px")
+    fin_ins_com = time.time() * 1000
+    time_ins_com = fin_ins_com - emp_ins_com
+    print "TIEMPO Insertar Componente --> " + str(time_ins_com)
 
 		#Modificar componentes
 		insertarComponente(key, "nombre_comp3", 2.0, 2.0, "url", "2.0", "2.0")
@@ -597,11 +619,33 @@ class MainPage(webapp2.RequestHandler):
 		modificarComponente(key, "nombre_comp3", datos2)
 
 		# Buscar componente
+    emp_get_com = time.time() * 1000
 		busqueda = getComponente(key, "nombre_comp")
+    fin_get_com = time.time() * 1000
+    time_get_com = fin_get_com - emp_get_com
+    print "TIEMPO Get Componente --> " + str(time_bus_com)
 		self.response.write(busqueda)
 		if not busqueda == "No existe un componente con ese nombre":
 		  busqueda = json.loads(busqueda)
 		self.response.write(busqueda["width"])
+
+    emp_bus_tok = time.time() * 1000
+    token_jf = buscaToken("juanfrys", "twitter")
+    fin_bus_tok = time.time() * 1000
+    time_bus_tok = fin_bus_tok - emp_bus_tok
+    print "TIEMPO Busca Token --> " + str(time_bus_tok)
+
+    emp_bus_usu = time.time() * 1000
+    user = buscaUsuario(key)
+    fin_bus_usu = time.time() * 1000
+    time_bus_usu = fin_bus_usu - emp_bus_usu
+    print "TIEMPO Busca Usuario --> " + str(time_bus_usu)
+
+    emp_get_ema = time.time() * 1000
+    lista_emails = getEmails()
+    fin_get_ema = time.time() * 1000
+    time_get_ema = fin_get_ema - emp_get_ema
+    print "TIEMPO Get Emails --> " + str(time_get_ema)
 
 application = webapp2.WSGIApplication([
 		('/', MainPage),
