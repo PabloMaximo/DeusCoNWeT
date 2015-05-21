@@ -519,6 +519,10 @@ class MainPage(webapp2.RequestHandler):
 		if key == "La red social solicitada no esta contemplada":
 		  self.response.write(key)
 
+		# Actualizar un usuario
+		datos={"email":"email_prueba","telefono":667994123, "descripcion":"descripcion cambiada"}
+		respuesta = actualizaUsuario(key, datos)
+
 		# Insertar token
 		emp_ins_tok = time.time() * 1000
 		respuesta = insertaToken(key, "facebook", "token_fb_usuario")
