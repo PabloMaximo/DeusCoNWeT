@@ -154,7 +154,7 @@ def buscaUsuario(user_key):
   usuario = user_key.get()
   datos = {"email": usuario.email_usuario,
             "telefono": usuario.telefono_usuario,
-            "descripcion":usuario.descripcion,
+            "descripcion":usuario.descripcion_usuario,
             "grupos": usuario.nombre_grupo_pertenece_usuario,
             "redes": usuario.nombre_rs_pertenece_usuario,
             "imagen": usuario.imagen_usuario}
@@ -162,7 +162,7 @@ def buscaUsuario(user_key):
 
   return datos
 
-def insertaToken(user_key, rs, token, id_usuario):
+def insertaToken(user_key, rs, token):
   usuario = user_key.get()
   if rs == "facebook":
     usuario.token_fb_usuario = token
@@ -475,7 +475,6 @@ def getEmails():
   lista = []
   for user in users_beta:
     if not user.email_beta == "":
-      print(user.email_beta)
       lista.append(user.email_beta)
   return lista
 
@@ -487,174 +486,174 @@ def usuarioSuscrito(email):
   else:
     return False
 
-class MainPage(webapp2.RequestHandler):
-  def get(self):
-    self.response.write('Ejecucion correcta\n')
+# class MainPage(webapp2.RequestHandler):
+#   def get(self):
+#     self.response.write('Ejecucion correcta\n')
 
-    # Insertar usuario beta
-    emp_nue_bet = time.time() * 1000
-    key = nuevoUsuarioBeta("jfsalca", "JuanFran", "Salamanca")
-    fin_nue_bet = time.time() * 1000
-    time_nue_bet = fin_nue_bet - emp_nue_bet
-    print "TIEMPO Nuevo Usuario Beta --> " + str(time_nue_bet)
-    lista = usuarioSuscrito("jfsalcasda")
-    self.response.write(lista)
+#     # Insertar usuario beta
+#     emp_nue_bet = time.time() * 1000
+#     key = nuevoUsuarioBeta("jfsalca", "JuanFran", "Salamanca")
+#     fin_nue_bet = time.time() * 1000
+#     time_nue_bet = fin_nue_bet - emp_nue_bet
+#     print "TIEMPO Nuevo Usuario Beta --> " + str(time_nue_bet)
+#     lista = usuarioSuscrito("jfsalcasda")
+#     self.response.write(lista)
     
-    # Insertar usuario
-    datos={"email":"jfsalca","telefono":667994811, "descripcion":"Prueba"}
-    emp_ins_usu = time.time() * 1000
-    key = insertaUsuario("twitter", "juanfrys", "token_1", datos)
-    fin_ins_usu = time.time() * 1000
-    time_ins_usu = fin_ins_usu - emp_ins_usu
-    print "TIEMPO Insertar Usuario --> " + str(time_ins_usu)
-    key = insertaUsuario("twitter", "pepe_2", "token_2", datos)
-    key = insertaUsuario("google", "pepe_3", "token_3", datos)
-    key = insertaUsuario("stack-overflow", "pepe_4", "token_4", datos)
-    key = insertaUsuario("linkedin", "pepe_5", "token_5", datos)
-    key = insertaUsuario("github", "pepe_6", "token_6", datos)
-    key = insertaUsuario("instagram", "pepe_7", "token_7", datos)
-    self.response.write(key.get().token_tw_usuario)
+#     # Insertar usuario
+#     datos={"email":"jfsalca","telefono":667994811, "descripcion":"Prueba"}
+#     emp_ins_usu = time.time() * 1000
+#     key = insertaUsuario("twitter", "juanfrys", "token_1", datos)
+#     fin_ins_usu = time.time() * 1000
+#     time_ins_usu = fin_ins_usu - emp_ins_usu
+#     print "TIEMPO Insertar Usuario --> " + str(time_ins_usu)
+#     key = insertaUsuario("twitter", "pepe_2", "token_2", datos)
+#     key = insertaUsuario("google", "pepe_3", "token_3", datos)
+#     key = insertaUsuario("stack-overflow", "pepe_4", "token_4", datos)
+#     key = insertaUsuario("linkedin", "pepe_5", "token_5", datos)
+#     key = insertaUsuario("github", "pepe_6", "token_6", datos)
+#     key = insertaUsuario("instagram", "pepe_7", "token_7", datos)
+#     self.response.write(key.get().token_tw_usuario)
 
-    if key == "La red social solicitada no esta contemplada":
-      self.response.write(key)
+#     if key == "La red social solicitada no esta contemplada":
+#       self.response.write(key)
 
-    # Actualizar un usuario
-    datos={"email":"email_prueba","telefono":667994123, "descripcion":"descripcion cambiada"}
-    emp_act_usu = time.time() * 1000
-    respuesta = actualizaUsuario(key, datos)
-    fin_act_usu = time.time() * 1000
-    time_act_usu = fin_act_usu - emp_act_usu
-    print "TIEMPO Actualizar Usuario --> " + str(time_act_usu)
+#     # Actualizar un usuario
+#     datos={"email":"email_prueba","telefono":667994123, "descripcion":"descripcion cambiada"}
+#     emp_act_usu = time.time() * 1000
+#     respuesta = actualizaUsuario(key, datos)
+#     fin_act_usu = time.time() * 1000
+#     time_act_usu = fin_act_usu - emp_act_usu
+#     print "TIEMPO Actualizar Usuario --> " + str(time_act_usu)
 
-    # Insertar token
-    emp_ins_tok = time.time() * 1000
-    respuesta = insertaToken(key, "facebook", "token_fb_usuario", "Juan Francisco")
-    fin_ins_tok = time.time() * 1000
-    time_ins_tok = fin_ins_tok - emp_ins_tok
-    print "TIEMPO Insertar Token --> " + str(time_ins_tok)
+#     # Insertar token
+#     emp_ins_tok = time.time() * 1000
+#     respuesta = insertaToken(key, "facebook", "token_fb_usuario"  )
+#     fin_ins_tok = time.time() * 1000
+#     time_ins_tok = fin_ins_tok - emp_ins_tok
+#     print "TIEMPO Insertar Token --> " + str(time_ins_tok)
 
-    # Modificar token
-    emp_mod_tok = time.time() * 1000
-    respuesta = modificaToken("juanfrys", "token_cambiado", "twitter")
-    fin_mod_tok = time.time() * 1000
-    time_mod_tok = fin_mod_tok - emp_mod_tok
-    print "TIEMPO Modificar Token --> " + str(time_mod_tok)
-    self.response.write(key.get().token_tw_usuario)
+#     # Modificar token
+#     emp_mod_tok = time.time() * 1000
+#     respuesta = modificaToken("juanfrys", "token_cambiado", "twitter")
+#     fin_mod_tok = time.time() * 1000
+#     time_mod_tok = fin_mod_tok - emp_mod_tok
+#     print "TIEMPO Modificar Token --> " + str(time_mod_tok)
+#     self.response.write(key.get().token_tw_usuario)
     
-    # Buscar token
-    emp_get_tok = time.time() * 1000
-    respuesta = getToken(key, "facebook")
-    fin_get_tok = time.time() * 1000
-    time_get_tok = fin_get_tok - emp_get_tok
-    print "TIEMPO Get Token --> " + str(time_get_tok)
-    self.response.write(respuesta)
+#     # Buscar token
+#     emp_get_tok = time.time() * 1000
+#     respuesta = getToken(key, "facebook")
+#     fin_get_tok = time.time() * 1000
+#     time_get_tok = fin_get_tok - emp_get_tok
+#     print "TIEMPO Get Token --> " + str(time_get_tok)
+#     self.response.write(respuesta)
 
-    # Insertar id
-    respuesta = insertaIdRS(key, "instagram", "id_ins")
-    self.response.write(respuesta)
+#     # Insertar id
+#     respuesta = insertaIdRS(key, "instagram", "id_ins")
+#     self.response.write(respuesta)
     
-    # Buscar id
-    respuesta = getIdRS(key, "asd")
-    self.response.write(respuesta)
+#     # Buscar id
+#     respuesta = getIdRS(key, "asd")
+#     self.response.write(respuesta)
 
-    # Insertar grupo
-    grupo=["grupo1", "grupo2"]
-    descripcion=["", "grupo pintura"]
-    emp_ins_gru = time.time() * 1000
-    respuesta=insertaGrupo(key,grupo,descripcion)
-    fin_ins_gru = time.time() * 1000
-    time_ins_gru = fin_ins_gru - emp_ins_gru
-    print "TIEMPO Insertar Grupo --> " + str(time_ins_gru)
-    self.response.write(key.get().descripcion_grupo_pertenece_usuario)
+#     # Insertar grupo
+#     grupo=["grupo1", "grupo2"]
+#     descripcion=["", "grupo pintura"]
+#     emp_ins_gru = time.time() * 1000
+#     respuesta=insertaGrupo(key,grupo,descripcion)
+#     fin_ins_gru = time.time() * 1000
+#     time_ins_gru = fin_ins_gru - emp_ins_gru
+#     print "TIEMPO Insertar Grupo --> " + str(time_ins_gru)
+#     self.response.write(key.get().descripcion_grupo_pertenece_usuario)
 
-    # Anadir descripcion a grupo
-    emp_add_des = time.time() * 1000
-    desc = addDescripcionAGrupo(key, "grupo2", "desc_grupo_X")
-    fin_add_des = time.time() * 1000
-    time_add_des = fin_add_des - emp_add_des
-    print "TIEMPO Add Descripcion Grupo --> " + str(time_add_des)
-    self.response.write(key.get().descripcion_grupo_pertenece_usuario )
+#     # Anadir descripcion a grupo
+#     emp_add_des = time.time() * 1000
+#     desc = addDescripcionAGrupo(key, "grupo2", "desc_grupo_X")
+#     fin_add_des = time.time() * 1000
+#     time_add_des = fin_add_des - emp_add_des
+#     print "TIEMPO Add Descripcion Grupo --> " + str(time_add_des)
+#     self.response.write(key.get().descripcion_grupo_pertenece_usuario )
 
-    # Buscar grupo
-    emp_bus_gru = time.time() * 1000
-    busqueda=buscaGrupos(key)
-    fin_bus_gru = time.time() * 1000
-    time_bus_gru = fin_bus_gru - emp_bus_gru
-    print "TIEMPO Busca Usuario --> " + str(time_bus_gru)
-    if not busqueda == "No existen grupos para este usuario":
-      busqueda=json.loads(busqueda)
-    self.response.write(busqueda)
+#     # Buscar grupo
+#     emp_bus_gru = time.time() * 1000
+#     busqueda=buscaGrupos(key)
+#     fin_bus_gru = time.time() * 1000
+#     time_bus_gru = fin_bus_gru - emp_bus_gru
+#     print "TIEMPO Busca Grupos --> " + str(time_bus_gru)
+#     if not busqueda == "No existen grupos para este usuario":
+#       busqueda=json.loads(busqueda)
+#     self.response.write(busqueda)
 
-    # Insertar red
-    datos_red = {"siguiendo": 123, "seguidores": 50, "url_sig": "api.twitter.com/get_following"}
-    emp_ins_red = time.time() * 1000
-    respuesta = insertaRed(key, "facebook", datos_red)
-    fin_ins_red = time.time() * 1000
-    time_ins_red = fin_ins_red - emp_ins_red
-    print "TIEMPO Get Token --> " + str(time_ins_red)
-    datos_red2 = {"siguiendo": 111, "seguidores": 555, "url_seg": "pene", "url_sig": "api.twitter.com/get_following"}
-    insertaRed(key, "twitter", datos_red2)
+#     # Insertar red
+#     datos_red = {"siguiendo": 123, "seguidores": 50, "url_sig": "api.twitter.com/get_following"}
+#     emp_ins_red = time.time() * 1000
+#     respuesta = insertaRed(key, "facebook", datos_red)
+#     fin_ins_red = time.time() * 1000
+#     time_ins_red = fin_ins_red - emp_ins_red
+#     print "TIEMPO InsertaRed --> " + str(time_ins_red)
+#     datos_red2 = {"siguiendo": 111, "seguidores": 555, "url_seg": "pene", "url_sig": "api.twitter.com/get_following"}
+#     insertaRed(key, "twitter", datos_red2)
 
-    self.response.write(key.get().siguiendo_rs_pertenece_usuario)
-    self.response.write(key.get().seguidores_rs_pertenece_usuario)
-    self.response.write(key.get().url_sig_rs_pertenece_usuario)
-    self.response.write(key.get().url_seg_rs_pertenece_usuario)
+#     self.response.write(key.get().siguiendo_rs_pertenece_usuario)
+#     self.response.write(key.get().seguidores_rs_pertenece_usuario)
+#     self.response.write(key.get().url_sig_rs_pertenece_usuario)
+#     self.response.write(key.get().url_seg_rs_pertenece_usuario)
 
-    # Buscar red
-    emp_bus_red = time.time() * 1000
-    busqueda = buscaRed(key)
-    fin_bus_red = time.time() * 1000
-    time_bus_red = fin_bus_red - emp_ins_red
-    print "TIEMPO Buscar Red --> " + str(time_bus_red)
-    busqueda = json.loads(busqueda)
-    self.response.write(busqueda)
+#     # Buscar red
+#     emp_bus_red = time.time() * 1000
+#     busqueda = buscaRed(key)
+#     fin_bus_red = time.time() * 1000
+#     time_bus_red = fin_bus_red - emp_ins_red
+#     print "TIEMPO Buscar Red --> " + str(time_bus_red)
+#     busqueda = json.loads(busqueda)
+#     self.response.write(busqueda)
 
-    # Anadir datos a red
-    modificaRS(key, "facebook", 20, 30)
+#     # Anadir datos a red
+#     modificaRS(key, "facebook", 20, 30)
 
-    # Insertar componente
-    emp_ins_com = time.time() * 1000
-    insertarComponente(key, "nombre_comp", 2.0, 2.0, "url", "45px", "45px")
-    fin_ins_com = time.time() * 1000
-    time_ins_com = fin_ins_com - emp_ins_com
-    print "TIEMPO Insertar Componente --> " + str(time_ins_com)
+#     # Insertar componente
+#     emp_ins_com = time.time() * 1000
+#     insertarComponente(key, "nombre_comp", coord_x=2.0, coord_y=2.0, url="url", height="45px", width="45px")
+#     fin_ins_com = time.time() * 1000
+#     time_ins_com = fin_ins_com - emp_ins_com
+#     print "TIEMPO Insertar Componente --> " + str(time_ins_com)
 
-    #Modificar componentes
-    insertarComponente(key, "nombre_comp3", 2.0, 2.0, "url", "2.0", "2.0")
-    datos={"url":"asdasd", "coord_x":4.82, "width": "45px"}
-    datos2={"height":"345px", "coord_y":1}
-    modificarComponente(key, "nombre_comp", datos)
-    modificarComponente(key, "nombre_comp3", datos2)
+#     #Modificar componentes
+#     insertarComponente(key, "nombre_comp3", coord_x=2.0, coord_y=2.0, url="url", height="2.0", width="2.0")
+#     datos={"url":"asdasd", "coord_x":4.82, "width": "45px"}
+#     datos2={"height":"345px", "coord_y":1}
+#     modificarComponente(key, "nombre_comp", datos)
+#     modificarComponente(key, "nombre_comp3", datos2)
 
-    # Buscar componente
-    emp_get_com = time.time() * 1000
-    busqueda = getComponente(key, "nombre_comp")
-    fin_get_com = time.time() * 1000
-    time_get_com = fin_get_com - emp_get_com
-    print "TIEMPO Get Componente --> " + str(time_bus_com)
-    self.response.write(busqueda)
-    if not busqueda == "No existe un componente con ese nombre":
-      busqueda = json.loads(busqueda)
-    self.response.write(busqueda["width"])
+#     # Buscar componente
+#     emp_get_com = time.time() * 1000
+#     busqueda = getComponente(key, "nombre_comp")
+#     fin_get_com = time.time() * 1000
+#     time_get_com = fin_get_com - emp_get_com
+#     print "TIEMPO Get Componente --> " + str(time_get_com)
+#     self.response.write(busqueda)
+#     if not busqueda == "No existe un componente con ese nombre":
+#       busqueda = json.loads(busqueda)
+#     self.response.write(busqueda["width"])
 
-    emp_bus_tok = time.time() * 1000
-    token_jf = buscaToken("juanfrys", "twitter")
-    fin_bus_tok = time.time() * 1000
-    time_bus_tok = fin_bus_tok - emp_bus_tok
-    print "TIEMPO Busca Token --> " + str(time_bus_tok)
+#     emp_bus_tok = time.time() * 1000
+#     token_jf = buscaToken("juanfrys", "twitter")
+#     fin_bus_tok = time.time() * 1000
+#     time_bus_tok = fin_bus_tok - emp_bus_tok
+#     print "TIEMPO Busca Token --> " + str(time_bus_tok)
 
-    emp_bus_usu = time.time() * 1000
-    user = buscaUsuario(key)
-    fin_bus_usu = time.time() * 1000
-    time_bus_usu = fin_bus_usu - emp_bus_usu
-    print "TIEMPO Busca Usuario --> " + str(time_bus_usu)
+#     emp_bus_usu = time.time() * 1000
+#     user = buscaUsuario(key)
+#     fin_bus_usu = time.time() * 1000
+#     time_bus_usu = fin_bus_usu - emp_bus_usu
+#     print "TIEMPO Busca Usuario --> " + str(time_bus_usu)
 
-    emp_get_ema = time.time() * 1000
-    lista_emails = getEmails()
-    fin_get_ema = time.time() * 1000
-    time_get_ema = fin_get_ema - emp_get_ema
-    print "TIEMPO Get Emails --> " + str(time_get_ema)
+#     emp_get_ema = time.time() * 1000
+#     lista_emails = getEmails()
+#     fin_get_ema = time.time() * 1000
+#     time_get_ema = fin_get_ema - emp_get_ema
+#     print "TIEMPO Get Emails --> " + str(time_get_ema)
 
-application = webapp2.WSGIApplication([
-    ('/', MainPage),
-], debug=True)
+# application = webapp2.WSGIApplication([
+#     ('/', MainPage),
+# ], debug=True)
