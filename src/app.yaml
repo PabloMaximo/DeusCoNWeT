@@ -38,6 +38,10 @@ handlers:
   upload: index\.html
   secure: always
 
+- url: /selectId
+  static_files: static/index.html
+  upload: index\.html
+  secure: always
 
 - url: /user/.*
   static_files: static/index.html

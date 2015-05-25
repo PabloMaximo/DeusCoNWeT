@@ -24,8 +24,9 @@ angular.module('picbit').controller('MainCtrl', function ($scope, $location, $ba
 
     $http.get('../../language/' + file ).success(function (data) {
       $scope.language = data;
-      $scope.language_selected = data.lang[language];
-      document.querySelector('#language').$.label.innerHTML = $scope
+      
+      $scope.language_selected = data.lang[$scope.idioma];
+      document.querySelector('#language').$.label.innerHTML = $scope.language_selected
     }).error( function (data, status) {
       console.error(data,status);
     });
@@ -36,7 +37,8 @@ angular.module('picbit').controller('MainCtrl', function ($scope, $location, $ba
   if ($window.navigator.language === 'es') {
     $http.get('../../language/es_es.json').success(function (data){
       $scope.language = data; 
-      $scope.language_selected = data.lang.es;
+      $scope.idioma = 'es';
+      $scope.language_selected = data.lang[$scope.idioma];
     }).error( function (data, status) {
       console.error(data,status);
     });
@@ -44,7 +46,8 @@ angular.module('picbit').controller('MainCtrl', function ($scope, $location, $ba
 
     $http.get('../../language/en_en.json').success(function (data){
       $scope.language = data;
-      $scope.language_selected = data.lang.en;
+      $scope.idioma = 'en'
+      $scope.language_selected = data.lang[$scope.idioma];
     }).error( function (data, status) {
       console.error(data,status);
     });
