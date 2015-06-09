@@ -17,6 +17,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 
 <polymer-element name="twitter-timeline" attributes="endpoint accessToken secretToken consumerKey consumerSecret count since_id">
+
   <template>
     <!-- Importacion del CSS a usar -->
     <link rel="stylesheet" href="twitter-timeline.css">
@@ -89,11 +90,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       since_id: "",
       endpoint:'',
       ready: function(event, detail, sender) {
+
         if (this.accesToken && this.endpoint){
+
           this.$.requestTimeline.go();
         }
       },
       domReady: function(e,d,s) {
+
         if (this.accessToken && this.endpoint){
           this.$.requestTimeline.go();
         }

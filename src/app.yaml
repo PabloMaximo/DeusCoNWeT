@@ -1,5 +1,5 @@
 application: example-project-13
-version: test-frontend3
+version: test-frontend
 runtime: python27
 threadsafe: true
 api_version: 1
@@ -49,12 +49,16 @@ handlers:
   secure: always
   
 - url: /
+
   static_dir: static 
   secure: always
   
+
 
 libraries:
 - name: webapp2
   version: latest
 - name: ssl
+  version: latest
+- name: pycrypto
   version: latest
