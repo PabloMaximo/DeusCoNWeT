@@ -3,15 +3,15 @@
 <section vertical center layout id="selectId">
   <div class="container">
     <div>
-      <core-icon icon="label"></core-icon><span class="title">{{language.select_id}}</span>
+      <core-icon icon="label"></core-icon><span class="title">{{language.select_id.title}}</span>
     </div>
     <br>
     <core-icon id="gif" src="https://d4z6dx8qrln4r.cloudfront.net/image-54e5caa730e3a-default.gif"></core-icon>
     <br>
-    <paper-input-decorator label="Nombre de usuario">
+    <paper-input-decorator label="{{language.select_id.input_title}}">
       <input ng-model="value" ng-keyup="sendUsername($event, value)"></input>
     </paper-input-decorator>
-    <div horizontal layout reverse><paper-button ng-click="sendUsername($event, value)" ng-show="value">enviar</paper-button></div>
+  <div horizontal layout reverse><paper-button ng-click="sendUsername($event, value)" ng-show="value">{{language.send}}</paper-button></div>
   </div>
 </section>
 

@@ -53,8 +53,7 @@
       .when('/user/:userId/profile', {
       templateUrl: 'views/profile.html',
       controller: 'ProfileController',
-      /* Para poder editar el perfil en localhost
-    resolve: {
+      resolve: {
         auth: ["$q", "$cookie", function($q, $cookie){
 
           var session = $cookie.get('session');
@@ -65,15 +64,25 @@
             return $q.reject({authenticated: false})
           }
         }]
-      }*/
+      }
     })
       .when('/privacy',{
       templateUrl: 'views/privacy.html',
       controller: 'PrivacyController'
     })
-    .when('/selectId', {
+      .when('/selectId', {
       templateUrl: 'views/selectId.html',
-      controller: 'selectIdCtrl'
+      controller: 'SelectidController',
+      resolve: {
+        auth: ["$q","$rootScope", function($q,$rootScope) {
+
+          if ($rootScope.register) {
+            return $q.when($rootScope.register)
+          } else {
+            return $q.reject({register: false})
+          }
+        }] 
+      }
     })
     /* Por defecto */
       .otherwise({redirectTo: '/'})
@@ -83,7 +92,9 @@
 
   app.run(["$rootScope", "$location", function($rootScope, $location) {
     $rootScope.$on("$routeChangeError", function(event, current, previous, eventObj) {
-      if (eventObj.authenticated === false) {
+      if (!eventObj.authenticated) {
+        $location.path("/");
+      } else if (!eventObj.register) {
         $location.path("/");
       }
     });

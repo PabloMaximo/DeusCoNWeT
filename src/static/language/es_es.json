@@ -11,6 +11,7 @@
   "contact":"Contactar",
   "about":"Sobre nosotros",
   "privacy":"privacidad",
+  "send": "Enviar", 
   "about_first": "DEUS es un grupo de trabajo centrado principalmente en tecnologías de Google, especialmente aquellas más innovadoras: lenguaje de programación Go!, componentes web Polymer, GoogleCloud (CloudSQL y Cloud Datastore), AppEngine o Google Analytics.",
   "about_second": "Nació como una plataforma para formar a estudiantes en tecnologías punteras, abordar proyectos de investigación y, al mismo tiempo, proporcionales una toma de contacto con la forma de trabajo a nivel profesional. Cuenta actualmente con varios estudiantes de TFG y Prácticum, distribuidos en varias líneas de trabajo.",
   "lang": {
@@ -28,9 +29,25 @@
   "user_profile": {
     "title" : "Datos Personales",
     "name" : "Nombre",
-    "surname" : "Apeliidos",
+    "surname" : "Apellidos",
     "email" : "Email",
     "save" : "Guardar",
-    "social" : "Redes sociales conectadas"
+    "social" : "Redes sociales conectadas",
+    "Login_Facebook" : "Log in Facebook",
+    "Logout_Facebook" : "Log out Facebook",
+    "Login_Google+" : "Log in Google+",
+    "Logout_Google+" : "Log out Google+",
+    "Login_Twitter" : "Log in Twitter",
+    "Logout_Twitter" : "Log out Twitter",
+    "Login_Github" : "Log in Github",
+    "Logout_Github" : "Log out Github",
+    "Login_Linkedin" : "Log in Linkedin",
+    "Logout_Linkedin" : "Log out Linkedin",
+    "Login_Instagram" : "Log in Instagram",
+    "Logout_Instagram" : "Log out Instagram"
+  },
+  "select_id": {
+    "title":"Selecciona tu nombre de usuario",
+    "input_title": "Nombre de usuario"
   }
 }

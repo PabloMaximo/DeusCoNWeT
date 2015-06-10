@@ -4,29 +4,56 @@ angular.module('picbit').service('$backend', function ($http, $location) {
   this.endpoint = 'https://' + $location.host();
 
   /* Envia el token y el identificador del token correspondiente a una red social */
-  this.sendData = function (token, tokenId, redSocial, callback, errorCallback) {
+  /* ¿¿ Control de errores ??*/
+  this.sendData = function (token, tokenId, user_id, redSocial, oauth_verifier) {
     var request, uri, params;
+
     uri = this.endpoint + '/api/oauth/' + redSocial;
-    params = "token_id=" + tokenId + "&access_token=" + token + "&action=login";
+    /* Añadimos los parametros necesarios */
+    params = "token_id=" + tokenId + "&access_token=" + token;
+
+    /* Si se indica el user_id, se incluye en la peticion */
+    params += user_id ? "&user_id=" + user_id : '';
+
+    /* Si se trata de twitter añadimos el oauth_verifier*/
+    params += oauth_verifier && redSocial === 'twitter' ? "&oauth_verifier=" + oauth_verifier : '';
     request = {
       method: 'post',
       url: uri,
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       data: params
     };
-    $http(request).success(function (data) {
-      if (callback) {
-        callback(data);
-      }
-    }).error(function (data, status) {
-      if (errorCallback) {
-        errorCallback(data, status);
-      }
-    });
+    /* Devolvemos la promesa*/
+    return $http(request);
   };
 
+  this.getUserId = function (tokenId, redSocial, oauth_verifier) {
+    var request, uri;
+
+    uri = this.endpoint + '/api/oauth/' + redSocial + '/' + tokenId;
+    request = {
+      methor: 'get',
+      url: uri,
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    };
+
+    return $http(request);
+  };
+
+  /* Permite elegir un usuario por user_id */
+  this.getUser = function(user_id) {
+    var request, uri;
+    uri = this.endpoint + '/api/usuarios/' + user_id;
+
+    request = {
+      method: 'get',
+      url: uri,
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    }
+    return $http(request);
+  }
   /* Contacto: envia un email al backend */
-  this.sendEmail = function (message, sender, subject, callback, errorCallback) {
+  this.sendEmail = function (message, sender, subject) {
     var request, uri, params;
 
     uri = this.endpoint + '/api/contact';
@@ -41,18 +68,11 @@ angular.module('picbit').service('$backend', function ($http, $location) {
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       data: params
     };
-    $http(request).success(function (data, status) {
-      if (callback) {
-        callback(data);
-      }
-    }).error(function (data, status) {
-      if (errorCallback) {
-        errorCallback(data, status);
-      }
-    });
+
+    return $http(request)
   };
 
-  this.sendSub = function (name, sender, surname, callback, errorCallback) {
+  this.sendSub = function (name, sender, surname) {
     var request, uri, params;
     uri = this.endpoint + '/api/subscriptions';
     params = "name=" + name + "&email=" + sender + "&surname=" + surname;
@@ -63,23 +83,10 @@ angular.module('picbit').service('$backend', function ($http, $location) {
       data: params
     };
 
-    $http(request).success(function (data, status) {
-
-      if (callback) {
-        callback(data,status);
-      }
-    }).error(function (data, status) {
-      if (errorCallback) {
-        errorCallback(data, status);
-      }
-    });
-  };
-  
-  this.sendUsername = function (username, callback, errorCallback) {
-    console.warn ('TODO: funcion de mandar nombre de usuario', username);
+    return $http(request);
   };
 
-  this.logout = function (callback, errorCallback) {
+  this.logout = function () {
     var request, uri, params;
 
     uri = this.endpoint + '/api/oauth/googleplus';
@@ -91,15 +98,8 @@ angular.module('picbit').service('$backend', function ($http, $location) {
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       data: params
     };
-    $http(request).success(function (data, status) {
-      if (callback) {
-        callback(data,status); 
-      };
-    }).error(function (data, status) {
-      if (errorCallback) {
-        callback(data,status); 
-      };
-    });
+
+    return $http(request);
   };
 
 
@@ -107,7 +107,7 @@ angular.module('picbit').service('$backend', function ($http, $location) {
   'use strict';
 
   this.scrollTo = function (eID) {
-    var startY = currentYPosition();
+    var startY = nonocurrentYPosition();
     var stopY = elmYPosition(eID);
     var distance = stopY > startY ? stopY - startY : startY - stopY;
     if (distance < 100) {
@@ -157,7 +157,7 @@ angular.module('picbit').service('$backend', function ($http, $location) {
     var parts = value.split("; " + name + "=");
     if (parts.length == 2) return parts.pop().split(";").shift()
       };
-  
+
   this.put  = function (key, value, expires, path, domain, secure) {
     var cookie;
     cookie = key + '=' + value;
