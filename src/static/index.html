@@ -35,13 +35,13 @@
       </core-dropdown-menu>
       <!-- End Languages -->
 
-      <core-icon-button ng-show="status" id="siginButton" ng-click="showPopup()" icon="social:person" class="signin">
+      <core-icon-button ng-show="!status" id="siginButton" ng-click="showPopup()" icon="social:person" class="signin">
         <span style="padding-left: 3px;vertical-align:middle" id="nameId">{{language.login}}</span>
       </core-icon-button>
 
 
 
-      <div ng-click="dropmenu()"  ng-show="!status" relative>
+      <div ng-click="dropmenu()"  ng-show="status" relative>
         <div horizontal layout id="user_options">
           <span flex>{{user.name}}</span>
           <core-icon id="siginButton" icon="social:person"></core-icon>
