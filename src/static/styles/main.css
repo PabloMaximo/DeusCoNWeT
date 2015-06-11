@@ -163,7 +163,6 @@ core-dropdown.lang-menu {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#dbdbdb',GradientType=0 ); /* IE6-9 */
   color: #000;
   border-radius: 3px;
-  min-width: 95px;
 }
 
 /*core-dropdown-menu /deep/ core-item {
@@ -192,7 +191,7 @@ select.language > option {
 #user_options {
   padding: 3px 8px;
   border-radius: 15px;
-  min-width: 150px;
+  min-width: 90px;
 }
 #user_options:hover {
   background-color: #B71C1C;
@@ -200,7 +199,6 @@ select.language > option {
 }
 #dropmenu {
   margin-left:10px;
-  width: 143px;
 }
 #dropmenu /deep/ core-dropdown /deep/ core-item {
   background-color: #eee;

@@ -6,7 +6,7 @@ angular.module('picbit').controller('MainController', function ($scope, $locatio
   $scope.shadow = false; // Sombra del popup
   $scope.sended = false; // popup de notificar
   $scope.idioma = $cookie.get('language') || $window.navigator.language;
-  $scope.user = {name: "Miguel", id: "2312"}; // Usuario logueado
+  $scope.user = {name: "a", id: "2312"}; // Usuario logueado
 
   $scope.changelanguage = function (language) {
     var file;

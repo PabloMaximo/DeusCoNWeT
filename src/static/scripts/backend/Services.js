@@ -1,4 +1,6 @@
-angular.module('picbit').service('$backend', function ($http, $location) {
+var picbit = angular.module('picbit');
+
+picbit.service('$backend', function ($http, $location) {
 
   'use strict';
   this.endpoint = 'https://' + $location.host();
@@ -41,17 +43,17 @@ angular.module('picbit').service('$backend', function ($http, $location) {
   };
 
   /* Permite elegir un usuario por user_id */
-  this.getUser = function(user_id) {
+  this.getUser = function (user_id) {
     var request, uri;
     uri = this.endpoint + '/api/usuarios/' + user_id;
 
     request = {
       method: 'get',
       url: uri,
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-    }
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    };
     return $http(request);
-  }
+  };
   /* Contacto: envia un email al backend */
   this.sendEmail = function (message, sender, subject) {
     var request, uri, params;
@@ -69,7 +71,7 @@ angular.module('picbit').service('$backend', function ($http, $location) {
       data: params
     };
 
-    return $http(request)
+    return $http(request);
   };
 
   this.sendSub = function (name, sender, surname) {
@@ -103,7 +105,9 @@ angular.module('picbit').service('$backend', function ($http, $location) {
   };
 
 
-}).service('$anchorSmoothScroll', function () {
+});
+
+picbit.service('$anchorSmoothScroll', function () {
   'use strict';
 
   this.scrollTo = function (eID) {
@@ -151,7 +155,9 @@ angular.module('picbit').service('$backend', function ($http, $location) {
 
   };
 
-}).service('$cookie', function () {
+});
+
+picbit.service('$cookie', function () {
   this.get = function (name) {
     var value = "; " + document.cookie;
     var parts = value.split("; " + name + "=");
