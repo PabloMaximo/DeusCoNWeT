@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+
 """ Copyright 2015 Luis Ruiz Ruiz
   Copyright 2015 Ana Isabel Lopera Martínez
   Copyright 2015 Miguel Ortega Moreno
@@ -21,6 +22,8 @@
 import webapp2
 from google.appengine.ext import ndb
 from google.appengine.api import memcache
+import ndb_pb
+
 
 class UserListHandler(webapp2.RequestHandler):
 
@@ -101,7 +104,7 @@ class UserHandler(webapp2.RequestHandler):
 
     # Returns the component queried
 
-        user = Usuario.query(Usuario.identificador == user_id).get()
+        user = buscarUsuario(user_id).get()
         if user == None:
             self.response.set_status(404)
         else:
@@ -117,3 +120,5 @@ class UserHandler(webapp2.RequestHandler):
                 }
             self.response.content_type = 'application/json'
             self.response.write(json.dumps(response))
+
+
