@@ -1,7 +1,6 @@
-'user strict'
-angular.module('picbit')
 
-  .controller('ProfileController', function ($scope) {
+angular.module('picbit').controller('ProfileController', ['$scope', function ($scope) {
+  'user strict'
   $scope.calC= function()	{
     var nombre=document.getElementById("nombre").value;
     var apellido=document.getElementById("apellido").value;
@@ -45,7 +44,7 @@ angular.module('picbit')
 
   };
 
-	$scope.sort = true
+  $scope.sort = true
 
   /*  document.getElementById("pr").addEventListener('facebook-logged',$scope.takeInfoLog);
   document.getElementById("pr").addEventListener('linkedin-logged',$scope.takeInfoLog);
@@ -53,4 +52,4 @@ angular.module('picbit')
   document.getElementById("pr").addEventListener('instagram-logged',$scope.takeInfoLog);
   document.getElementById("pr").addEventListener('twitter-logged',$scope.takeInfoLog);
   */
-})
+}]);

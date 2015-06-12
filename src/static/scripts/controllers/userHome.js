@@ -1,15 +1,5 @@
-'use strict';
-
-/**
- * @ngdoc function
- * @name polymerGeneratedAppApp.controller:SandboxCtrl
- * @description
- * # SandboxCtrl
- * Controller of the polymerGeneratedAppApp
- */
-
-angular.module('picbit').controller('UserHomeController', function ($scope,$timeout) {
-
+angular.module('picbit').controller('UserHomeController', ['$scope','$timeout',function ($scope,$timeout) {
+  'use strict';
   $scope.list = [
     {name: 'John'},
     {name: 'Jessie'},
@@ -22,15 +12,15 @@ angular.module('picbit').controller('UserHomeController', function ($scope,$time
     {name: 'Patrick'},
     {name: 'Samantha'}
   ];
-  
+
   /* Network infomation */
   $scope.twitter = {};
   $scope.github = {};
   $scope.twitter.token = '3072043347-hbcrkzLJfVzTg7BTjgzkKqZx3bbzpYb04IO573x';
   $scope.github.username = 'mortega5'
-  
+
   /* Authentication */
-  
+
   $scope.menuStatus = false;
   $scope.showElement = false;
   $scope.listaOpciones = ['false','false','false'];
@@ -114,4 +104,4 @@ angular.module('picbit').controller('UserHomeController', function ($scope,$time
   $scope.isMenuHidden = function(event) {
     return !($scope.menuStatus | $scope.isSelected(event))
   }
-});
+}]);

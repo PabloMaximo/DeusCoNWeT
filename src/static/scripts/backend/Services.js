@@ -1,6 +1,6 @@
 var picbit = angular.module('picbit');
 
-picbit.service('$backend', function ($http, $location) {
+picbit.service('$backend',['$http','$location','$rootScope', function ($http, $location, $rootScope) {
 
   'use strict';
   this.endpoint = 'https://' + $location.host();
@@ -26,7 +26,8 @@ picbit.service('$backend', function ($http, $location) {
       data: params
     };
     /* Devolvemos la promesa*/
-    return $http(request);
+    $rootScope.promise = $http(request);
+    return $rootScope.promise;
   };
 
   this.getUserId = function (tokenId, redSocial, oauth_verifier) {
@@ -39,7 +40,8 @@ picbit.service('$backend', function ($http, $location) {
       headers: {'Content-Type': 'application/x-www-form-urlencoded'}
     };
 
-    return $http(request);
+    $rootScope.promise = $http(request);
+    return $rootScope.promise;
   };
 
   /* Permite elegir un usuario por user_id */
@@ -52,7 +54,8 @@ picbit.service('$backend', function ($http, $location) {
       url: uri,
       headers: {'Content-Type': 'application/x-www-form-urlencoded'}
     };
-    return $http(request);
+    $rootScope.promise = $http(request);
+    return $rootScope.promise;
   };
   /* Contacto: envia un email al backend */
   this.sendEmail = function (message, sender, subject) {
@@ -71,7 +74,8 @@ picbit.service('$backend', function ($http, $location) {
       data: params
     };
 
-    return $http(request);
+    $rootScope.promise = $http(request);
+    return $rootScope.promise;
   };
 
   this.sendSub = function (name, sender, surname) {
@@ -85,7 +89,8 @@ picbit.service('$backend', function ($http, $location) {
       data: params
     };
 
-    return $http(request);
+    $rootScope.promise = $http(request);
+    return $rootScope.promise;
   };
 
   this.logout = function () {
@@ -101,11 +106,12 @@ picbit.service('$backend', function ($http, $location) {
       data: params
     };
 
-    return $http(request);
+    $rootScope.promise = $http(request);
+    return $rootScope.promise;
   };
 
 
-});
+}]);
 
 picbit.service('$anchorSmoothScroll', function () {
   'use strict';

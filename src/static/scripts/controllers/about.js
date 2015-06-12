@@ -1,3 +1,3 @@
 angular.module('picbit')
-  .controller('AboutController', function($scope, $routeParams,$timeout) {
-});
+  .controller('AboutController',['$scope','$roouteParams','$timeout', function($scope, $routeParams,$timeout) {
+}]);

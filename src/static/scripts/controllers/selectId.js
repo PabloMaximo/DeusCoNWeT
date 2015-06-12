@@ -1,5 +1,5 @@
-angular.module('picbit').controller('SelectidController', function ($scope, $backend, $rootScope) {
-
+angular.module('picbit').controller('SelectidController',['$scope','$backend','$rootScope',function ($scope, $backend, $rootScope) {
+  'use strict';
   $scope.sendUsername = function (event,user_id) {
     var callback, errorCallback;
     callback = function () {
@@ -18,4 +18,4 @@ angular.module('picbit').controller('SelectidController', function ($scope, $bac
 
     }
   }
-});
+}]);

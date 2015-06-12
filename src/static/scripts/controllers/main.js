@@ -1,4 +1,4 @@
-angular.module('picbit').controller('MainController', function ($scope, $location, $timeout, $backend, $http, $window, $cookie, $rootScope) {
+angular.module('picbit').controller('MainController', ['$scope','$location','$timeout','$backend','$http','$window','$cookie','$rootScope', function ($scope, $location, $timeout, $backend, $http, $window, $cookie, $rootScope) {
   'use strict';
 
   $scope.status = $cookie.get('session') !== undefined; // Registr el stado de logueado
@@ -169,4 +169,4 @@ angular.module('picbit').controller('MainController', function ($scope, $locatio
   document.querySelector('body').addEventListener('facebook-logged', $scope.logged);
   document.querySelector('body').addEventListener('sof-logged', $scope.logged);
   $scope.popup = false;
-});
+}]);

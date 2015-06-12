@@ -1,4 +1,4 @@
-angular.module('picbit').controller('ContactController', function ($scope, $backend) {
+angular.module('picbit').controller('ContactController', ['$scope','$backend',function ($scope, $backend) {
   'use strict';
 
 
@@ -27,4 +27,4 @@ angular.module('picbit').controller('ContactController', function ($scope, $back
       $backend.sendEmail(message.value, sender.value, subject.value, callback);
     }
   };
-});
+}]);

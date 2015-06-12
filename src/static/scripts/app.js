@@ -18,7 +18,7 @@
     'ngTouch',
     'ng-polymer-elements'
   ]);
-  app.config(function ($locationProvider, $routeProvider,$httpProvider) {
+  app.config(['$locationProvider','$routeProvider', '$httpProvider',function ($locationProvider, $routeProvider,$httpProvider) {
     $httpProvider.defaults.withCredentials = true;
     $routeProvider
     /* Español */
@@ -88,7 +88,7 @@
       .otherwise({redirectTo: '/'})
     ;
     $locationProvider.html5Mode(true)
-  });
+  }]);
 
   app.run(["$rootScope", "$location", function($rootScope, $location) {
     $rootScope.$on("$routeChangeError", function(event, current, previous, eventObj) {
