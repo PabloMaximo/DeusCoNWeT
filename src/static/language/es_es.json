@@ -32,6 +32,7 @@
     "surname" : "Apellidos",
     "email" : "Email",
     "save" : "Guardar",
+<<<<<<< HEAD
     "social" : "Redes sociales conectadas",
     "Login_Facebook" : "Log in Facebook",
     "Logout_Facebook" : "Log out Facebook",
@@ -49,5 +50,13 @@
   "select_id": {
     "title":"Selecciona tu nombre de usuario",
     "input_title": "Nombre de usuario"
+=======
+    "social" : "Redes sociales conectadas"
+  },
+  "twitter_timeline": {
+    "title" : "Tu Timeline",
+    "refresh" : "Refrescar",
+    "Load more" : "Mostrar mas"
+>>>>>>> develop
   }
 }

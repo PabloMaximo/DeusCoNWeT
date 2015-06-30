@@ -7,3 +7,4 @@ images/min
 /src/static/.tmp/
 /src/static/build/
 /src/static/scripts/min/
+.brackets.json

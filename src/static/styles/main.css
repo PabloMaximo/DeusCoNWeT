@@ -121,6 +121,24 @@ paper-button > a:visited {
   margin:0 20px;
 }
 
+.profile_button{
+  text-transform: capitalize;
+  font-size: 75%;
+  margin: 0px;
+  padding: 0px;
+  width: 130px;
+}
+
+.lenguage-button{
+  padding-left: 25px;
+  padding-right: 20px;
+}
+
+.core-item{
+  margin:0px;
+  padding:0px;
+}
+
 footer {
   position:fixed;
   bottom:0;
@@ -189,9 +207,17 @@ select.language > option {
 }
 
 #user_options {
+  text-align: center;
   padding: 3px 8px;
   border-radius: 15px;
+<<<<<<< HEAD
   min-width: 90px;
+=======
+  min-width: 125px;
+  padding-left: 25px;
+  padding-right: 12px;
+  vertical-align:middle"
+>>>>>>> develop
 }
 #user_options:hover {
   background-color: #B71C1C;

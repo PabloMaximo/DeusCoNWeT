@@ -98,5 +98,12 @@
         $location.path("/");
       }
     });
+<<<<<<< HEAD
+=======
+
+    $rootScope.$on("$locationChangeStart", function(event,current,previus,eventObj) {
+      /*console.log(event,current,previus,eventObj);*/
+    });
+>>>>>>> develop
   }]);
 })(wrap(document));
