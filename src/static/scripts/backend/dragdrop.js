@@ -140,7 +140,10 @@ picbit.directive("ngContainer", function () {
 
         /* Enlazamos el elemento al contenedor*/
         element.append(newTimeline);
-
+        mixpanel.track("Add Component", {
+          "name": id,
+          "version": 1.0
+        })
         /* Forzamos la fase de compile de angular para que cargue las directivas del
          * nuevo elemento
          */
