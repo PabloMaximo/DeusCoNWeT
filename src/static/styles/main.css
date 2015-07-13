@@ -1,8 +1,6 @@
-@font-face {
-  font-family: myFont;
-  src: url(../font/font.ttf);
+* {
+  font-family: "Bookman Old Style", Bookman, "Goudy Old Style", Garamond, "Hoefler Text", "Bitstream Charter", Georgia, serif;
 }
-
 body,html {
   margin:0;
   color:rgba(255, 255, 255, 0.85);
@@ -92,7 +90,7 @@ paper-button {
 #name {
   letter-spacing: 10px;
   font-size: 45px;
-  font-family: myFont, serif;
+  font-family: serif;
 }
 #name:hover{
   cursor: pointer;

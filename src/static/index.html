@@ -64,7 +64,7 @@
 
     <footer horizontal center-justified layout>
       <paper-button ng-click="changeView('/about')">{{language.about}}</paper-button>
-      <paper-button><a href="https://mortega5.typeform.com/to/nRCzNz">{{language.contact}}</a></paper-button>
+      <paper-button><a href="https://deusconwet.typeform.com/to/opLyCo">{{language.contact}}</a></paper-button>
       <paper-button ng-click="changeView('/privacy')">{{language.privacy}}</paper-button>
       <a href="https://mixpanel.com/f/partner"><img src="//cdn.mxpnl.com/site_media/images/partner/badge_light.png" alt="Mobile Analytics" /></a>
     </footer>
@@ -92,8 +92,8 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/ng-polymer-elements/ng-polymer-elements.js"></script>
 
+   
     <script src="scripts/app.js"></script>
-    <script src="scripts/backend/Services.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/landingPage.js"></script>
     <script src="scripts/controllers/userHome.js"></script>
@@ -101,6 +101,9 @@
     <script src="scripts/controllers/contact.js"></script>
     <script src="scripts/controllers/profile.js"></script>
     <script src="scripts/controllers/privacy.js"></script>
-    <script src="scripts/backend/dragdrop.js"></script>
+    <script src="scripts/directives/dragdrop.js"></script>
+    <script src="scripts/services/anchosmooth.js"></script>
+    <script src="scripts/services/backend.js"></script>
+    <script src="scripts/services/cookies.js"></script>
   </body>
 </html>

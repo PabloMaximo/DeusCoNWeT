@@ -1,7 +1,5 @@
 application: example-project-13
-
 version: test-frontend3
-
 runtime: python27
 threadsafe: true
 api_version: 1
