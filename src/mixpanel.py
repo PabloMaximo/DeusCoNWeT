@@ -1,4 +1,4 @@
-# Copyright 2015 - Escuela Técnica Superior de Ingenieros Informáticos - UPM
+# Copyright 2015 - Escuela Tecnica Superior de Ingenieros Informaticos - UPM
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -18,8 +18,17 @@
 """
 
 import api_mixpanel
+import json
 
 # The first step is to authenticate to get the info then
 
 auth_info = api_mixpanel.Mixpanel(api_key="1fc2cdbcd86fda5e3cac1c05c621fcab", api_secret="c5c2ff034e73c179db2b38f84b2fc773")
 
+params = {"event": ["Add Component"],
+            "type": "general",
+            "unit": "day",
+            "interval": 5}
+resp = auth_info.request(["events"], params)
+response = json.dumps(resp)
+
+print response
