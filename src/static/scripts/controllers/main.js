@@ -142,16 +142,9 @@ angular.module('picbit').controller('MainController', ['$scope','$location','$ti
     $scope.shadow = false;
   };
 
-<<<<<<< HEAD
-  window.addEventListener('scroll', function (e, d, s) {
-    $scope.$apply(function () {
-      var size = document.body.scrollTop;
-      console.log(document.body.scrollTop);
-=======
   window.addEventListener('scroll',function(e,d,s){
     $scope.$apply(function() {
       var size = 	document.body.scrollTop
->>>>>>> develop
       $scope.scrolled = size > 0;
     });
   });
