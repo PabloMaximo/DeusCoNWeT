@@ -1,5 +1,5 @@
-/*global angular, document, console */
-angular.module("picbit").controller("MainController", function ($scope, $location, $timeout, $backend, $http, $window, $cookie) {
+/*global angular, document, window, console */
+angular.module("picbit").controller("MainController", ["$scope", "$location", "$timeout", "$backend", "$http", "$window", "$cookie", "$rootScope", function ($scope, $location, $timeout, $backend, $http, $window, $cookie, $rootScope) {
   "use strict";
 
   $scope.status = $cookie.get("session") !== undefined; // Registr el stado de logueado
@@ -16,11 +16,11 @@ angular.module("picbit").controller("MainController", function ($scope, $locatio
     $cookie.put("language", language);
     file = $scope.idioma === "es" ? "es_es.json" : "en_en.json";
 
-    $http.get("../../language/" + file ).success(function (data) {
+    $http.get("../../language/" + file).success(function (data) {
       $scope.language = data;
-      $scope.language_selected = data.lang[$scope.idioma];
-      document.querySelector("#language").$.label.innerHTML = $scope.language_selected;
-    }).error( function (data, status) {
+      $scope.languageSelected = data.lang[$scope.idioma];
+      document.querySelector("#language").$.label.innerHTML = $scope.languageSelected;
+    }).error(function (data, status) {
       console.error(data, status);
     });
   };
@@ -28,28 +28,27 @@ angular.module("picbit").controller("MainController", function ($scope, $locatio
   /* Monitorizamos el lenguage */
 
   if ($scope.idioma === "es") {
-    $http.get("../../language/es_es.json").success(function (data){
+    $http.get("../../language/es_es.json").success(function (data) {
       $scope.language = data;
       $scope.idioma = "es";
       $cookie.put("language", "es");
-      $scope.language_selected = data.lang[$scope.idioma];
-    }).error( function (data, status) {
+      $scope.languageSelected = data.lang[$scope.idioma];
+    }).error(function (data, status) {
       console.error(data, status);
     });
   } else {
-    $http.get("../../language/en_en.json").success(function (data){
+    $http.get("../../language/en_en.json").success(function (data) {
       $scope.language = data;
       $scope.idioma = "en";
       $cookie.put("language", "en");
-      $scope.language_selected = data.lang[$scope.idioma];
-    }).error( function (data, status) {
+      $scope.languageSelected = data.lang[$scope.idioma];
+    }).error(function (data, status) {
       console.error(data, status);
     });
   }
 
   $scope.logged = function (e) {
     $scope.$apply(function () {
-      var callback;
 
       $scope.hidePopup();// escondemos el popup y cambiamos la direccion del usuario
       if (e.detail.redSocial === "twitter") {
@@ -58,28 +57,58 @@ angular.module("picbit").controller("MainController", function ($scope, $locatio
           $scope.changeView("/user/" + e.detail.redSocial + "_" + e.detail.userId);
         }
 
-      } else if (e.detail.redSocial === "googleplus") { // Comprobamos si es google para buscar el id
+      }
+      else if (e.detail.redSocial === "googleplus") { // Comprobamos si es google para buscar el id
         var uri;
         uri = "https://www.googleapis.com/plus/v1/people/me?access_token=" + e.detail.token;
-        $http.get(uri).success(function (data) {
-          /* Provisional hasta que se implemente el nombre de usuario */
-          if ($location.$$path.indexOf("profile") === -1){
-            callback = function (){
-              $scope.changeView("/user/" + e.detail.redSocial + "_" + data.id);
-            };
+        $http.get(uri).success(function (responseData) {
+          if ($location.$$path.indexOf("profile") === -1) {
+            var userId = responseData.id;
+            /* Cogemos el identificador del usuario */
+            $backend.getUserId(userId, e.detail.redSocial)
+              .then(function (userData) { /* Si devuelve un 200, ya existe el usuario*/
+              /* Pedimos la información del usuario y la almacenamos para poder acceder a sus datos */
+              $backend.getUser(userData.user_id).then(function(data){
+                $rootScope.user = data;
+              });
+              /* Le mandamos a su home*/
+              $scope.logOutButton();
+              $scope.changeView("/user/" + userData.user_id);
+              $backend.sendData(e.detail.token, userId, e.detail.redSocial);
+            }, function () {
+              /* Guardamos información para terminar su registro */
+              $rootScope.register = {token: e.detail.token, redSocial: e.detail.redSocial, tokenId: userId};
+              $scope.changeView("/selectId");
+            });
+          } else {
+            $backend.sendData(e.detail.token, responseData.id, e.detail.redSocial);
           }
-          $backend.sendData(e.detail.token, data.id, e.detail.redSocial, callback);
         });
-      } else {
-        if ($location.$$path.indexOf("profile") === -1){
-          callback = function (){
-            $scope.changeView("/user/" + e.detail.redSocial + "_" + e.detail.userId);
-          };
+      }
+      else { /* Resto de redes sociales */
+        if ($location.$$path.indexOf("profile") === -1) {
+          var tokenId = e.detail.userId;
+          /* Cogemos el identificador del usuario */
+          $backend.getUserId(tokenId, e.detail.redSocial)
+            .then(function (userData) { /* Si devuelve un 200, ya existe el usuario*/
+            /* Pedimos la información del usuario y la almacenamos para poder acceder a sus datos */
+            $backend.getUser(userData.user_id).then(function(data){
+              $rootScope.user = data;
+            });
+            /* Le mandamos a su home*/
+            $scope.logOutButton();
+            $scope.changeView("/user/" + userData.user_id);
+            $backend.sendData(e.detail.token, tokenId, e.detail.redSocial);
+          }, function () {
+            /* Guardamos información para terminar su registro */
+            $rootScope.register = {token: e.detail.token, redSocial: e.detail.redSocial, tokenId: tokenId};
+            $scope.changeView("/selectId");
+          });
+        } else {
+          /*$backend.sendData(e.detail.token, data.id, e.detail.redSocial);*/
         }
-        $backend.sendData(e.detail.token, e.detail.userId, e.detail.redSocial, callback);
       }
       // cambiamos el botton
-      $scope.logOutButton();
 
     });
   };
@@ -106,6 +135,7 @@ angular.module("picbit").controller("MainController", function ($scope, $locatio
     if (!$scope.status) {
       $scope.popup = true;
       $scope.shadow = true;
+      window.onkeydown = $scope.listenEscKeydown;
     } else {
       //$scope.changeView("/user/" + $backend.getUser());
       $scope.changeView("user/213");
@@ -114,6 +144,7 @@ angular.module("picbit").controller("MainController", function ($scope, $locatio
   $scope.hidePopup = function () {
     $scope.popup = false;
     $scope.shadow = false;
+    window.removeEventListener("onkeydown", $scope.listenEscKeydown);
   };
 
   $window.addEventListener("scroll", function() {
@@ -132,6 +163,13 @@ angular.module("picbit").controller("MainController", function ($scope, $locatio
     document.querySelector("#dropmenu").toggle();
   };
 
+  $scope.listenEscKeydown = function (event) {
+    $scope.$apply(function() {
+      if (event.keyCode === 27) {
+        $scope.hidePopup();
+      }
+    });
+  };
 
   /* Escuhas de los botones*/
   document.querySelector("body").addEventListener("google-logged", $scope.logged);
@@ -142,4 +180,4 @@ angular.module("picbit").controller("MainController", function ($scope, $locatio
   document.querySelector("body").addEventListener("facebook-logged", $scope.logged);
   document.querySelector("body").addEventListener("sof-logged", $scope.logged);
 
-});
+}]);

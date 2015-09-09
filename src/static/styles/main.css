@@ -1,5 +1,10 @@
+@font-face {
+   font-family: archistico;
+    src: url('../fonts/ArchisticoBold.ttf');
+}
 * {
   font-family: "Bookman Old Style", Bookman, "Goudy Old Style", Garamond, "Hoefler Text", "Bitstream Charter", Georgia, serif;
+
 }
 body,html {
   margin:0;
@@ -72,8 +77,14 @@ paper-button {
   z-index: 200;
   text-align: center;
 }
-#popup > div {
-  margin-top: 30px;
+#popup > core-icon-button {
+  position:absolute;
+  right:0;
+}
+
+#popup > span {
+  margin: 7% 10% 10% 10%;
+  font-size:1.4em;
 }
 .shadow {
   position:fixed;
@@ -85,12 +96,12 @@ paper-button {
 }
 .button-login twitter-login,
 .button-login login-facebook {
-  margin-top: 25px;
+  margin-top: 10px;
 }
 #name {
-  letter-spacing: 10px;
-  font-size: 45px;
-  font-family: serif;
+  font-size: 60px;
+  font-family: archistico;
+  color:#cbc7c7;
 }
 #name:hover{
   cursor: pointer;
@@ -234,4 +245,8 @@ select.language > option {
 }
 #dropmenu core-item[active] {
   font-weight: normal;
+}
+
+#siginButton > span {
+  padding-left: 3px;vertical-align:middle
 }
