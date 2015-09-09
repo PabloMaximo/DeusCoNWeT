@@ -463,7 +463,6 @@ def usuarioSuscrito(email):
     else:
         return False
 
-
 class MainPage(webapp2.RequestHandler):
 
     def get(self):
