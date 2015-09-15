@@ -2,7 +2,7 @@ from twython import Twython
 
 #uri = "https://api.twitter.com/1.1/statuses/update.json"
 twitter = Twython("J4bjMZmJ6hh7r0wlG9H90cgEe", "8HIPpQgL6d3WWQMDN5DPTHefjb5qfvTFg78j1RdZbR19uEPZMf",
-					"3072043347-hbcrkzLJfVzTg7BTjgzkKqZx3bbzpYb04IO573x", "VmQX0z3ZWpRv63M92z0SrmmUNGFjNIMZ06iGiJ67kK9oY")
+					"3072043347-T00ESRJtzlqHnGRNJZxrBP3IDV0S8c1uGIn1vWf", "OBPFI8deR6420txM1kCJP9eW59Xnbpe5NCbPgOlSJRock")
 resp = twitter.update_status(status="Testing our API")
 print resp
 # connection = httplib.HTTPSConnection("api.twitter.com")
