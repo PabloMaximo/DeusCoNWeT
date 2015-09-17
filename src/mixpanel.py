@@ -26,8 +26,8 @@ auth_info = api_mixpanel.Mixpanel(api_key="1fc2cdbcd86fda5e3cac1c05c621fcab", ap
 
 params = {"event": ["Add Component"],
             "type": "general",
-            "unit": "day",
-            "interval": 5}
+            "unit": "week",
+            "interval": 24}
 resp = auth_info.request(["events"], params)
 response = json.dumps(resp)
 

@@ -1,9 +1,18 @@
 from twython import Twython
+# from time import time
+# import httplib
+
+# connection = httplib.HTTPConnection("twitter-timeline-app.appspot.com")
+# connection.request("GET", "/app/demo.html")
+# response = connection.getresponse()
+# data = response.read()
+# print data
+# print "====================================================================="
 
 #uri = "https://api.twitter.com/1.1/statuses/update.json"
 twitter = Twython("J4bjMZmJ6hh7r0wlG9H90cgEe", "8HIPpQgL6d3WWQMDN5DPTHefjb5qfvTFg78j1RdZbR19uEPZMf",
 					"3072043347-T00ESRJtzlqHnGRNJZxrBP3IDV0S8c1uGIn1vWf", "OBPFI8deR6420txM1kCJP9eW59Xnbpe5NCbPgOlSJRock")
-resp = twitter.update_status(status="Testing our API")
+resp = twitter.update_status(status="Testing some metrics")
 print resp
 # connection = httplib.HTTPSConnection("api.twitter.com")
 # params = urllib.urlencode({
@@ -20,8 +29,6 @@ print resp
 # headers = {"Content-type": "application/json",
 # 			"Accept": "text/json"}
 # connection.request("POST", "/1.1/statuses/update.json?status=Bienvenidos al twitter oficial del grupo DEUS", params, headers)
-# response = connection.getresponse()
-# data = response.read()
 # header = response.getheaders()
 # connection.close()
 # print data
