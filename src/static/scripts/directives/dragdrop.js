@@ -130,6 +130,7 @@ picbit.directive("ngContainer", function () {
 
         /* Creamos el nuevo objeto en funcion del identificador intercambiado */
         newTimeline = angular.element("<" + id + "/>");
+
         /* Añadimos los atributos necesarios para su funcionamiento */
 
         newTimeline.attr("ng-drag", "");
@@ -150,6 +151,8 @@ picbit.directive("ngContainer", function () {
         /* Enlazamos el elemento al contenedor*/
         element.append(newTimeline);
         element.scope().listComponentAdded.push(id);
+
+        mixpanel.track("dropObject");
 
         /* Forzamos la fase de compile de angular para que cargue las directivas del
          * nuevo elemento
