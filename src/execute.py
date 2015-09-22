@@ -1,5 +1,6 @@
 from HTMLParser import HTMLParser
 import execjs
+from time import time
 
 f = open('../../twitter-timeline/static/twitter-timeline.html')
 html_file = f.read()
@@ -24,4 +25,8 @@ class MyHTMLParser(HTMLParser):
 html = MyHTMLParser()
 html.feed(html_file)
 
-print html._data
+wc = execjs.compile(html._data)
+a = wc.call("response")
+
+
+print a
