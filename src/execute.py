@@ -26,7 +26,7 @@ html = MyHTMLParser()
 html.feed(html_file)
 
 wc = execjs.compile(html._data)
-a = wc.call("response")
+a = wc.call("response",)
 
 
 print a
