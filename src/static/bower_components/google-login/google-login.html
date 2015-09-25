@@ -141,7 +141,7 @@ Log out from Google+
               var exp = new RegExp(patron);
               back.acToken = exp.exec(url)[1];0
               back.fire('google-logged',{token: back.acToken,redSocial:'googleplus'});
-              back.logged= /*back.static?false:*/true;
+              /*back.logged= back.static?false:true*/;
               win.close();
             }
           } catch(e) {
