@@ -215,11 +215,18 @@ class ComponentHandler(SessionHandler):
         x_axis = self.request.get("x_axis", default_value="none")
         y_axis = self.request.get("y_axis", default_value="none")
         listening = self.request.get("listening", default_value="none")
+        
+        url = self.request.get("url", default_value="none")
+        description = self.request.get("description", default_value="none")
+        version_list = self.request.get_all("version")
+        input_list = self.request.get_all("input_type")
+        output_list = self.request.get_all("output_type")
         if not cookie_value == None:
             # Checks whether the cookie belongs to an active user and the request has provided at least one param
             user_id = self.getUserInfo(cookie_value)
             if not user_id == None and not rating == "none" or not x_axis == "none" or not y_axis == "none" :
-                data = {}
+                user_component_data = {}
+                global_component_data = {}
                 component_modified_success = False
                 rating_error = False
                 # We get the data from the request
@@ -227,11 +234,22 @@ class ComponentHandler(SessionHandler):
                     if not rating == "none":
                         rating_value = float(rating)
                     if not x_axis == "none":
-                        data["x"] = float(x_axis)
+                        user_component_data["x"] = float(x_axis)
                     if not y_axis == "none":
-                        data["y"] = float(y_axis)
+                        user_component_data["y"] = float(y_axis)
                     if not listening == "none":
-                        data["listening"] = listening
+                        user_component_data["listening"] = listening
+
+                    if not url == "none":
+                        global_component_data["url"] = url
+                    if not description == "none":
+                        global_component_data["description"] = description
+                    if not version_list == None:
+                        global_component_data["version_list"] = version_list
+                    if not input_list == None:
+                        global_component_data["input_list"] = input_list
+                    if not output_list == None:
+                        global_component_data["output_list"] = output_list
                     
                 except ValueError:
                     response = \
@@ -261,11 +279,14 @@ class ComponentHandler(SessionHandler):
                         self.response.set_status(400)
 
                 # Updates the info about the component
-                if not len(data) == 0 and not rating_error:
-                    ndb_pb.modifyUserComponent(user_id, component_id, data)
+                if not len(user_component_data) == 0 and not rating_error:
+                    ndb_pb.modifyUserComponent(user_id, component_id,user_component_data)
                     component_modified_success = True
-
-                # Compounds the success response if the component has ben updated successfully
+                if not len(global_component_data) == 0:
+                    ndb_pb.updateComponent(component_id, url, description,input_type=input_list,output_type=output_list, version_list=version_list)
+                    component_modified_success = True
+                
+                # Compounds the success response if the component has been updated successfully
                 if component_modified_success:
                     response = {"status": "Component updated succesfully"}
                     self.response.content_type = "application/json"                
