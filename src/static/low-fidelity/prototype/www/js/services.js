@@ -1,5 +1,66 @@
 angular.module('starter.services', [])
 
+.factory('Components', function(){
+    var components = [
+      {
+        id: 1,
+        name: 'facebook component',
+        posts: [
+          {
+            img: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png',
+            text: 'Minions ipsum chasy poopayee bee do bee do bee do. Underweaaar po kass hahaha belloo! ' +
+                  'Aaaaaah chasy bananaaaa ti aamoo!',
+          },
+          {
+            img: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png',
+            text: 'Minions ipsum chasy poopayee bee do bee do bee do. Underweaaar po kass hahaha belloo! ' +
+            'Aaaaaah chasy bananaaaa ti aamoo!',
+          },
+          {
+            img: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png',
+            text: 'Minions ipsum chasy poopayee bee do bee do bee do. Underweaaar po kass hahaha belloo! ' +
+            'Aaaaaah chasy bananaaaa ti aamoo!',
+          }
+        ]
+      },
+      {
+        id: 2,
+        name: 'twitter component',
+        posts: [
+          {
+            img: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png',
+            text: 'Minions ipsum chasy poopayee bee do bee do bee do. Underweaaar po kass hahaha belloo! ' +
+            'Aaaaaah chasy bananaaaa ti aamoo!',
+          },
+          {
+            img: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png',
+            text: 'Minions ipsum chasy poopayee bee do bee do bee do. Underweaaar po kass hahaha belloo! ' +
+            'Aaaaaah chasy bananaaaa ti aamoo!',
+          },
+          {
+            img: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png',
+            text: 'Minions ipsum chasy poopayee bee do bee do bee do. Underweaaar po kass hahaha belloo! ' +
+            'Aaaaaah chasy bananaaaa ti aamoo!',
+          }
+        ]
+      }
+    ];
+    return {
+      cont: 0,
+      all: function(){
+        return components;
+      },
+      get: function(id){
+        for (var i = 0; i < components.length; i++) {
+          if (components[i].id === parseInt(id)) {
+            return components[i];
+          }
+        }
+        return null;
+      }
+    }
+  })
+
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array
 

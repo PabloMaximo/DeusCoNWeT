@@ -40,6 +40,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       url: '/login',
       templateUrl: 'templates/login.html',
     })
+    .state('dashboard',{
+      url: '/dashboard',
+      templateUrl: 'templates/dashboard.html'
+    })
+    /*.state('dashboard.components',{
+      url: '/components',
+      templateUrl: 'templates/components.html'
+    })*/
   // setup an abstract state for the tabs directive
   /*.state('tab', {
     url: '/tab',
