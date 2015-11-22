@@ -1,0 +1,118 @@
+h2,img{
+  display: inline-block;
+  vertical-align: middle;
+}
+.content{
+  text-align: center;
+}
+.componentsList{
+  width: 100%;
+  text-align: center;
+  /*margin-top:40px;*/
+}
+.wellDone{
+  color: #33cd5f;
+  font-weight: bolder;
+  font-size: 35px;
+}
+.message{
+  font-size: 1.2em;
+}
+.paginationComp{
+  width: 100%;
+  text-align: center;
+  padding: 2px 0px;
+  height: 25px;
+  border-bottom: 1px solid #b2b2b2;
+  border-top: 1px solid #b2b2b2;
+}
+.paginationComp > div{
+  display: inline-block;
+  margin: 0px 2px;
+}
+#component1{
+  background-color: cornflowerblue;
+}
+#component2-twitter-social{
+  background-color: greenyellow;
+}
+#component3{
+  background-color: red;
+}
+#component4{
+  background-color: bisque;
+}
+@media all and (orientation: landscape){
+  .content{
+    font-size: 1.2em;
+    -webkit-align-items: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    margin-top: -2%;
+  }
+  .loginText, .loginBtn{
+    display: inline-block;
+    vertical-align: middle;
+    width: 49%;
+  }
+  .loginText{
+    border-right: 1px solid gray;
+  }
+  .loginText  p{
+    width: 100%;
+    font-size: 16px;
+    padding: 2px 25px;
+  }
+  .btnComp{
+    width: 20%;
+    margin: 0px 5px;
+    line-height: normal;
+    padding: 15px;
+    min-height: 80px;
+  }
+  .btnComp:first-child{
+    margin-left: 0px;
+  }
+  .btnComp:last-child{
+    margin-right: 0px;
+  }
+}
+@media all and (orientation: portrait){
+  .loginText, .loginBtn{
+    display: block;
+    width: 100%;
+  }
+  .content{
+    font-size: 1em;
+    margin-top: -40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .loginText  p{
+    width: 75%;
+    margin: 10px auto;
+  }
+  .btnComp{
+    width: 30%;
+    margin: 5px 5px;
+    line-height: normal;
+    padding: 10px;
+    min-height: 120px;
+  }
+  .btnComp:first-child{
+    margin-left: 0px;
+  }
+  .btnComp:last-child{
+    margin-right: 0px;
+  }
+  .componentsList{
+    width: 100%;
+    text-align: left;
+    padding: 0px 20px;
+    /*margin-top:40px;*/
+  }
+}
+

@@ -1,0 +1,22 @@
+<div class="content">
+  <div class="componentsList" ng-if="countAvailables > 0">
+    <div ng-repeat="comp in components" ng-if="comp.available" class="button btnComp" on-tap="addComponent('{{comp.name}}')">
+      <!--<img src="img/{{comp.image}}"/>-->
+      <p class="title">
+        {{comp.name}}
+      </p>
+      <p class="description">
+        {{comp.description}}
+      </p>
+    </div>
+  </div>
+  <div class="componentsList" ng-if="countAvailables == 0">
+    <span class="icon ion-android-done wellDone"></span>
+    <p class="message">
+      You has already added all the components available!
+    </p>
+    <button class="button button-large button-positive" on-tap="transitions.dash()">
+      <span class="icon ion-android-arrow-back"> Back</span>
+    </button>
+  </div>
+</div>
