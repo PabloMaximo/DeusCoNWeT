@@ -17,10 +17,10 @@
   <div style="height: 10px; width: 10px; background-color: #111111;" ng-repeat="cmp in dashstate.getAddedComponents()">
   </div>
 </div>
-<div class="has-header" ng-if="!dashstate.isEmpty()">
+<div class="has-header" ng-if="!dashstate.isEmpty()" ng-init="disable()" >
   <div ng-repeat="cmp in dashstate.getAddedComponents()" class="view-container"
        ng-if="cmp.name == dashstate.activeComponent" id="{{cmp.name}}"
-       on-drag-left="advanceActive()" on-drag-right="backActive()">
+       on-swipe-left="advanceActive()" on-swipe-right="backActive()">
     <span>{{cmp.name}}</span>
   </div>
 </div>

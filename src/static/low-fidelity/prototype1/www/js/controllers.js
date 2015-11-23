@@ -11,6 +11,7 @@ angular.module('prototype1.controllers', [])
       isEmpty: function(){return this._components.length == 0 ? true : false},
       getAddedComponents: function(){return this._components},
       addComponent: function(cmp){
+        console.log("ADDING: "+cmp.name)
         if(this.isEmpty()){
           this.activeComponent = cmp.name;
         }
@@ -18,7 +19,14 @@ angular.module('prototype1.controllers', [])
       },
       getNumberOfComponents: function(){return this._components.length},
       getIndex: function(name){
-        this._components.indexOf();
+        console.log("searching index of: "+ name);
+        //var index = 0;
+        for(var obj in this._components){
+          if(this._components[obj].name == name){
+            console.log(obj)
+            return (obj*1);
+          }
+        }
       }
     }
 
@@ -56,13 +64,39 @@ angular.module('prototype1.controllers', [])
   .controller('LoginCtrl', function($scope, $state){
 
   })
-  .controller('DashCtrl', function($scope){
-    $scope.advanceActive = function(){
-      //var nums = $scope.dashstate.getNumberOfComponents();
-      alert("to right");
+  .controller('DashCtrl', function($scope, $ionicSideMenuDelegate){
+    $scope.disable = function(){
+      $ionicSideMenuDelegate.canDragContent(false);
     }
-    $scope.backActive = function($scope){
-      alert("to left");
+    $scope.advanceActive = function(){
+      var nums = $scope.dashstate.getNumberOfComponents();
+      console.log("ACTIVE COMPONENT: "+$scope.dashstate.activeComponent)
+      var currentIndex = $scope.dashstate.getIndex($scope.dashstate.activeComponent);
+      console.log("TOTAL: "+nums);
+      if(nums > 1){
+        console.log("CURRENT: "+currentIndex)
+        if(currentIndex < nums - 1){
+          $scope.dashstate.activeComponent = $scope.dashstate._components[currentIndex+1].name;
+          console.log($scope.dashstate.activeComponent);
+        }
+      }else{
+        return false;
+      }
+    }
+    $scope.backActive = function(){
+      var nums = $scope.dashstate.getNumberOfComponents();
+      console.log("ACTIVE COMPONENT: "+$scope.dashstate.activeComponent)
+      var currentIndex = $scope.dashstate.getIndex($scope.dashstate.activeComponent);
+      console.log("TOTAL: "+nums);
+      if(nums > 1){
+        console.log("CURRENT: "+currentIndex)
+        if(currentIndex > 0){
+          $scope.dashstate.activeComponent = $scope.dashstate._components[currentIndex-1].name;
+          console.log($scope.dashstate.activeComponent);
+        }
+      }else{
+        return false;
+      }
     }
   })
   .controller('ComponentsCtrl',function($scope, Components){
