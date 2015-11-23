@@ -16,7 +16,10 @@ angular.module('prototype1.controllers', [])
         }
         this._components.push(cmp);
       },
-      getNumberOfComponents: function(){return this._components.length}
+      getNumberOfComponents: function(){return this._components.length},
+      getIndex: function(name){
+        this._components.indexOf();
+      }
     }
 
     $scope.transitions = {
@@ -53,7 +56,14 @@ angular.module('prototype1.controllers', [])
   .controller('LoginCtrl', function($scope, $state){
 
   })
-  .controller('DashCtrl', function($scope,$state){
+  .controller('DashCtrl', function($scope){
+    $scope.advanceActive = function(){
+      //var nums = $scope.dashstate.getNumberOfComponents();
+      alert("to right");
+    }
+    $scope.backActive = function($scope){
+      alert("to left");
+    }
   })
   .controller('ComponentsCtrl',function($scope, Components){
     $scope.components = Components.all();

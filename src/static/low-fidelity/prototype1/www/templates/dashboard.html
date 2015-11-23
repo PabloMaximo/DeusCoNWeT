@@ -19,7 +19,8 @@
 </div>
 <div class="has-header" ng-if="!dashstate.isEmpty()">
   <div ng-repeat="cmp in dashstate.getAddedComponents()" class="view-container"
-       ng-if="cmp.name == dashstate.activeComponent" id="{{cmp.name}}">
+       ng-if="cmp.name == dashstate.activeComponent" id="{{cmp.name}}"
+       on-drag-left="advanceActive()" on-drag-right="backActive()">
     <span>{{cmp.name}}</span>
   </div>
 </div>
