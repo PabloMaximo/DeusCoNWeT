@@ -206,7 +206,13 @@ on-core-response="{{response_megusta}}"
       },
 
       refresh_func: function(){
-        this.$.refresco.go()
+        try{
+          this.$.refresco.go()
+        }catch(e){
+          console.log(e);
+          console.log(e.stack);
+          console.log(e.line);
+        }
       },
 
       response_refresco: function(event, detail, sender){

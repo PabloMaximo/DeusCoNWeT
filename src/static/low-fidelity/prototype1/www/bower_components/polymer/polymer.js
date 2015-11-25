@@ -7,7 +7,7 @@
  * Code distributed by Google as part of the polymer project is also
  * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
  */
-// @version 0.5.5
+// @version 0.5.5 
 window.PolymerGestures = {};
 
 (function(scope) {
@@ -35,6 +35,10 @@ window.PolymerGestures = {};
   }
   pathTest = null;
 
+  // TEST
+   
+  // END TEST
+  
   var target = {
     shadow: function(inEl) {
       if (inEl) {
