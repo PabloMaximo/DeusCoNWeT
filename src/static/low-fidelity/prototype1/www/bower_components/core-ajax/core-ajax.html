@@ -239,8 +239,9 @@ element.
       return (status >= 200 && status < 300);
     },
 
-    processResponse: function(xhr) {
+    processResponse: function(xhr) {      
       var response = this.evalResponse(xhr);
+      console.log("REPONSE:" + JSON.stringify(response))
       if (xhr === this.activeRequest) {
         this.response = response;
       }
@@ -249,6 +250,7 @@ element.
 
     processError: function(xhr) {
       var response = this.evalResponse(xhr);
+      console.log("ERROR:" + response)
       var error = {
         statusCode: xhr.status,
         response: response

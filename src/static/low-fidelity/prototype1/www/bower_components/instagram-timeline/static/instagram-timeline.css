@@ -1,56 +1,60 @@
 :host{
   display: inline-block;
+  width: 100%;
 }
 
 #header {
-  background: -webkit-linear-gradient(top,#517fa4,#306088);
+  /*background: -webkit-linear-gradient(top,#517fa4,#306088);*/
+  background-color: #BABABA;
   color: #fff;
-  font-family: 'Montserrat', sans-serif;
-  /*font-weight: 800;
-  font-size: 16px;*/
+font-family: 'Montserrat', sans-serif;  
+  font-size: 14px;
   text-align: center;
-  height: 35px;
+  height:35px;
 }
-#header p{
-  margin:8px;
+#header > p{
+  margin: 8px;
 }
-
-#refresh_button {
-  text-align: right;  
+#refresh_button {  
+  /*padding-bottom: 10px;*/
+  position: absolute;
+  right: 0px;
+  padding: 3px;  
 }
 
 #outline{
   overflow-y: auto;
-  max-height: 400px;
+  overflow-x: hidden;  
+  height: 100%;
+  width: 100%;
   background: #E0E1E2;
 }
 
 #box {
   margin-top: 0px;
-  margin-bottom: 30px;
-  padding-left: 0px;
-  max-width: 400px;
-  min-width: 350px;
-  font-size: 14px;
+  margin-bottom: 10px;  
+  width: 100%;
+  font-size: 12px;
   background: white;
   border-bottom: 1px solid rgba(63, 114, 155, 0.5);
   border-radius: 5px;
+  padding:0px;
 }
 
 #profile_picture{
   margin-top: 10px;
   margin-bottom: 5px;
-  margin-left: 5px;
+  margin-left: 10px;
   border-radius: 30px;
   float: left;
   vertical-align:middle;
-  width: 40px;
-  height: 40px;
+  width: 20px;
+  height: 20px;
 }
 
 #profile_name{
   text-decoration:none;
-  margin-top: 10px;
+  margin-top: 10px;  
   margin-bottom: 5px;
   vertical-align: middle;
   float: left;
@@ -60,7 +64,7 @@
 #hour{
   float: right;
   font-size: 13px;
-  margin-top: 22px;
+  margin-top: 10px;
   margin-right: 10px;
   font-family: 'Montserrat', sans-serif;
   color: #999;
@@ -94,16 +98,16 @@ core-icon-button /deep/ core-icon[role=img] {
 #description{
   display: inline-block;
   font-family: 'Montserrat', sans-serif;
-  text-align: justify;
+  text-align: left;
   margin-left: 15px;
   margin-right: 15px;
   margin-bottom: 15px;
-  font-size: 13px;
-  max-width: 400px;
+  font-size: 12px;
+  width: 95%;
 }
 
 #video{
-  max-width: 357px;
+  width:95%;
   height: auto;
   margin-left: 10px;
 }
