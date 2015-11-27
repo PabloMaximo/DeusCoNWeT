@@ -2881,6 +2881,7 @@ function tapClickGateKeeper(e) {
   if ((ionic.scroll.isScrolling && ionic.tap.containsOrIsTextInput(e.target)) ||
       (!e.isIonicTap && !ionic.tap.requiresNativeClick(e.target))) {
     //console.log('clickPrevent', e.target.tagName);
+    //change made for me
     e.stopPropagation();
 
     if (!ionic.tap.isLabelWithTextInput(e.target)) {

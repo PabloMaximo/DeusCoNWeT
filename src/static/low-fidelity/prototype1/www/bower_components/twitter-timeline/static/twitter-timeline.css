@@ -2,32 +2,43 @@
   display: inline-block;
   color:black;
 	z-index: inherit;
+  width: 100%;
+  height: 100%;
 }
 
 .box {
   border: 1px solid #d0f0f0;
   border-bottom: 1px solid #d0f0f0;
-  border-left: 1px solid #d0f0f0;
-  max-width: 400px;
-  min-width: 350px;
+  border-left: 1px solid #d0f0f0;  
+  width: 100%;
   padding:10px 5px;
   margin:0;
   font-size: 14px;
   background: #fff; /* Old browsers */
 
 }
-
+.box > div{
+  display: inline-block;
+  vertical-align: top;
+}
 #header {
   background: #55acee; /* Old browsers */
   color:#fff;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  font-family: 'Helvetica',sans-serif;
-  font-weight: 800;
-  font-size: 16px;
-  padding: 3px 0px;
+  /*border-top-left-radius: 5px;
+  border-top-right-radius: 5px;*/
+  font-family: 'Helvetica',sans-serif;  
+  font-size: 14px;
+  height: 30px;
 }
-
+#header p{
+  margin-top:5px;
+}
+#header .refresh_button{
+  padding:0px;
+}
+#container-twitter-timeline{
+  width: 100%;
+}
 #end {
   background: #55acee;
   border-bottom-left-radius: 5px;

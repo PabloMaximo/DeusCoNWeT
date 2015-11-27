@@ -81,12 +81,12 @@ on-core-response="{{response_megusta}}"
 </core-ajax>-->
 
     <!--Header-->
-    <paper-shadow>
+    <!--<paper-shadow>-->
       <div id ="header" horizontal center-justified layout>
-        <p flex style="text-align:center">Instagram</p>
+        <p style="text-align:center">Instagram</p>
         <core-icon-button id="refresh_button" icon="refresh" title="{{language_data.refresh}}" on-click={{refresh_func}}></core-icon-button>
       </div>
-    </paper-shadow>
+    <!--</paper-shadow>-->
 
     <!-- Body -->
     <div id="outline">
@@ -96,7 +96,7 @@ on-core-response="{{response_megusta}}"
             <img id="profile_picture" src="{{event.user.profile_picture}}">
             <a id="profile_name"
                href="https://instagram.com/{{event.user.username}}/" target='_blank'>
-              <p>{{event.user.username}}</p>
+              {{event.user.username}}
             </a>
             <span id="hour">{{event.time}}</span>
             <template if="{{event.type == 'image'}}">
@@ -121,13 +121,14 @@ on-core-response="{{response_megusta}}"
           </ul>
         </paper-shadow>
       </template>
-      <template if="{{events != null}}">
-        <div on-click="{{load}}" style="text-align: center; margin-top: -12px">
-          <paper-button id="button">
-            {{language_data.load_more}}
-          </paper-button>
+      <paper-button id="button" on-tap="{{ load }}">
+        {{language_data.load_more}}        
+      </paper-button>
+      <!--<template if="{{events != null}}">
+        <div  style="text-align: center; margin-top: -12px">
+          
         </div>
-      </template>
+      </template>-->
     </div>
     <div id="end"></div>
 
@@ -243,6 +244,7 @@ on-core-response="{{response_megusta}}"
       },*/
 
       load: function(){
+        console.log("<======LAUNCHING=====>")
         this.max_id = this.dates.pagination.next_max_id
         this.$.load_more.go()
       },
