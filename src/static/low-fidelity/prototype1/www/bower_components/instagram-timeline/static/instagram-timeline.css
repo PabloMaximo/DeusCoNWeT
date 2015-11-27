@@ -6,14 +6,17 @@
   background: -webkit-linear-gradient(top,#517fa4,#306088);
   color: #fff;
   font-family: 'Montserrat', sans-serif;
-  font-weight: 800;
-  font-size: 16px;
+  /*font-weight: 800;
+  font-size: 16px;*/
   text-align: center;
+  height: 35px;
+}
+#header p{
+  margin:8px;
 }
 
 #refresh_button {
-  text-align: right;
-  padding-bottom: 10px;
+  text-align: right;  
 }
 
 #outline{
