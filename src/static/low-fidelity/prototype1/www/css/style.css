@@ -115,4 +115,9 @@ h2,img{
     /*margin-top:40px;*/
   }
 }
-
+div.action-sheet-group button.button{
+  padding-left: 20px;
+}
+div.action-sheet-group button.button:hover{
+  background-color: #BABABA;
+}

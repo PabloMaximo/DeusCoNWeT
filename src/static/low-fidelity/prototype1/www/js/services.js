@@ -12,7 +12,14 @@ angular.module('prototype1.services', [])
           consumerSecret: "8HIPpQgL6d3WWQMDN5DPTHefjb5qfvTFg78j1RdZbR19uEPZMf",
           endpoint: "https://192.168.1.87:8100/api/aux/twitterTimeline",
           language: "{{idioma}}",
-          count: "200"
+          count: "200",
+          currentComponentValoration: {      
+            usability: 0,
+            completeness: 0,
+            efficiency: 0,
+            effectivity: 0,
+            simplicity: 0,
+          }
         }
       },
       {
@@ -22,7 +29,14 @@ angular.module('prototype1.services', [])
           username: "mortega5",
           token: "",
           mostrar: "10",
-          language: "{{idioma}}"
+          language: "{{idioma}}",
+          currentComponentValoration: {      
+            usability: 0,
+            completeness: 0,
+            efficiency: 0,
+            effectivity: 0,
+            simplicity: 0,
+          }
         }
       },
       {
@@ -31,7 +45,14 @@ angular.module('prototype1.services', [])
         attributes: {
           accessToken: "2062815740.34af286.169a9c42e1404ae58591d066c00cb979",
           endpoint: "https://192.168.1.87:8100/api/aux/instagramTimeline",
-          language: "{{idioma}}"
+          language: "{{idioma}}",
+          currentComponentValoration: {      
+            usability: 0,
+            completeness: 0,
+            efficiency: 0,
+            effectivity: 0,
+            simplicity: 0,
+          }
         }
       }
        /* name:'component1',
@@ -103,6 +124,15 @@ angular.module('prototype1.services', [])
           }
         }
       },
+      outUse: function(name){
+        console.log("trying stop use: "+ name)
+        for(var elem in this._components){
+          if(this._components[elem].name == name){
+            this._components[elem].available = true;
+            console.log(JSON.stringify(this._components))
+          }
+        }
+      },
       setCountAvailable: function(){
         this._components.countAvailable --;
       },
@@ -113,6 +143,7 @@ angular.module('prototype1.services', [])
             count++;
           }
         }
+        this._components.countAvailables = count;
         return count;
       }
     }

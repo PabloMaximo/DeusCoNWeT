@@ -84,7 +84,7 @@ on-core-response="{{response_megusta}}"
     <!--<paper-shadow>-->
       <div id ="header" horizontal center-justified layout>
         <p style="text-align:center">Instagram</p>
-        <core-icon-button id="refresh_button" icon="refresh" title="{{language_data.refresh}}" on-click={{refresh_func}}></core-icon-button>
+        <core-icon-button id="refresh_button" icon="refresh" title="{{language_data.refresh}}" on-tap={{refresh_func}}></core-icon-button>
       </div>
     <!--</paper-shadow>-->
 
@@ -121,9 +121,11 @@ on-core-response="{{response_megusta}}"
           </ul>
         </paper-shadow>
       </template>
-      <paper-button id="button" on-tap="{{ load }}">
-        {{language_data.load_more}}        
-      </paper-button>
+      <div style="text-align:center;">
+        <paper-button id="button" on-tap="{{ load }}" style="margin: 0px auto;">
+          {{language_data.load_more}}        
+        </paper-button>
+      </div>
       <!--<template if="{{events != null}}">
         <div  style="text-align: center; margin-top: -12px">
           

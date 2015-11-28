@@ -45,6 +45,31 @@ angular.module('prototype1', ['ionic', 'prototype1.controllers', 'prototype1.ser
         templateUrl: 'templates/dashboard.html',
         controller: 'DashCtrl'
       })
+      .state('profile',{
+        url: '/profile',
+        templateUrl: 'templates/profile.html',
+        controller: 'ProfileCtrl'
+      })
+      .state('aboutPicBit',{
+        url: '/aboutPicBit',
+        templateUrl: 'templates/aboutPicBit.html',
+        controller: 'PicBitCtrl'
+      })
+      .state('aboutDeusConWet',{
+        url: '/deusConWet',
+        templateUrl: 'templates/deusConWet.html',
+        controller: 'DeusCtrl'
+      })
+      .state('team',{
+        url: '/team',
+        templateUrl: 'templates/team.html',
+        controller: 'TeamCtrl'
+      })
+      .state('police',{
+        url: '/dataPolice',
+        templateUrl: 'templates/dataPolice.html',
+        controller: 'PoliceCtrl'
+      })
 
 
 

@@ -6,7 +6,7 @@ angular.module('prototype1.controllers', [])
       logged: false
     }
     $scope.dashstate = {
-      _components: [],
+      _components: [], 
       activeComponent: "",
       isEmpty: function(){return this._components.length == 0 ? true : false},
       getAddedComponents: function(){return this._components},
@@ -16,6 +16,10 @@ angular.module('prototype1.controllers', [])
           this.activeComponent = cmp.name;
         }
         this._components.push(cmp);
+      },
+      getComponent: function(name){
+        var index = this.getIndex(name);
+        return this._components[index];
       },
       getNumberOfComponents: function(){return this._components.length},
       getIndex: function(name){
@@ -27,9 +31,15 @@ angular.module('prototype1.controllers', [])
             return (obj*1);
           }
         }
+      },
+      removeComponent: function(name){
+        var index = this.getIndex(name);
+        this._components.splice(index,1);
+        if(this.isEmpty()){
+          this.activeComponent = "";
+        }
       }
     }
-
     $scope.transitions = {
       login: function(){
         $state.go('login');
@@ -38,20 +48,39 @@ angular.module('prototype1.controllers', [])
         $scope.stateApp.logged = false;
         $state.go('login');
       },
-      dash: function(){
-        $ionicHistory.nextViewOptions({
-          disableBack: true
-        });
+      dash: function(){        
         //$ionicHistory.currentView($ionicHistory.backView())
         $scope.stateApp.logged = true;
         if($ionicHistory.currentStateName() == "login") {
-          $state.go('dashboard', {}, {reload: true, location: 'replace'});
+          $state.go('dashboard');
         }else{
-          $state.go('dashboard', {}, {reload: true});
+          $state.go('dashboard');
         }
       },
       components: function(){
-        $state.go('components');
+        $state.go('components');        
+      },
+      profile: function(){
+        $state.go('profile');
+      },
+      aboutPicBit: function(){
+        $state.go('aboutPicBit');
+        $ionicSideMenuDelegate.toggleLeft();
+      },
+      aboutDeusConWet: function(){
+        $state.go('aboutDeusConWet');
+        $ionicSideMenuDelegate.toggleLeft();
+      },
+      team: function () {
+        $state.go('team');
+        $ionicSideMenuDelegate.toggleLeft();
+      },
+      police: function(){
+        $state.go('police');
+        $ionicSideMenuDelegate.toggleLeft();
+      },
+      back: function() {
+        $ionicHistory.goBack();
       }
     }
     $scope.showPicBitSiteMenu = function(){
@@ -64,7 +93,8 @@ angular.module('prototype1.controllers', [])
   .controller('LoginCtrl', function($scope, $state){
 
   })
-  .controller('DashCtrl', function($scope, $ionicSideMenuDelegate){
+  .controller('DashCtrl', function($scope, $ionicSideMenuDelegate, $ionicScrollDelegate, $ionicActionSheet,$ionicModal, Components){      
+
     $scope.disable = function(){
       $ionicSideMenuDelegate.canDragContent(false);
     }
@@ -77,6 +107,7 @@ angular.module('prototype1.controllers', [])
         console.log("CURRENT: "+currentIndex)
         if(currentIndex < nums - 1){
           $scope.dashstate.activeComponent = $scope.dashstate._components[currentIndex+1].name;
+          $ionicScrollDelegate.scrollTop();
           console.log($scope.dashstate.activeComponent);
         }
       }else{
@@ -92,12 +123,49 @@ angular.module('prototype1.controllers', [])
         console.log("CURRENT: "+currentIndex)
         if(currentIndex > 0){
           $scope.dashstate.activeComponent = $scope.dashstate._components[currentIndex-1].name;
+          $ionicScrollDelegate.scrollTop();
           console.log($scope.dashstate.activeComponent);
         }
       }else{
         return false;
       }
     }
+
+    $ionicModal.fromTemplateUrl('templates/valoration.html',function($ionicModal){
+      $scope.modal = $ionicModal;
+    },{
+      scope: $scope,
+      animation: 'slide-in-up'
+    })
+
+    $scope.showAction = function(){
+      var hideSheet = $ionicActionSheet.show({
+        buttons: [
+          { text: 'Valorate' },           
+        ],
+        destructiveText: 'Delete components',
+        titleText: 'Components options',
+        cancelText: 'Cancel',
+        cancel: function() {
+          // add cancel code..
+        },
+        buttonClicked: function(index) {
+          $scope.modal.show();
+          return true;
+        },
+        destructiveButtonClicked: function(){
+          Components.outUse($scope.dashstate.activeComponent)          
+          $scope.dashstate.removeComponent($scope.dashstate.activeComponent);          
+          //Components.setCountAvailable();
+          $scope.countAvailables = Components.countAvailables();
+          if(!$scope.dashstate.isEmpty()){
+            $scope.dashstate.activeComponent = $scope.dashstate._components[0].name;
+            console.log("ACTIVE NOW: "+ $scope.dashstate.activeComponent)
+          }
+          return true;
+        }
+      });    
+    };    
   })
   .controller('ComponentsCtrl',function($scope, Components){
     $scope.components = Components.all();
@@ -110,4 +178,19 @@ angular.module('prototype1.controllers', [])
       Components.setCountAvailable();
       $scope.countAvailables = Components.countAvailables();
     }
+  })
+  .controller('ProfileCtrl', function($scope){
+
+  })
+  .controller('PicBitCtrl', function($scope){
+    
+  })
+  .controller('DeusCtrl', function($scope){
+    
+  })
+  .controller('TeamCtrl', function($scope){
+    
+  })
+  .controller('PoliceCtrl', function($scope){
+    
   })

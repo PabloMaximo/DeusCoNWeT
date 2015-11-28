@@ -20,6 +20,10 @@
 .box > div{
   display: inline-block;
   vertical-align: top;
+  width: 81%;
+}
+.box > div:first-child{
+  width: 17%;
 }
 #header {
   background: #55acee; /* Old browsers */
@@ -92,6 +96,7 @@
 .text {
   font-size: 14px;
   font-family: sans-serif;
+  margin:0px;
 }
 
 p > a:link, p > a:visited{
