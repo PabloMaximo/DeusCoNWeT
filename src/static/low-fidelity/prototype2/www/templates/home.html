@@ -1,0 +1,29 @@
+<ion-view title="PicBit">  
+  <ion-nav-buttons side="primary">        
+    <button class="button" ng-click="showPicBitSiteMenu()">
+      <span class="icon ion-android-menu"></span>
+    </button>
+  </ion-nav-buttons>
+  <ion-content class="content">
+    <div class="loginText">
+      <div>
+        <img src="img/logo.png" height="40">
+        <h2>PicBit</h2>
+      </div>
+      <div>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus egestas enim, id volutpat nis
+          i porta sed. In sed efficitur erat, vitae tristique magna. Integer dolor leo,
+        </p>
+      </div>
+    </div>
+    <div class="loginBtns" ng-if="!stateApp.logged">
+      <button class="button button-positive" on-tap="transitions.dashboard()"><span class="icon ion-social-facebook"> Facebook</span></button>
+      <button class="button button-assertive" on-tap="transitions.dashboard()"><span class="icon ion-social-googleplus"> Google+</span></button>
+      <button class="button button-calm" on-tap="transitions.dashboard()"><span class="icon ion-social-twitter"> Twitter</span></button>
+    </div>
+    <div class="loginBtns" ng-if="stateApp.logged">
+      <button class="button button-assertive" on-tap="transitions.dash()"><span class="icon ion-log-in"> Dashboard</span></button>
+    </div>
+  </ion-content>
+</ion-view>

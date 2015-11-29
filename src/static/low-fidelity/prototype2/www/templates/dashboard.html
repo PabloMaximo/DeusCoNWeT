@@ -1,0 +1,25 @@
+<ion-view title="PicBit - Dashboard">
+	<ion-nav-buttons side="primary">  	  		
+		<button class="button" ng-click="transitions.profile()" style="margin-right:8px;">
+      		<span class="icon ion-android-contact"></span>
+    	</button>
+    	<button class="button" ng-click="showPicBitSiteMenu()">
+      		<span class="icon ion-android-menu"></span>
+    	</button>    	
+  	</ion-nav-buttons>
+  	<ion-content class="content">
+  		<div ng-if="dashstate.isEmpty()">
+	  		<img src="img/System-Box-Empty-icon.png" height="80"/>
+	  		<h3>Tu dashboard está vacio</h3>
+	  		<button class="button button-balanced" on-tap="transitions.components()">	  			
+	  			<span>Añade un componente</span>
+	  			<span class="icon ion-android-add" style="margin-left:5px;"></span>
+	  		</button>
+  		</div>
+  		<div ng-if="!dashstate.isEmpty()">	  		
+	  		<button ng-repeat="cmp in dashstate.getAddedComponents()" class="button button-balanced" on-tap="transitions.components({{cmp.name}})">	  			
+	  			<span>{{cmp.name}}</span>	  			
+	  		</button>
+  		</div>
+  	</ion-content>
+</ion-view>

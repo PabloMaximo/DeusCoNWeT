@@ -19,16 +19,50 @@
     <script src="cordova.js"></script>
 
     <!-- your app's js -->
+    <script src="js/services.js"></script>
+    <script src="js/controllers.js"></script>
     <script src="js/app.js"></script>
   </head>
-  <body ng-app="starter">
-
+  <body ng-app="prototype2" ng-controller="MainCtrl">
     <ion-pane>
-      <ion-header-bar class="bar-stable">
-        <h1 class="title">Ionic Blank Starter</h1>
-      </ion-header-bar>
-      <ion-content>
-      </ion-content>
+      <ion-nav-bar align-title="center" class="bar-header bar-stable">
+        <ion-nav-back-button></ion-nav-back-button>          
+      </ion-nav-bar>
+      <ion-side-menus>
+        <ion-side-menu side="left">        
+        </ion-side-menu>
+        <ion-side-menu-content>        
+          <!-- LOAD VIEWS -->
+          <ion-nav-view class="">
+          </ion-nav-view>                
+        </ion-side-menu-content>
+        <ion-side-menu side="right">
+          <!-- MENU -->
+          <ion-header-bar align-title="center" class="assertive">
+            <h1 class="title ">Main Nav</h1>
+          </ion-header-bar>
+          <ion-content>
+            <ion-list>
+              <ion-item on-tap="transitions.aboutPicBit()">            
+                <span>About PicBit</span>
+                <img src="img/logo.png" height="25" style="float:right"/>
+              </ion-item>
+              <ion-item  on-tap="transitions.aboutDeusConWet()">
+                <span>About DeusConWeT</span>
+              </ion-item>
+              <ion-item  on-tap="transitions.team()">
+                <span>Team</span>
+                <span class="icon ion-android-contacts" style="float:right;font-size:25px;color:orange;"></span>
+              </ion-item>
+              <ion-item  on-tap="transitions.police()">
+                <span>Data Police</span>
+                <span class="icon ion-android-warning" style="float:right;font-size:25px;color:orange;"></span>
+              </ion-item>
+            </ion-list>
+          </ion-content>
+          <!-- END MENU -->
+        </ion-side-menu>
+      </ion-side-menus>
     </ion-pane>
   </body>
 </html>
