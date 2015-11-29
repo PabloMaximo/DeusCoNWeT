@@ -11,11 +11,11 @@
       <div class="item item-divider"> 
         Componentes disponibles
       </div>
-  		<div class="item item-toggle toggle-small ng-valid" ng-model="components" ng-repeat="comp in components" toggle-class="toggle-calm">
+  		<div class="item item-toggle toggle-small ng-valid" ng-repeat="comp in components" ng-model="comp" toggle-class="toggle-calm">
         <div >
           <span class="ng-binding">{{comp.name}}</span>
         </div>
-        <label class="toggle toggle-calm disable-user-behavior"  on-tap="dashstate.addComponent({{comp}})">
+        <label class="toggle toggle-calm disable-user-behavior"  on-tap="dashstate.addComponent(comp)">
           <input type="checkbox" ng-model="comp.checked" class="ng-untouched ng-valid ng-dirty ng-valid-parse" value="on">
           <div class="track">
             <div class="handle">

@@ -7,8 +7,8 @@
       		<span class="icon ion-android-menu"></span>
     	</button>    	
   	</ion-nav-buttons>
-  	<ion-content class="content">
-  		<div ng-if="dashstate.isEmpty()">
+  	<ion-content>
+  		<div ng-if="dashstate.isEmpty()" class="dashEmpty">
 	  		<img src="img/System-Box-Empty-icon.png" height="80"/>
 	  		<h3>Tu dashboard está vacio</h3>
 	  		<button class="button button-balanced" on-tap="transitions.components()">	  			
@@ -16,8 +16,9 @@
 	  			<span class="icon ion-android-add" style="margin-left:5px;"></span>
 	  		</button>
   		</div>
-  		<div ng-if="!dashstate.isEmpty()">	  		
-	  		<button ng-repeat="cmp in dashstate.getAddedComponents()" class="button button-balanced" on-tap="transitions.components({{cmp.name}})">	  			
+  		<div ng-if="!dashstate.isEmpty()" class="addedComponents">	  		
+	  		<button ng-repeat="cmp in dashstate.getAddedComponents()" class="button button-stable" on-tap="transitions.components({{cmp.name}})">	  			
+          <span class="icon ion-ios-flask"></span><br/>
 	  			<span>{{cmp.name}}</span>	  			
 	  		</button>
   		</div>

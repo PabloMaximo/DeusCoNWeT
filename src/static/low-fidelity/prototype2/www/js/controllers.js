@@ -1,7 +1,7 @@
 angular.module('prototype2.controllers', [])
 
 //promises
-.controller('MainCtrl', function($scope, $state, $ionicHistory, $ionicSideMenuDelegate, $ionicNavBarDelegate){
+.controller('MainCtrl', function($scope, $state, $ionicHistory, $ionicSideMenuDelegate, $ionicNavBarDelegate, Components){
 	var homeView = $ionicHistory.currentView();
 	// user controll
 	$scope.stateApp = {
@@ -13,12 +13,22 @@ angular.module('prototype2.controllers', [])
       activeComponent: "",
       isEmpty: function(){return this._components.length == 0 ? true : false},
       getAddedComponents: function(){return this._components},
-      addComponent: function(cmp){
-        console.log("ADDING: "+cmp.name)
-        if(this.isEmpty()){
-          this.activeComponent = cmp.name;
-        }
-        this._components.push(cmp);
+      //alredyAdded: function(cmp){return this._components.indexOf(cmp) >= 0 ? true : false},
+      addComponent: function(cmp){      	
+      	if(!cmp.checked){      		
+        	console.log("ADDING: "+cmp.name)
+        	if(this.isEmpty()){
+          		this.activeComponent = cmp.name;
+        	}
+        	this._components.push(cmp);
+    	}else{    		
+    		var index = this.getIndex(cmp.name);
+	        this._components.splice(index,1);
+	        if(this.isEmpty()){
+		        this.activeComponent = "";
+	        }		        
+    	}
+    	console.log("COMP: "+JSON.stringify(cmp.checked));
       },
       getComponent: function(name){
         var index = this.getIndex(name);
@@ -92,7 +102,7 @@ angular.module('prototype2.controllers', [])
 
 	//Control menu
 	$scope.showPicBitSiteMenu = function(){
-		$ionicSideMenuDelegate.toggleRight();
+		$ionicSideMenuDelegate.toggleRight();		
 	}
 })
 .controller('HomeCtrl', function($scope){
@@ -102,8 +112,9 @@ angular.module('prototype2.controllers', [])
 	$ionicNavBarDelegate.showBackButton(false)
 })
 .controller('ComponentsCtrl', function($scope,Components,$ionicNavBarDelegate){
-	$ionicNavBarDelegate.showBackButton(true)
-	$scope.components = Components.all();
+	$ionicNavBarDelegate.showBackButton(true);
+	// components
+	$scope.components = Components.all();		
 })
 .controller('TeamCtrl', function($scope, $ionicNavBarDelegate){
 	$ionicNavBarDelegate.showBackButton(true)
