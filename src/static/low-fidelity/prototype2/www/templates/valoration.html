@@ -1,0 +1,64 @@
+ <div class="modal" style="width:90%;height:95%; margin:2% 5%; box-shadow:0px 0px 8px #888;">
+    <header class="bar bar-header bar-positive">
+    	<div class="button button-clear"><span style="font-size:14px;"class="icon ion-ios-settings-strong"></span></div>
+      	<h1 class="title">Valora a {{dashstate.activeComponent}}</h1>
+      	<div class="button button-clear" ng-click="modal.hide()"><span style="font-size:14px;"class="icon ion-close"></span></div>
+    </header>
+    <ion-content class="has-header" style="position:fixed;">
+      <div style="text-align:left; padding:20px;">      	      	
+      	<label style="margin-right:10px;">Usabilidad:</label><br/>
+      	<input type="range" name="usability" min="0" max="10" 
+      			ng-model="dashstate.getComponent(dashstate.activeComponent).currentComponentValoration.usability" 
+      			value="{{dashstate.getComponent(dashstate.activeComponent).currentComponentValoration.usability}}" 
+      			style="width:86%;"/>
+      	<span style="padding:5px 10px; border:1px solid gray; border-radius:2px;">
+      		{{dashstate.getComponent(dashstate.activeComponent).currentComponentValoration.usability}}
+      	</span>      	
+      	<hr style="margin:10px 0px;"/>
+      	<label style="margin-right:10px;">Completitud:</label><br/>
+      	<input type="range" name="completeness" min="0" max="10" 
+      			ng-model="dashstate.getComponent(dashstate.activeComponent).currentComponentValoration.completeness" 
+      			value="{{dashstate.getComponent(dashstate.activeComponent).currentComponentValoration.completeness}}" 
+      			style="width:86%;"/>
+      	<span style="padding:5px 10px; border:1px solid gray; border-radius:2px;">
+      		{{dashstate.getComponent(dashstate.activeComponent).currentComponentValoration.completeness}}
+      	</span>      	
+      	<hr/>
+      	<label style="margin-right:10px;">Efectividad:</label><br/>
+      	<input type="range" name="effectivity" min="0" max="10" 
+      			ng-model="dashstate.getComponent(dashstate.activeComponent).currentComponentValoration.effectivity" 
+      			value="{{dashstate.getComponent(dashstate.activeComponent).currentComponentValoration.effectivity}}" 
+      			style="width:86%;"/>
+      	<span style="padding:5px 10px; border:1px solid gray; border-radius:2px;">
+      		{{dashstate.getComponent(dashstate.activeComponent).currentComponentValoration.effectivity}}
+      	</span>      	
+      	<hr/>
+      	<label style="margin-right:10px;">Eficiencia:</label><br/>
+      	<input type="range" name="efficiency" min="0" max="10" 
+      			ng-model="dashstate.getComponent(dashstate.activeComponent).currentComponentValoration.efficiency" 
+      			value="{{dashstate.getComponent(dashstate.activeComponent).currentComponentValoration.efficiency}}"
+      	 style="width:86%;" />
+      	<span style="padding:5px 10px; border:1px solid gray; border-radius:2px;">
+      		{{dashstate.getComponent(dashstate.activeComponent).currentComponentValoration.efficiency}}
+      	</span>      	
+      	<hr/>
+      	<label style="margin-right:10px;">Simplicidad:</label><br/>
+      	<input type="range" name="simplicity" min="0" max="10" 
+      			ng-model="dashstate.getComponent(dashstate.activeComponent).currentComponentValoration.simplicity" 
+      			value="{{dashstate.getComponent(dashstate.activeComponent).currentComponentValoration.simplicity}}" 
+      	 		style="width:86%;"/>
+      	<span style="padding:5px 10px; border:1px solid gray; border-radius:2px;">
+      		{{dashstate.getComponent(dashstate.activeComponent).currentComponentValoration.simplicity}}
+      	</span>      	
+      	<hr/>      	
+      	<div class="text-center">
+      		<button ng-click="modal.hide()" class="button button-positive">Votar <span class="icon ion-android-checkbox"></span></button>
+      	</div>
+      	<br/><br/>
+      	<p>
+      		Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta).
+      		Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) 
+      	</p>
+      </div>
+    </ion-content>
+  </div>

@@ -36,10 +36,43 @@ angular.module('prototype2', ['ionic', 'prototype2.controllers', 'prototype1.ser
     templateUrl: 'templates/dashboard.html',
     controller: 'DashCtrl'
   })
+  
+  .state('twitter-timeline',{
+    url: 'twitter-component',
+    templateUrl: 'templates/twitterComponent.html',
+    controller: 'TwitterCtrl'
+  })
+  .state('instagram-timeline',{
+    url: 'instagram-component',
+    templateUrl: 'templates/instagramComponent.html',
+    controller: 'InstagramCtrl'
+  })
+  .state('github-events',{
+    url: 'github-component',
+    templateUrl: 'templates/githubComponent.html',
+    controller: 'GithubCtrl'
+  })
+  //static views
+  .state('aboutPicBit',{
+    url: 'aboutPicBit',
+    templateUrl: 'templates/aboutPicBit.html'
+  })
+  .state('aboutDeusConWet',{
+    url: 'aboutDeusConwet',
+    templateUrl: 'templates/aboutDeusConWet.html'
+  })
+  .state('police',{
+    url: 'police',
+    templateUrl: 'templates/dataPolice.html'
+  })
   .state('team',{
     url: '/team', 
     templateUrl: 'templates/team.html',
     controller: 'TeamCtrl'
+  })
+  .state('profile',{
+    url: '/profile', 
+    templateUrl: 'templates/profile.html',    
   })
 
   // DEFAULT ROUTE

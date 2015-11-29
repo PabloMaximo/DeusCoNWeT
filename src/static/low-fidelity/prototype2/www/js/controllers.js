@@ -3,6 +3,7 @@ angular.module('prototype2.controllers', [])
 //promises
 .controller('MainCtrl', function($scope, $state, $ionicHistory, $ionicSideMenuDelegate, $ionicNavBarDelegate, Components){
 	var homeView = $ionicHistory.currentView();
+	var componentsView = null;
 	// user controll
 	$scope.stateApp = {
       logged: false
@@ -35,8 +36,7 @@ angular.module('prototype2.controllers', [])
         return this._components[index];
       },
       getNumberOfComponents: function(){return this._components.length},
-      getIndex: function(name){
-        console.log("searching index of: "+ name);
+      getIndex: function(name){        
         //var index = 0;
         for(var obj in this._components){
           if(this._components[obj].name == name){
@@ -59,11 +59,32 @@ angular.module('prototype2.controllers', [])
 			$state.go('home');
 		},
 		dashboard: function(){			
-			$ionicNavBarDelegate.showBackButton(false)
+			$ionicNavBarDelegate.showBackButton(true)
 			$state.go('dashboard');
 		},
 		components: function(){
+			if($ionicHistory.currentView().name == 'instagram-timeline' || $ionicHistory.currentView().name == 'github-events' ||
+				$ionicHistory.currentView().name == 'twitter-timeline'){
+				$state.go('components',{},{back:false,reload:true});	
+			}
 			$state.go('components');
+			$scope.componentsView = $ionicHistory.currentView();
+			console.log(JSON.stringify($scope.componentsView));
+		},
+		component: function(name){
+			switch(name){
+				case 'twitter-timeline':
+					$state.go('twitter-timeline');
+				break;
+				case 'instagram-timeline':
+					$state.go('instagram-timeline');
+				break;
+				case 'github-events':
+					$state.go('github-events');
+				break;
+				default:
+				break;
+			}
 		},
 		// transitions to statics zones
 		team: function(){		
@@ -82,13 +103,14 @@ angular.module('prototype2.controllers', [])
 			$ionicSideMenuDelegate.toggleRight();
 			$state.go('aboutPicBit');
 		},
-		aboutDeusConwet: function(){
+		aboutDeusConWet: function(){
+			console.log("ASDF")
 			if($ionicHistory.currentView().name === 'dashboard'){
 				homeView = $ionicHistory.currentView()
 			}
 			$ionicHistory.backView = homeView;
 			$ionicSideMenuDelegate.toggleRight();
-			$state.go('aboutDeusConwet');
+			$state.go('aboutDeusConWet');
 		},
 		police: function(){
 			if($ionicHistory.currentView().name === 'dashboard'){
@@ -97,6 +119,14 @@ angular.module('prototype2.controllers', [])
 			$ionicHistory.backView = homeView;
 			$ionicSideMenuDelegate.toggleRight();
 			$state.go('police');
+		},
+		profile: function(){
+			if($ionicHistory.currentView().name === 'dashboard'){
+				homeView = $ionicHistory.currentView()
+			}
+			$ionicHistory.backView = homeView;
+			$ionicSideMenuDelegate.toggleRight();
+			$state.go('profile');	
 		}
 	}
 
@@ -118,4 +148,143 @@ angular.module('prototype2.controllers', [])
 })
 .controller('TeamCtrl', function($scope, $ionicNavBarDelegate){
 	$ionicNavBarDelegate.showBackButton(true)
+})
+.controller('GithubCtrl', function($scope, $ionicModal, $ionicActionSheet, $ionicHistory, Components){
+	$scope.valoration = {      
+        usability: 0,
+        completeness: 0,
+        efficiency: 0,
+        effectivity: 0,
+        simplicity: 0,
+    }
+
+    // modal view
+    $ionicModal.fromTemplateUrl('templates/valoration.html',function($ionicModal){
+      $scope.modal = $ionicModal;
+    },{
+      scope: $scope,
+      animation: 'slide-in-up'
+    })
+
+    $scope.showAction = function(){
+      var hideSheet = $ionicActionSheet.show({
+        buttons: [
+          { text: 'Valora el componente' },           
+        ],
+        destructiveText: 'Borrar componente',
+        titleText: 'Opciones del componente',
+        cancelText: 'Cancel',
+        cancel: function() {
+          // add cancel code..
+        },
+        buttonClicked: function(index) {
+          $scope.modal.show();
+          return true;
+        },
+        destructiveButtonClicked: function(){
+          Components.outUse($scope.dashstate.activeComponent)          
+          $scope.dashstate.removeComponent($scope.dashstate.activeComponent);          
+          //Components.setCountAvailable();
+          $scope.countAvailables = Components.countAvailables();
+          if(!$scope.dashstate.isEmpty()){
+            $scope.dashstate.activeComponent = $scope.dashstate._components[0].name;
+            console.log("ACTIVE NOW: "+ $scope.dashstate.activeComponent)
+          }
+          $scope.transitions.dashboard()
+          return true;          
+        }
+      });    
+    };     
+})
+.controller('TwitterCtrl', function($scope, $ionicModal, $ionicActionSheet, $ionicHistory, Components){
+	$scope.valoration = {      
+	    usability: 0,
+	    completeness: 0,
+	    efficiency: 0,
+	    effectivity: 0,
+	    simplicity: 0,
+  	}	
+  	// modal view
+   $ionicModal.fromTemplateUrl('templates/valoration.html',function($ionicModal){
+      $scope.modal = $ionicModal;
+    },{
+      scope: $scope,
+      animation: 'slide-in-up'
+    })
+
+    $scope.showAction = function(){
+      var hideSheet = $ionicActionSheet.show({
+        buttons: [
+          { text: 'Valora el componente' },           
+        ],
+        destructiveText: 'Borrar componente',
+        titleText: 'Opciones del componente',
+        cancelText: 'Cancel',
+        cancel: function() {
+          // add cancel code..
+        },
+        buttonClicked: function(index) {
+          $scope.modal.show();
+          return true;
+        },
+        destructiveButtonClicked: function(){
+          Components.outUse($scope.dashstate.activeComponent)          
+          $scope.dashstate.removeComponent($scope.dashstate.activeComponent);          
+          //Components.setCountAvailable();
+          $scope.countAvailables = Components.countAvailables();
+          if(!$scope.dashstate.isEmpty()){
+            $scope.dashstate.activeComponent = $scope.dashstate._components[0].name;
+            console.log("ACTIVE NOW: "+ $scope.dashstate.activeComponent)
+          }
+          $scope.transitions.dashboard()
+          return true;          
+        }
+      });    
+    };     
+})
+.controller('InstagramCtrl', function($scope, $ionicModal, $ionicActionSheet, $ionicHistory, Components){
+	$scope.valoration = {      
+	    usability: 0,
+	    completeness: 0,
+	    efficiency: 0,
+	    effectivity: 0,
+	    simplicity: 0,
+  	}	
+  	// modal view
+    $ionicModal.fromTemplateUrl('templates/valoration.html',function($ionicModal){
+      $scope.modal = $ionicModal;
+    },{
+      scope: $scope,
+      animation: 'slide-in-up'
+    })
+
+    $scope.showAction = function(){
+      var hideSheet = $ionicActionSheet.show({
+        buttons: [
+          { text: 'Valora el componente' },           
+        ],
+        destructiveText: 'Borrar componente',
+        titleText: 'Opciones del componente',
+        cancelText: 'Cancel',
+        cancel: function() {
+          // add cancel code..
+        },
+        buttonClicked: function(index) {
+          $scope.modal.show();
+          return true;
+        },
+        destructiveButtonClicked: function(){
+          Components.outUse($scope.dashstate.activeComponent)          
+          $scope.dashstate.removeComponent($scope.dashstate.activeComponent);          
+          //Components.setCountAvailable();
+          $scope.countAvailables = Components.countAvailables();
+          if(!$scope.dashstate.isEmpty()){
+            $scope.dashstate.activeComponent = $scope.dashstate._components[0].name;
+            console.log("ACTIVE NOW: "+ $scope.dashstate.activeComponent)
+          }
+          $scope.transitions.dashboard()
+          return true;          
+        }
+      });    
+    };   
 })

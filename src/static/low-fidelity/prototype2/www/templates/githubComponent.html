@@ -1,0 +1,13 @@
+<ion-view title="Github-Events">  
+  <ion-nav-buttons side="primary">        
+    <button class="button" ng-click="showPicBitSiteMenu()">
+      <span class="icon ion-android-menu"></span>
+    </button>
+  </ion-nav-buttons>
+  <ion-content scroll="false">
+    <github-events username="Mortega5" mostrar=30 language="es" style="height:100%;"></github-events>   
+  </ion-content>
+  <button class="button button-assertive" style="height: 50px;width:50px;border-radius:50px;position:fixed;bottom:5px;right:5px;" ng-if="!dashstate.isEmpty()" on-tap="showAction()">
+    <span class="icon ion-ios-gear"></span>
+  </button>
+</ion-view>
