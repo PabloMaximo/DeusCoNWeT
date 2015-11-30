@@ -125,7 +125,7 @@ angular.module('prototype2.controllers', [])
 				homeView = $ionicHistory.currentView()
 			}
 			$ionicHistory.backView = homeView;
-			$ionicSideMenuDelegate.toggleRight();
+			$ionicSideMenuDelegate.toggleRight(false);
 			$state.go('profile');	
 		}
 	}
