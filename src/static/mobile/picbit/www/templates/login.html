@@ -1,0 +1,29 @@
+<ion-view view-title="PicBit" hide-nav-bar="true">
+	<!--<ion-nav-button side="primary">
+		<button class="icon ion-android-more-vertical"></button>
+	</ion-nav-button>	-->
+	<ion-content style="background: url('img/background.jpg') 
+					center; background-size: cover;" class="scroll-content ionic-scroll">
+		<div class="scroll">
+			<div class="hero no-header flat">
+				<div class="content">
+					<div class="app-icon"></div>
+					<h1>PicBit</h1>		
+				</div>
+			</div>
+			<label class="item item-input item-md-label" placeholder="Username" highlight-color="balanced" type="text">
+				<input type="text">
+				<span class="input-label">Username</span>
+				<div class="highlight highlight-balanced"></div>
+			</label>
+			<!--<div class="button-bar social-login">				-->
+				<!--<button class="button button-small button-border icon-left ion-social-google button-assertive-900">Google</button>
+				<button class="button button-small button-border icon-left ion-social-twitter button-calm">Twitter</button>-->
+				<google-login class="button-login" clientID="37385538925-jv2d25auk59lisafr1gu83r04d9cuivt.apps.googleusercontent.com" scope="https://www.googleapis.com/auth/userinfo.profile" callback="{{domain}}" static="true"></google-login>
+        		<twitter-login class="button-login" endpoint="{{domain}}/api/oauth/twitter" static></twitter-login>
+				<login-facebook key_app="1564153433801338" scope="public_profile,email" ></login-facebook>
+				<!--<button class="button button-small button-border icon-left ion-social-facebook button-positive-900">Facebook</button>
+			</div>-->
+		</div>
+	</ion-content>
+</ion-view>
