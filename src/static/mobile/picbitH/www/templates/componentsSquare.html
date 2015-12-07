@@ -1,0 +1,73 @@
+<ion-nav-buttons side="right">        
+    <button class="icon ion-android-menu button-assertive-900 button no-text button-clear" menu-toggle="right"></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="left">        
+    <a class="icon ion-power button-assertive-900" style="font-size:30px; margin-left: 10px; margin-top:5px;" ng-click="showLogOutMenu()"></a>
+  </ion-nav-buttons>
+<div class="card card-gallery item item-text-wrap">
+	<div class="ink dark-bg">
+    <h2 style="text-align:center; margin-top:15px;">twitter-timeline</h2>
+    <i class="icon ion-plus"></i>
+  </div>
+  <div class="" style="overflow:hidden" >       
+    <a class="button no-text balanced button-stable" ng-show="!selection.twitter" 
+        style="color: #323232; font-size: 16px; margin:0px;height:100%;display:inline-block;" ng-click="addComponent('twitter-timeline')">  
+      <i class="icon ion-plus "></i>
+      Add
+    </a>
+    <a class="button button-stable assertive no-text" ng-show="selection.twitter"
+        style="color: #323232; font-size: 16px; margin:0px;height:100%; display:inline-block;" ng-click="removeComponent('twitter-timeline')">  
+      <i class="icon ion-minus"></i>
+      Remove
+    </a>        
+  </div>
+</div>
+<div class="card card-gallery item item-text-wrap">
+	<div class="ink dark-bg">
+    <h2 style="text-align:center; margin-top:15px;">instragram-timeline</h2>
+    <i class="icon ion-plus"></i>
+	</div>
+	<div class="" style="overflow:hidden" >       
+    <a class="button no-text balanced button-stable" ng-show="!selection.instagram" 
+        style="color: #323232; font-size: 16px; margin:0px;height:100%;display:inline-block;" ng-click="addComponent('instagram-timeline')">  
+      <i class="icon ion-plus "></i>
+      Add
+    </a>
+    <a class="button button-stable assertive no-text" ng-show="selection.instagram"
+        style="color: #323232; font-size: 16px; margin:0px;height:100%; display:inline-block;" ng-click="removeComponent('instagram-timeline')">  
+      <i class="icon ion-minus"></i>
+      Remove
+    </a>        
+  </div>
+    <!--<a class="tab-item stable-bg positive-900">
+      <i class="icon ion-star"></i>
+      Valorate
+    </a>-->
+	</div>
+</div>
+<div class="card card-gallery item item-text-wrap">
+	<div class="ink dark-bg">
+    <h2 style="text-align:center; margin-top:15px;">github-events</h2>
+    <i class="icon ion-plus"></i>
+	</div>
+	<div class="" style="overflow:hidden" >       
+    <a class="button no-text balanced button-stable" ng-show="!selection.github" 
+        style="color: #323232; font-size: 16px; margin:0px;height:100%;display:inline-block;" ng-click="addComponent('github-events')">  
+      <i class="icon ion-plus "></i>
+      Add
+    </a>
+    <a class="button button-stable assertive no-text" ng-show="selection.github"
+        style="color: #323232; font-size: 16px; margin:0px;height:100%; display:inline-block;" ng-click="removeComponent('github-events')">  
+      <i class="icon ion-minus"></i>
+      Remove
+    </a>        
+  </div>
+    <!--<a class="tab-item stable-bg positive-900">
+      <i class="icon ion-star"></i>
+      Valorate
+    </a>-->
+	</div>
+</div>
+<button class="button button-positive button-block" style="width:94%; margin: 10px 3%;" ng-click="showDashboard()">
+  Go to your Dashboard
+</button>

@@ -1,0 +1,15 @@
+<ion-view title="Instagram-Timeline">  
+  <ion-nav-buttons side="primary">        
+    <button class="button" ng-click="showPicBitSiteMenu()">
+      <span class="icon ion-android-menu"></span>
+    </button>
+  </ion-nav-buttons>
+  <ion-content scroll="false">
+    <instagram-timeline endpoint="https://test-backend-dot-example-project-13.appspot.com/api/aux/instagramTimeline" 
+    					accessToken="2062815740.34af286.169a9c42e1404ae58591d066c00cb979" language="es" style="height:100%; overflow-y:auto;">
+    </instagram-timeline>    
+  </ion-content>
+  <button class="button button-assertive" style="height: 50px;width:50px;border-radius:50px;position:fixed;bottom:5px;right:5px;" ng-if="!dashstate.isEmpty()" on-tap="showAction()">
+    <span class="icon ion-ios-gear"></span>
+  </button>
+</ion-view>

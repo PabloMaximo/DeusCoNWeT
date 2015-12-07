@@ -1,0 +1,79 @@
+body, h1{
+	color:#DDD;
+	font-weight: bolder;
+}
+.scroll{
+	height: 100%;
+}
+.app-icon{
+    background-color: #DDD;
+    background-image: url('../img/logo.png');
+    background-position: center;
+    background-size: cover;
+    border-radius: 50%;
+    height: 125px;
+    margin: 0 auto;
+    width: 125px;
+}
+.item{
+	border:none;
+	margin: 0px !important;
+	padding:30px 10px 0px 10px !important;
+}
+.social-login{	
+	position: fixed;
+	bottom: 0px;
+}
+a.button{	
+	height: 35px;
+	width: 100%;	
+	margin:0px !important;	
+	text-align: center;
+}
+.welcome-message{
+	color: #323232 !important;
+}
+.col > p{
+	margin:0px;
+}
+/*==================MENU======================*/
+ion-list .item, .card-gallery{
+	padding: 0px !important;
+	font-size: 17px;
+}
+.expanded{
+	background-size: 0px !important;
+}
+span.avatar{
+	background-color: #BABABA !important;
+}
+.expanded h2{
+	margin: 110px 20px;
+	font-size: 26px;
+}
+/*==================COMPONENTS===================*/
+.add-btn-component{
+	font-size:12px;		
+	text-align: center;
+	padding:0px;
+}
+.card-gallery{
+	width: 44%;
+	display: inline-block;
+	margin:10px 2% 10px 3% !important;
+}
+
+/*===============ANIMATE=================*/
+.ng-animate {
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;      
+}
+
+.ng-leave{
+  margin-left:-100%;  
+}
+.ng-leave-list{
+  margin-left:-106%;  
+}
+.ng-enter{
+  margin-left:0;  
+}

@@ -1,0 +1,19 @@
+<ion-view title="Twitter-Timeline">  
+  <ion-nav-buttons side="primary">        
+    <button class="button" ng-click="showPicBitSiteMenu()">
+      <span class="icon ion-android-menu"></span>
+    </button>
+  </ion-nav-buttons>
+  <ion-content class="" scroll="true" style=" height:100%;">
+    <twitter-timeline endpoint="https://test-backend-dot-example-project-13.appspot.com/api/aux/twitterTimeline"
+                      accessToken="3072043347-T00ESRJtzlqHnGRNJZxrBP3IDV0S8c1uGIn1vWf"
+                      secretToken="OBPFI8deR6420txM1kCJP9eW59Xnbpe5NCbPgOlSJRock"
+                      consumerKey="J4bjMZmJ6hh7r0wlG9H90cgEe"
+                      consumerSecret="8HIPpQgL6d3WWQMDN5DPTHefjb5qfvTFg78j1RdZbR19uEPZMf"
+                      count="200" language="es">
+    </twitter-timeline>
+  </ion-content>
+  <button class="button button-assertive" style="height: 50px;width:50px;border-radius:50px;position:fixed;bottom:5px;right:5px;" ng-if="!dashstate.isEmpty()" on-tap="showAction()">
+    <span class="icon ion-ios-gear"></span>
+  </button>
+</ion-view>
