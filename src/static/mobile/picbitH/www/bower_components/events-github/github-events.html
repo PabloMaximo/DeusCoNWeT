@@ -1,13 +1,9 @@
 <!--
-
 Copyright 2015 Miguel Ortega Moreno
-
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
-
 http://www.apache.org/licenses/LICENSE-2.0
-
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -24,11 +20,8 @@ limitations under the License.
 
 <!--
 Element providing solution to no problem in particular.
-
 ##### Example
-
 <github-events></github-events>
-
 @element github-events
 @blurb Element providing solution to no problem in particular.
 @status alpha
@@ -56,11 +49,11 @@ Element providing solution to no problem in particular.
                >
     </core-ajax>
 
-    <paper-shadow z=2>
-      <core-icon src="foto.png" style="width: 100px;height: 50px;display:inline-block;float:left"></core-icon>
-      <core-icon-button class="boton_refrescar" style="display:inline-block; float: right; padding-top: 12px" title="{{language_data.refresh}}" icon="refresh" on-click={{refresh}}></core-icon-button>
+    <!--<paper-shadow z=2>            -->
       <div id ="cabecera">
-        <p style="padding-left: 170px">{{language_data.title}}</p>
+        <core-icon src="foto.png" style="width: 100px;height: 35px;display:inline-block;"></core-icon>
+        <span>{{language_data.title}}</span>
+        <core-icon-button class="boton_refrescar" style="display:inline-block; float: right;" title="{{language_data.refresh}}" icon="refresh" on-click={{refresh}}></core-icon-button>
       </div>
 
       <template if="{{show}}">
@@ -69,29 +62,29 @@ Element providing solution to no problem in particular.
         </ul>
       </template>
 
-      <div style="overflow-y: scroll;max-height: 400px" id="scrollControl">
+      <div id="scrollControl" style="height:100%;overflow-y:auto;width:100%;">
         <template id="contenido" is="auto-binding" repeat="{{events}}">
           <ul class="box">
-            <div style="text-align: center">
-              <core-icon  src="{{actor.avatar_url}}" class="imgEvent" alt="hola">
-              </core-icon>
-              <a href="https://github.com/{{actor.login}}" style="color: black"><span class="name" >{{actor.login}}</span></a>
-            </div>
-            </br>
-          </br>
-        <p>{{operation}} <a target="_blank"href="https://github.com/{{repo.name}}"><span style="font-style: italic">{{repo.name}}</span></a></p>
-        <a href="https://github.com/{{repo.name}}/commits/{{payload.commits[0].sha}}" target="_blank"><p style="font-style: italic">{{info}}</p></a>
-        <p style="font-size:11px;text-align:right">{{ date }}</p>
+            <div>
+                <!--<core-icon  src="{{actor.avatar_url}}" class="imgEvent" alt="hola"></core-icon>-->
+                <img src="{{actor.avatar_url}}" alt="hola" />
+                <a href="https://github.com/{{actor.login}}" style="color: black;height:16px;"><span class="name" >{{actor.login}}</span></a>                
+            </div>                      
+            <div>
+                <p>{{operation}} <a target="_blank"href="https://github.com/{{repo.name}}"><span style="font-style: italic">{{repo.name}}</span></a></p>
+                <a href="https://github.com/{{repo.name}}/commits/{{payload.commits[0].sha}}" target="_blank"><p style="font-style: italic">{{info}}</p></a>
+                <p style="font-size:11px;text-align:right">{{ date }}</p>
+            </div>        
         </ul>
       </template>
 
     <template if="{{ lastPage != page && !show}}">
-      <ul class="box" style="text-align:center;cursor: pointer;font-size: 16px"  on-click={{load}}>
+      <ul class="box" style="text-align:center;cursor: pointer;font-size: 16px"  on-tap={{load}}>
         <span style="font-size: 12px">{{language_data.load_more}}</span>
       </ul>
     </template>
     </div>
-  </paper-shadow>
+  <!--</paper-shadow>-->
 </template>
 
 <script>
@@ -104,7 +97,6 @@ Element providing solution to no problem in particular.
     show:true,
     page:'1',
     language:'es',
-
     ready: function () {
       // Set Header for authorize request
       if (this.token != '') {
@@ -147,14 +139,12 @@ Element providing solution to no problem in particular.
         this.lastPage = parseInt(exp.exec(head)[1]);
       }
       var t = this.$.contenido;
-      t.events == undefined ? t.events = this.events:	t.events = 	t.events.concat(this.events);
-
+      t.events == undefined ? t.events = this.events: t.events =  t.events.concat(this.events);
       this.show = false;
       // If not lastPage, next request is the next page
       if (this.page != this.lastPage)
         this.page++;
     },
-
     language_response: function(event, detail,sender){
       this.language_data = sender.response;
       if(!this.events){
@@ -166,7 +156,6 @@ Element providing solution to no problem in particular.
         t.events = this.events;
       }
     },
-
     attributeChanged: function(attrName, oldVal, newVal){
       if(newVal === "en" && attrName == "language"){
         this.language = "en";
@@ -179,15 +168,12 @@ Element providing solution to no problem in particular.
         this.$.requestLanguage.go();
       }
     },
-
     load: function(){
       this.$.request.go();
     },
-
     refresh: function(){
       this.events = this.changeEvent(this.events);
     },
-
     changeEvent: function(list){
       for (i=0;i<list.length;i++){
         switch(list[i].type) {

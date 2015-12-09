@@ -22,7 +22,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <!-- CSS File import -->
     <link rel="stylesheet" href="twitter-timeline.css">
     <!-- Request to the API. Tokens are necessary -->
-    <core-ajax 
+    <core-ajax
                id="requestTimeline"
                url='{{ endpoint }}'
                method="GET"
@@ -52,17 +52,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <paper-shadow>
         <div id ="header" horizontal center-justified layout>
           <p flex style="text-align:center; padding-left:50px">{{data.title}}</p>
-          <core-icon-button class="refresh_button" title="{{data.refresh}}" icon="refresh" on-click={{refresh_func}}></core-icon-button>
+          <core-icon-button class="refresh_button" title="{{data.refresh}}" icon="refresh" on-tap={{refresh_func}}></core-icon-button>
         </div>
       </paper-shadow>
       <!-- Timeline box -->
-      <div style="overflow-y: auto;max-height: 400px">
+      <div id="container-twitter-timeline">
         <template id="content" is="auto-binding" repeat="{{event,index in events}}">
           <ul class="box" >
             <!-- Profile picture -->
-            <core-icon src="{{event.user.profile_image_url_https}}" class="imgEvent">
-            </core-icon>
-            <!-- Publication Header -->
+            <div>
+              <core-icon src="{{event.user.profile_image_url_https}}" class="imgEvent">
+              </core-icon>
+            </div>
+            <!-- Publication Header -->            
+            <div>
             <div style="text-align: left">
               <a class="nounderline" href="https://twitter.com/{{event.user.screen_name}}" target='_blank'>
                 <span class="fullname">{{event.user.name}}</span>
@@ -80,11 +83,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </a>
               </template>
             </div>
-            <p class="text" id="text{{index}}" onload="{{change(event,index)}}"></p>
+              <p class="text" id="text{{index}}" onload="">{{change(event,index)}}</p>
+            </div>            
           </ul>
         </template>
-        <template if="{{ show}}">
-          <ul class="box button"  on-click={{show}}>
+        <template if="{{show}}">
+          <ul class="box button"  on-click={{show}} on-tap={{show}}>
             <span>{{data.load_more}}</span>
           </ul>
         </template>
@@ -101,7 +105,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       endpoint:'',
       language: 'es',
       count: '200',
-
       ready: function(event, detail, sender) {
         if (this.accesToken && this.endpoint){
           if(this.language == 'es'){
@@ -112,7 +115,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           this.$.requestLanguage.go();
         }
       },
-
       domReady: function(e,d,s) {
         if (this.accessToken && this.endpoint){
           if(this.language == 'es'){
@@ -123,7 +125,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           this.$.requestLanguage.go();
         }
       },
-
       attributeChanged: function(attrName, oldVal, newVal) {
         if(newVal === "en" && attrName == "language"){
           this.language = "en";
@@ -136,9 +137,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           this.$.requestLanguage.go();
         }
       },
-
-      /* This function prepares the tweets before displaying them */
-      response: function(event, detail, sender) {
+      /* This function prepares the tweets before displaying them */      
+      response: function(event, detail, sender) {        
         this.events = this.changeTime(detail.response);
         this.events = this.parser(this.events)
         this.show()
@@ -146,7 +146,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       language_response: function(event, detail,sender){
         this.data = sender.response;
         if(!this.events){
-          this.$.requestTimeline.go();
+          this.$.requestTimeline.go();          
         }
         else{
           this.events = this.changeTime(this.events)
@@ -159,9 +159,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
       },
       /* This function injects tweet HTML code in order to be represented. */
-      change: function(event,index){
-        if(index!=undefined){
-          this.injectBoundHTML(event.text, this.$.content.parentNode.children[1+index].children[2])
+      change: function(event,index){        
+        if(index!=undefined){          
+          this.injectBoundHTML(event.text, this.$.content.parentNode.children[1+index].children[1].children[1])
+          //this.injectBoundHTML(event.text, this.$.container.querySelector('#text'+index))
+          //return event.text
         }
       },
       /* Function that handles paging tweets*/
@@ -179,8 +181,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
       },
       /* Function that refresh the timeline */
-      refresh_func: function(){
+      refresh_func: function(){        
         this.$.requestTimeline.go();
+        console.log(this.$.requestTimeline.on-core-response);
       },
       /* Function that displays the date when the tweets was published */
       changeTime: function(list){

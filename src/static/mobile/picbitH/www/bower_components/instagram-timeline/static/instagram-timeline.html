@@ -81,12 +81,12 @@ on-core-response="{{response_megusta}}"
 </core-ajax>-->
 
     <!--Header-->
-    <paper-shadow>
+    <!--<paper-shadow>-->
       <div id ="header" horizontal center-justified layout>
-        <p flex style="text-align:center">Instagram</p>
-        <core-icon-button id="refresh_button" icon="refresh" title="{{language_data.refresh}}" on-click={{refresh_func}}></core-icon-button>
+        <p style="text-align:center">Instagram</p>
+        <core-icon-button id="refresh_button" icon="refresh" title="{{language_data.refresh}}" on-tap={{refresh_func}}></core-icon-button>
       </div>
-    </paper-shadow>
+    <!--</paper-shadow>-->
 
     <!-- Body -->
     <div id="outline">
@@ -96,7 +96,7 @@ on-core-response="{{response_megusta}}"
             <img id="profile_picture" src="{{event.user.profile_picture}}">
             <a id="profile_name"
                href="https://instagram.com/{{event.user.username}}/" target='_blank'>
-              <p>{{event.user.username}}</p>
+              {{event.user.username}}
             </a>
             <span id="hour">{{event.time}}</span>
             <template if="{{event.type == 'image'}}">
@@ -121,13 +121,16 @@ on-core-response="{{response_megusta}}"
           </ul>
         </paper-shadow>
       </template>
-      <template if="{{events != null}}">
-        <div on-click="{{load}}" style="text-align: center; margin-top: -12px">
-          <paper-button id="button">
-            {{language_data.load_more}}
-          </paper-button>
+      <div style="text-align:center;">
+        <paper-button id="button" on-tap="{{ load }}" style="margin: 0px auto;">
+          {{language_data.load_more}}        
+        </paper-button>
+      </div>
+      <!--<template if="{{events != null}}">
+        <div  style="text-align: center; margin-top: -12px">
+          
         </div>
-      </template>
+      </template>-->
     </div>
     <div id="end"></div>
 
@@ -140,7 +143,6 @@ on-core-response="{{response_megusta}}"
       count: 10,
       media_id: '',
       language: 'es',
-
       ready: function(event, detail, sender){
         if(this.accessToken && this.endpoint != ""){
           if(this.language == 'es'){
@@ -154,7 +156,6 @@ on-core-response="{{response_megusta}}"
           this.$.requestLanguage.go();
         }
       },
-
       domReady: function(event, detail,sender){
         if(this.accessToken && this.events == null && this.endpoint != ""){
           if(this.language == 'es'){
@@ -168,7 +169,6 @@ on-core-response="{{response_megusta}}"
           this.$.requestLanguage.go();
         }
       },
-
       attributeChanged: function(attrName, oldVal, newVal) {
         if(newVal === "en" && attrName == "language"){
           this.language = "en";
@@ -181,7 +181,6 @@ on-core-response="{{response_megusta}}"
           this.$.requestLanguage.go();
         }
       },
-
       response: function(event, detail, sender) {
         this.dates = (detail.response)
         this.min_id = this.dates.data[0].id
@@ -190,7 +189,6 @@ on-core-response="{{response_megusta}}"
         var t = this.$.content;
         t.events =  this.events
       },
-
       language_response: function(event, detail,sender){
         this.language_data = sender.response;
         if(!this.events){
@@ -204,11 +202,15 @@ on-core-response="{{response_megusta}}"
         }
         /*console.log(this.language_data)*/
       },
-
       refresh_func: function(){
-        this.$.refresco.go()
+        try{
+          this.$.refresco.go()
+        }catch(e){
+          console.log(e);
+          console.log(e.stack);
+          console.log(e.line);
+        }
       },
-
       response_refresco: function(event, detail, sender){
         if(sender.response.data.length > 0){
           this.min_id = sender.response.data[0].id
@@ -225,22 +227,19 @@ on-core-response="{{response_megusta}}"
         var t = this.$.content
         t.events = this.events
       },
-
       /*      meGusta: function(event, detail, sender){
         identificador = event.target.getAttribute("data-index")
         media_id = this.events[identificador].id
         this.$.me_gusta.go()
       },
-
       response_megusta: function(event, detail, sender){
         console.log(sender.response)
       },*/
-
       load: function(){
+        console.log("<======LAUNCHING=====>")
         this.max_id = this.dates.pagination.next_max_id
         this.$.load_more.go()
       },
-
       response_load: function(event, detail, sender){
         this.dates = sender.response
         var tweets = new Array();
@@ -249,7 +248,6 @@ on-core-response="{{response_megusta}}"
         }
         tweets = this.changeTime(tweets)
         tweets = this.parser(tweets)
-
         size = this.events.length
         for(i = 0; i<tweets.length;i++){
           this.events[size+i] = tweets[i]
@@ -257,23 +255,19 @@ on-core-response="{{response_megusta}}"
         var t = this.$.content
         t.events = this.events
       },
-
       inject: function(event,index){
         if(index!=undefined){
           if(event.caption)
             this.injectBoundHTML(event.caption.text, this.$.content.parentNode.children[1+index].children[0].children[7].children[1])
             }
       },
-
       changeTime: function(list){
         for (i=0;i<list.length;i++){
           list[i].time = list[i].created_time*1000
           var date = list[i].time;
           var current_date = new Date();
           current_date = current_date.getTime();
-
           calculate_date = (current_date-date)/(1000)
-
           if( Math.floor(calculate_date/3600) == 0){
             if ( Math.floor(calculate_date/60) == 0){
               if (Math.floor(calculate_date) == 1){
@@ -306,7 +300,6 @@ on-core-response="{{response_megusta}}"
         }
         return list;
       },
-
       parser: function(lista){
         for(i = 0; i < lista.length; i++){
           if(lista[i].caption){
@@ -317,14 +310,12 @@ on-core-response="{{response_megusta}}"
         }
         return lista;
       },
-
       /*URL parser*/
       parseURL: function(tweet) {
         return tweet.replace(/[A-Za-z]+:\/\/[A-Za-z0-9-_]+\.[A-Za-z0-9-_:%&~\?\/.=]+/g, function(url) {
           return '<a href='+url+' target="_blank">'+url+'</a>'
         })
       },
-
       /*Usernames parser*/
       parseUsername: function(tweet) {
         return tweet.replace(/[@]+[A-Za-z0-9-_]+/g, function(u) {
@@ -332,7 +323,6 @@ on-core-response="{{response_megusta}}"
           return '<a href="https://instagram.com/'+username+' "target="_blank">@'+username+'</a>'
         })
       },
-
       /*Hashtag parser*/
       parseHashtag: function(tweet) {
         return tweet.replace(/[#]+[A-Za-z0-9-_ñáéíóúàèìòùç]+/g, function(t) {
@@ -341,6 +331,5 @@ on-core-response="{{response_megusta}}"
         });
       }
     });
-
   </script>
 </polymer-element>
