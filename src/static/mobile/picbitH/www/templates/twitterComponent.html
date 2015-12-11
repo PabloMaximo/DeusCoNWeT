@@ -15,9 +15,10 @@
     </twitter-timeline>
   </ion-content>
   <ion-footer-bar class="bar-assertive footer-buttons">
-    <button class="button no-text button-clear button-dark icon ion-arrow-left-b">
-    </button>
+    <button class="button no-text button-clear button-dark icon ion-arrow-left-b" ng-if="thereIsLeft"></button>
+    <button class="button no-text button-clear button-dark icon ion-close" ng-if="!thereIsLeft"></button>
     <button class="col col-central light no-text button-clear button-dark icon ion-star" style="font-size:25px; color: #FFF;"></button>
-    <button class="button no-text button-clear button-dark icon ion-arrow-right-b"></button>
+    <button class="button no-text button-clear button-dark icon ion-arrow-right-b" ng-if="thereIsRigth"></button>
+    <button class="button no-text button-clear button-dark icon ion-close" ng-if="!thereIsRigth"></button>
   </ion-footer-bar>
 </ion-view>

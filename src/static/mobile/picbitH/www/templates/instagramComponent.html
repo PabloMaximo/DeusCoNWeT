@@ -1,4 +1,4 @@
-<ion-view title="Instagram-Timeline">  
+<ion-view title="Instagram-Timeline" ng-controller="InstagramCtrl">   
    <ion-nav-buttons side="right">        
     <button class="icon ion-android-menu button-assertive-900 button no-text button-clear" menu-toggle="right"></button>
   </ion-nav-buttons>
@@ -10,10 +10,11 @@
     					accessToken="2062815740.34af286.169a9c42e1404ae58591d066c00cb979" language="es" style="height:100%; overflow-y:auto;">
     </instagram-timeline>    
   </ion-content>
-  <ion-footer-bar class="bar-assertive footer-buttons">
-    <button class="button no-text button-clear button-dark icon ion-arrow-left-b">
-    </button>
+  <ion-footer-bar class="bar-assertive footer-buttons">    
+    <button class="button no-text button-clear button-dark icon ion-arrow-left-b" ng-if="thereIsLeft"></button>
+    <button class="button no-text button-clear button-dark icon ion-close" ng-if="!thereIsLeft"></button>
     <button class="col col-central light no-text button-clear button-dark icon ion-star" style="font-size:25px; color: #FFF;"></button>
-    <button class="button no-text button-clear button-dark icon ion-arrow-right-b"></button>
+    <button class="button no-text button-clear button-dark icon ion-arrow-right-b" ng-if="thereIsRight"></button>
+    <button class="button no-text button-clear button-dark icon ion-close" ng-if="!thereIsRight"></button>
   </ion-footer-bar>
 </ion-view>

@@ -282,3 +282,28 @@ angular.module('picbit.controllers', [])
   };
 
 })
+.controller('InstagramCtrl', function($scope, $state){    
+
+  var init = function(){
+    $scope.myIndex = $scope.dashstate.getIndex('instagram-timeline');    
+    $scope.thereIsLeft = ($scope.dashstate._components.length >= 2 && $scope.myIndex > 0)? true : false;  
+    $scope.thereIsRight = ($scope.dashstate._components.length >= 2 && $scope.myIndex < $scope.dashstate._components.length - 1)? true : false;  
+    console.log("Left: ",$scope.thereIsLeft);
+    console.log("Right: ",$scope.thereIsRight);    
+  };  
+  $scope.$on('$ionicView.beforeEnter', function(){
+    init();
+  });
+})
+.controller('GithubCtrl', function($scope, $state){
+  $scope.myIndex = $scope.dashstate.getIndex('github-events');
+  $scope.thereIsLeft = ($scope.dashstate._components.length >= 2 && $scope.myIndex > 0)? true : false;
+  $scope.thereIsRight = ($scope.dashstate._components.length >= 2 && $scope.myIndex < $scope.dashstate._components.length - 1)? true : false;
+  console.log("Left: ",$scope.thereIsLeft);
+  console.log("Right: ",$scope.thereIsRight);
+})
+.controller('TwitterCtrl', function($scope, $state){
+  $scope.myIndex = $scope.dashstate.getIndex('twitter-timeline');
+  $scope.thereIsLeft = ($scope.dashstate._components.length >= 2 && $scope.myIndex > 0)? true : false;
+  $scope.thereIsRight = ($scope.dashstate._components.length >= 2 && $scope.myIndex < $scope.dashstate._components.length - 1)? true : false;
+})

@@ -27,9 +27,9 @@
   </ion-nav-buttons>
   	<ion-content style="background-image: url('img/dashboard.jpg'); opacity: 0.2;"></ion-content>
 	<ion-content >	
-		<ul ui-sortable="sortableOptions" ng-model="dashstate._components" class=".connectedItemsExample">
+		<ul class=".connectedItemsExample">
 			<br/>
-			<li class="card card-gallery" ng-repeat="item in dashstate._components" ng-click="showComponentsActives(item.name)">
+			<li class="card " ng-repeat="item in dashstate._components" ng-click="showComponentsActives(item.name)">
 				<div class="ink dark-bg">
 			    <p style="text-align:center; margin-top:15px; font-size:16px;">{{item.name}}</p>			    
 				</div>				
