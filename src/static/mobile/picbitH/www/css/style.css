@@ -91,3 +91,6 @@ span.avatar{
 	border-right:none !important;
 	vertical-align: top !important;	
 }
+button:disabled {
+    background: #0055ee !important;
+}

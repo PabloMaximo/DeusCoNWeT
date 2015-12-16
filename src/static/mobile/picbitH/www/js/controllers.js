@@ -282,28 +282,171 @@ angular.module('picbit.controllers', [])
   };
 
 })
-.controller('InstagramCtrl', function($scope, $state){    
+.controller('InstagramCtrl', function($scope, $state, $ionicModal){    
 
   var init = function(){
     $scope.myIndex = $scope.dashstate.getIndex('instagram-timeline');    
     $scope.thereIsLeft = ($scope.dashstate._components.length >= 2 && $scope.myIndex > 0)? true : false;  
     $scope.thereIsRight = ($scope.dashstate._components.length >= 2 && $scope.myIndex < $scope.dashstate._components.length - 1)? true : false;  
+    $scope.dashstate.activeComponent = "instagram-timeline";
     console.log("Left: ",$scope.thereIsLeft);
     console.log("Right: ",$scope.thereIsRight);    
   };  
   $scope.$on('$ionicView.beforeEnter', function(){
     init();
   });
+
+  $ionicModal.fromTemplateUrl('templates/valoration.html',function($ionicModal){
+    $scope.modal = $ionicModal;
+  },{
+    scope: $scope,
+    animation: 'slide-in-up'
+  })
+
+
+  $scope.goBack = function(){
+    var name = $scope.dashstate._components[$scope.myIndex - 1].name;
+     switch(name){
+      case 'twitter-timeline':        
+        $state.go('twitter')      
+      break;
+      case 'github-events':        
+        $state.go('github')      
+      break;
+      case 'instagram-timeline':        
+        $state.go('instagram');
+      break;
+      default:
+      break;
+    }
+  }
+
+  $scope.goNext = function(){
+    var name = $scope.dashstate._components[$scope.myIndex + 1].name;
+     switch(name){
+      case 'twitter-timeline':        
+        $state.go('twitter')      
+      break;
+      case 'github-events':        
+        $state.go('github')      
+      break;
+      case 'instagram-timeline':        
+        $state.go('instagram')
+      break;
+      default:
+      break;
+    }
+  }
+
 })
-.controller('GithubCtrl', function($scope, $state){
-  $scope.myIndex = $scope.dashstate.getIndex('github-events');
-  $scope.thereIsLeft = ($scope.dashstate._components.length >= 2 && $scope.myIndex > 0)? true : false;
-  $scope.thereIsRight = ($scope.dashstate._components.length >= 2 && $scope.myIndex < $scope.dashstate._components.length - 1)? true : false;
-  console.log("Left: ",$scope.thereIsLeft);
-  console.log("Right: ",$scope.thereIsRight);
+.controller('GithubCtrl', function($scope, $state,  $ionicModal){
+  var init = function(){
+    $scope.myIndex = $scope.dashstate.getIndex('github-events');    
+    $scope.thereIsLeft = ($scope.dashstate._components.length >= 2 && $scope.myIndex > 0)? true : false;  
+    $scope.thereIsRight = ($scope.dashstate._components.length >= 2 && $scope.myIndex < $scope.dashstate._components.length - 1)? true : false;  
+    $scope.dashstate.activeComponent = "github-events";
+    console.log("Left: ",$scope.thereIsLeft);
+    console.log("Right: ",$scope.thereIsRight);    
+  };  
+  $scope.$on('$ionicView.beforeEnter', function(){
+    init();
+  });
+
+  $ionicModal.fromTemplateUrl('templates/valoration.html',function($ionicModal){
+    $scope.modal = $ionicModal;
+  },{
+    scope: $scope,
+    animation: 'slide-in-up'
+  })
+
+
+  $scope.goBack = function(){
+    var name = $scope.dashstate._components[$scope.myIndex - 1].name;
+     switch(name){
+      case 'twitter-timeline':        
+        $state.go('twitter')      
+      break;
+      case 'github-events':        
+        $state.go('github')      
+      break;
+      case 'instagram-timeline':        
+        $state.go('instagram');
+      break;
+      default:
+      break;
+    }
+  }
+
+  $scope.goNext = function(){
+    var name = $scope.dashstate._components[$scope.myIndex + 1].name;
+     switch(name){
+      case 'twitter-timeline':        
+        $state.go('twitter')      
+      break;
+      case 'github-events':        
+        $state.go('github')      
+      break;
+      case 'instagram-timeline':        
+        $state.go('instagram')
+      break;
+      default:
+      break;
+    }
+  }
+
 })
-.controller('TwitterCtrl', function($scope, $state){
-  $scope.myIndex = $scope.dashstate.getIndex('twitter-timeline');
-  $scope.thereIsLeft = ($scope.dashstate._components.length >= 2 && $scope.myIndex > 0)? true : false;
-  $scope.thereIsRight = ($scope.dashstate._components.length >= 2 && $scope.myIndex < $scope.dashstate._components.length - 1)? true : false;
+.controller('TwitterCtrl', function($scope, $state,  $ionicModal){
+  var init = function(){
+    $scope.myIndex = $scope.dashstate.getIndex('twitter-timeline');    
+    $scope.thereIsLeft = ($scope.dashstate._components.length >= 2 && $scope.myIndex > 0)? true : false;  
+    $scope.thereIsRight = ($scope.dashstate._components.length >= 2 && $scope.myIndex < $scope.dashstate._components.length - 1)? true : false;  
+    $scope.dashstate.activeComponent = "twitter-timeline";
+    console.log("Left: ",$scope.thereIsLeft);
+    console.log("Right: ",$scope.thereIsRight);    
+  };  
+  $scope.$on('$ionicView.beforeEnter', function(){
+    init();
+  });
+
+  $ionicModal.fromTemplateUrl('templates/valoration.html',function($ionicModal){
+    $scope.modal = $ionicModal;
+  },{
+    scope: $scope,
+    animation: 'slide-in-up'
+  })
+
+  $scope.goBack = function(){
+    var name = $scope.dashstate._components[$scope.myIndex - 1].name;
+     switch(name){
+      case 'twitter-timeline':        
+        $state.go('twitter')      
+      break;
+      case 'github-events':        
+        $state.go('github')      
+      break;
+      case 'instagram-timeline':        
+        $state.go('instagram');
+      break;
+      default:
+      break;
+    }
+  }
+
+  $scope.goNext = function(){
+    var name = $scope.dashstate._components[$scope.myIndex + 1].name;
+     switch(name){
+      case 'twitter-timeline':        
+        $state.go('twitter')      
+      break;
+      case 'github-events':        
+        $state.go('github')      
+      break;
+      case 'instagram-timeline':        
+        $state.go('instagram')
+      break;
+      default:
+      break;
+    }
+  }
+
 })

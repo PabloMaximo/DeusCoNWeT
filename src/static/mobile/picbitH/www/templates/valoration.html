@@ -1,0 +1,50 @@
+<div class="modal">
+    <header class="bar bar-header bar-positive" style="color: #323232 !important;"> 
+    	<div class="button button-clear"><span style="font-size:14px;"class="icon ion-ios-settings-strong"></span></div>
+      	<h1 class="title">Valora a {{dashstate.activeComponent}}</h1>
+      	<div class="button button-clear" ng-click="modal.hide()"><span style="font-size:14px;"class="icon ion-close"></span></div>
+    </header>
+    <ion-content class="has-header" style="position:fixed;">
+      <div style="text-align:center; padding:20px;">      	      	
+      	<label style="margin-right:10px;margin-bottom:10px; color: #323232 !important;">¿Te parecio un componente facil de utilizar?</label><br/>
+      	<!--<input type="range" name="usability" min="0" max="10" 
+      			ng-model="dashstate.getComponent(dashstate.activeComponent).currentComponentValoration.usability" 
+      			value="{{dashstate.getComponent(dashstate.activeComponent).currentComponentValoration.usability}}" 
+      			style="width:86%;"/>-->
+            <button class="button">
+                  <span class="icon ion-arrow-left-b"></span>
+            </button>
+      	<div style="width: 45px; height:45px;padding:15px 20px; border:1px solid gray; border-radius:2px; margin-top:1px; display: inline-block">
+      		{{dashstate.getComponent(dashstate.activeComponent).currentComponentValoration.usability}}
+      	</div>      	
+            <button class="button"><span class="icon ion-arrow-right-b"></span></button>
+      	<hr style="margin:10px 0px;"/>
+      	<label style="margin-right:10px; color: #323232 !important;">¿El componente reflejaba los cambios rapidamente?:</label><br/>
+      	<!--<input type="range" name="completeness" min="0" max="10" 
+      			ng-model="dashstate.getComponent(dashstate.activeComponent).currentComponentValoration.completeness" 
+      			value="{{dashstate.getComponent(dashstate.activeComponent).currentComponentValoration.completeness}}" 
+      			style="width:86%;"/>-->
+            <button class="button"><span class="icon ion-arrow-left-b"></span></button>            
+      	<span style="width: 45px; height:45px;padding:15px 20px; border:1px solid gray; border-radius:2px; margin-top:1px; display: inline-block">
+      		{{dashstate.getComponent(dashstate.activeComponent).currentComponentValoration.completeness}}
+      	</span>      	
+            <button class="button"><span class="icon ion-arrow-right-b"></span></button>
+      	<hr/>
+      	<label style="margin-right:10px;color: #323232 !important;">¿El componente se carga rapidamente?</label><br/>
+      	<!--<input type="range" name="effectivity" min="0" max="10" 
+      			ng-model="dashstate.getComponent(dashstate.activeComponent).currentComponentValoration.effectivity" 
+      			value="{{dashstate.getComponent(dashstate.activeComponent).currentComponentValoration.effectivity}}" 
+      			style="width:86%;"/>-->
+            <button class="button"><span class="icon ion-arrow-left-b"></span></button>            
+      	<span style="width: 45px; height:45px;padding:15px 20px; border:1px solid gray; border-radius:2px; margin-top:1px; display: inline-block">
+      		{{dashstate.getComponent(dashstate.activeComponent).currentComponentValoration.effectivity}}
+      	</span>      	
+            <button class="button"><span class="icon ion-arrow-right-b"></span></button>
+      	<hr/>      	
+      	<div class="text-center">
+      		<button ng-click="modal.hide()" class="button button-positive">Vote <span class="icon ion-android-checkbox"></span></button>
+          <button ng-click="modal.hide()" class="button button-assertive">Cacel <span class="icon ion-android-cancel"></span></button>
+      	</div>      	      
+      </div>
+    </ion-content>
+  </div>

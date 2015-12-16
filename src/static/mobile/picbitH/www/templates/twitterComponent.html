@@ -1,4 +1,4 @@
-<ion-view title="Twitter-Timeline" class="has-footer">  
+<ion-view title="Twitter-Timeline" class="has-footer" ng-controller="TwitterCtrl">  
   <ion-nav-buttons side="right">        
     <button class="icon ion-android-menu button-assertive-900 button no-text button-clear" menu-toggle="right"></button>
   </ion-nav-buttons>
@@ -13,12 +13,13 @@
                       consumerSecret="8HIPpQgL6d3WWQMDN5DPTHefjb5qfvTFg78j1RdZbR19uEPZMf"
                       count="200" language="es">
     </twitter-timeline>
+    {{thereIsRight}}
   </ion-content>
-  <ion-footer-bar class="bar-assertive footer-buttons">
-    <button class="button no-text button-clear button-dark icon ion-arrow-left-b" ng-if="thereIsLeft"></button>
+  <ion-footer-bar class="bar-assertive footer-buttons">  
+    <button class="button no-text button-clear button-dark icon ion-arrow-left-b" ng-if="thereIsLeft" ng-click="goBack()"></button>
     <button class="button no-text button-clear button-dark icon ion-close" ng-if="!thereIsLeft"></button>
-    <button class="col col-central light no-text button-clear button-dark icon ion-star" style="font-size:25px; color: #FFF;"></button>
-    <button class="button no-text button-clear button-dark icon ion-arrow-right-b" ng-if="thereIsRigth"></button>
-    <button class="button no-text button-clear button-dark icon ion-close" ng-if="!thereIsRigth"></button>
+    <button class="col col-central light no-text button-clear button-dark icon ion-star" style="font-size:25px; color: #FFF;" ng-click="modal.show()"></button>
+    <button class="button no-text button-clear button-dark icon ion-arrow-right-b" ng-if="thereIsRight" ng-click="goNext()"></button>
+    <button class="button no-text button-clear button-dark icon ion-close" ng-if="!thereIsRight"></button>
   </ion-footer-bar>
 </ion-view>
