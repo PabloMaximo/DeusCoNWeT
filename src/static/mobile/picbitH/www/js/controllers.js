@@ -1,6 +1,6 @@
 angular.module('picbit.controllers', [])
 
-.controller('MainCtrl', function($scope, $state, $q, UserService, $ionicLoading, $ionicActionSheet, $ionicSideMenuDelegate){
+.controller('MainCtrl', function($scope, $state, $q, UserService, Components, $ionicLoading, $ionicActionSheet, $ionicSideMenuDelegate){
 	// This is the success callback from the login method
   var fbLoginSuccess = function(response) {
   	console.log(JSON.stringify(response))
@@ -157,6 +157,7 @@ angular.module('picbit.controllers', [])
     },
     getComponent: function(name){
       var index = this.getIndex(name);
+			console.log(this._components[index]);
       return this._components[index];
     },
     getNumberOfComponents: function(){return this._components.length},
@@ -175,8 +176,40 @@ angular.module('picbit.controllers', [])
       if(this.isEmpty()){
         this.activeComponent = "";
       }
-    }
+    },
+		addCurrentUsability: function(){
+			if(this.getComponent(this.activeComponent).attributes.currentComponentValoration.usability < 10){
+				this.getComponent(this.activeComponent).attributes.currentComponentValoration.usability += 1;
+			}
+		},
+		addCurrentCompleteness: function(){
+			if(this.getComponent(this.activeComponent).attributes.currentComponentValoration.completeness < 10){
+				this.getComponent(this.activeComponent).attributes.currentComponentValoration.completeness += 1;
+			}
+		},
+		addCurrentEffectivity: function(){
+			if(this.getComponent(this.activeComponent).attributes.currentComponentValoration.effectivity < 10){
+				this.getComponent(this.activeComponent).attributes.currentComponentValoration.effectivity += 1;
+			}
+		},
+		subCurrentUsability: function(){
+			if(this.getComponent(this.activeComponent).attributes.currentComponentValoration.usability > 0){
+				this.getComponent(this.activeComponent).attributes.currentComponentValoration.usability -= 1;
+			}
+		},
+		subCurrentCompleteness: function(){
+			if(this.getComponent(this.activeComponent).attributes.currentComponentValoration.completeness > 0){
+				this.getComponent(this.activeComponent).attributes.currentComponentValoration.completeness -= 1;
+			}
+		},
+		subCurrentEffectivity: function(){
+			if(this.getComponent(this.activeComponent).attributes.currentComponentValoration.effectivity > 0){
+				this.getComponent(this.activeComponent).attributes.currentComponentValoration.effectivity -= 1;
+			}
+		},
   }
+
+	//VALORATION CONTROL
 
   $scope.selection = {
     twitter: false,
@@ -224,6 +257,10 @@ angular.module('picbit.controllers', [])
       break;
     }
   }
+
+	$scope.goComponents = function(){
+		$state.go('components.square');
+	}
 
 })
 
@@ -302,8 +339,7 @@ angular.module('picbit.controllers', [])
     scope: $scope,
     animation: 'slide-in-up'
   })
-
-
+	
   $scope.goBack = function(){
     var name = $scope.dashstate._components[$scope.myIndex - 1].name;
      switch(name){

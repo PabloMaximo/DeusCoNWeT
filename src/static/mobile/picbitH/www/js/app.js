@@ -79,5 +79,5 @@ angular.module('picbit', ['ionic', 'picbit.controllers', 'picbit.services','ioni
     Controller: 'GithubCtrl'
   })  
 
-  $urlRouterProvider.otherwise('/login')
+  $urlRouterProvider.otherwise('/profile')
 })
