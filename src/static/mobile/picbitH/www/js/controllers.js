@@ -106,8 +106,8 @@ angular.module('picbit.controllers', [])
 
   $scope.showLogOutMenu = function() {
 		var hideSheet = $ionicActionSheet.show({
-			destructiveText: 'Logout',
-			titleText: 'Are you sure you want to logout? This app is awsome so I recommend you to stay.',
+			destructiveText: '  Salir.',
+			titleText: 'Confirma que quieres salir de la aplicación',
 			cancelText: 'Cancel',
 			cancel: function() {},
 			buttonClicked: function(index) {
