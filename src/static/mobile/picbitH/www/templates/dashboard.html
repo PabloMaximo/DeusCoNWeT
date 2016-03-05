@@ -1,0 +1,67 @@
+<ion-view title="Dashboard" class="has-header" ng-if="dashstate.isEmpty()">	
+  <ion-nav-buttons side="right">        
+    <button class="icon ion-android-menu button-assertive-900 button no-text button-clear" menu-toggle="right"></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="left">        
+    <a class="icon ion-power button-assertive-900" style="font-size:30px; margin-left: 10px; margin-top:5px;" ng-click="showLogOutMenu()"></a>
+  </ion-nav-buttons>
+  <ion-content style="background-image: url('img/dashboard.jpg'); opacity: 0.2;"></ion-content>
+	<ion-content>		
+		<div class="card" style="margin-top: 30px;text-align:center; padding: 10px;">
+  			<div class="item item-text-wrap">
+			<span class="icon ion-thumbsdown stable" style="font-size: 100px;"></span>
+			<p style="font-size: 16px;">Tu dashboard esta vacio!!</p>
+			<button class="button button-balanced button-block" ng-click="showComponents()" style="width:96%;margin:10px 2%;">
+        		Añade componente web
+        	</button>
+			</div>
+		</div>		
+	</ion-content>
+</ion-view>
+<ion-view title="Dashboard" class="has-header" ng-if="!dashstate.isEmpty()">
+	<ion-nav-buttons side="right">        
+    <button class="icon ion-android-menu button-assertive-900 button no-text button-clear" menu-toggle="right"></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="left">        
+    <a class="icon ion-power button-assertive-900" style="font-size:30px; margin-left: 10px; margin-top:5px;" ng-click="showLogOutMenu()"></a>
+  </ion-nav-buttons>
+  	<ion-content style="background-image: url('img/dashboard.jpg'); opacity: 0.2;"></ion-content>
+	<ion-content >	
+		<ul class=".connectedItemsExample">
+			<br/>
+			<li class="card " ng-repeat="item in dashstate._components" ng-click="showComponentsActives(item.name)">
+				<div class="ink dark-bg">
+			    <p style="text-align:center; margin-top:15px; font-size:16px;">{{item.name}}</p>			    
+				</div>				
+				<div style="padding: 10px;font-weight:normal;" class="dark">
+						<p>Este componente permite visualizar los eventos en {{item.name}}</p>
+				</div>
+			</li>
+		</ul>
+		<!--<div  style="margin-top: 10px;text-align:center; padding: 10px;" ng-show="selection.twitter">
+			<div class="item item-text-wrap">
+				<span>twitter-timeline</span>
+				<div class="" style="width:55px;float:right;overflow:hidden">						
+					
+				</div>
+			</div>
+		</div>
+		<div class="card" style="margin-top: 10px;text-align:center; padding: 10px;" ng-show="selection.instagram">
+			<div class="item item-text-wrap">
+				<span>instagram-timeline</span>
+				<div class="" style="width:55px;float:right;overflow:hidden">						
+					This component able to you to saw your timeline of intagram on realtime								
+				</div>
+			</div>
+		</div>
+		<div class="card" style="margin-top: 10px;text-align:center; padding: 10px;" ng-show="selection.github">
+			<div class="item item-text-wrap">
+				<span>github-events</span>
+				<div class="" style="width:55px;float:right;overflow:hidden">						
+					This component allows you to watch the last updated on the projects' follow by you
+				</div>
+			</div>
+		</div>-->
+		<button ng-click="goComponents()" id="fab-profile" class="button button-fab button-fab-bottom-right button-energized-900 pane" nav-view="active" style="opacity: 1; box-shadow: rgba(0, 0, 0, 0) 0px 0px 	10px; transform: translate3d(0%, 0px, 0px);"><i class="icon ion-plus"></i></button>
+		</ion-content>
+</ion-view>

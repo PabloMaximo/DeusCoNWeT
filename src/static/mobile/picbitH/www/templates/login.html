@@ -1,0 +1,31 @@
+<ion-view view-title="PicBit" hide-nav-bar="true">
+	<!--<ion-nav-button side="primary">
+		<button class="icon ion-android-more-vertical"></button>
+	</ion-nav-button>	-->
+	<ion-content style="background: url('img/background.jpg') 
+					center; background-size: cover;" class="scroll-content ionic-scroll">
+		<div class="scroll">
+			<div class="hero no-header flat">
+				<div class="content">
+					<div class="app-icon"></div>
+					<h1>PicBit</h1>		
+				</div>
+			</div>
+			<!--<ion-md-input placeholder="Username" highlight-color="balanced" type="text"></ion-md-input>			-->
+				<!--<button class="button button-small button-border icon-left ion-social-google button-assertive-900">Google</button>
+				<button class="button button-small button-border icon-left ion-social-twitter button-calm">Twitter</button>-->												
+			<div class="social-login" keyboard-attach>
+				<a class="icon-left ion-social-googleplus facebook-sign-in button button-block button-assertive-900" ng-click="">
+					Login con Google
+				</a>
+				<a class="icon-left ion-social-twitter facebook-sign-in button button-block button-calm" ng-click="">
+					Login con Twitter
+				</a>
+				<a class="icon-left ion-social-facebook facebook-sign-in button button-block button-positive-900" ng-click="facebookSignIn()">
+					Login con Facebook
+				</a>
+				<!--<button class="button button-small button-border icon-left ion-social-facebook button-positive-900">Facebook</button>-->			
+			</div>				
+		</div>
+	</ion-content>
+</ion-view>

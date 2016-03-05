@@ -1,0 +1,62 @@
+<ion-nav-buttons side="right">        
+    <button class="icon ion-android-menu button-assertive-900 button no-text button-clear" menu-toggle="right"></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="left">        
+    <a class="icon ion-power button-assertive-900" style="font-size:30px; margin-left: 10px; margin-top:5px;" ng-click="showLogOutMenu()"></a>
+  </ion-nav-buttons>
+<ion-list >
+	<ion-item>
+		<div class="card" style="margin-top: 10px;text-align:center; padding: 10px;">
+			<div class="item item-text-wrap">
+				<span>twitter-timeline</span>
+					<div class="" style="width:55px;float:right;overflow:hidden">						
+						<a style="margin:0px;display:inline-block;" class="button button-balanced add-btn-component" 
+								ng-show="!selection.twitter" ng-click="addComponent('twitter-timeline')">
+							<span class="icon ion-plus"></span>
+						</a>
+						<a style="margin:0px;display:inline-block;" class="button button-assertive add-btn-component" 
+								ng-show="selection.twitter" ng-click="removeComponent('twitter-timeline')">
+							<span class="icon ion-minus"></span>
+						</a>						
+					</div>
+			</div>
+		</div>
+	</ion-item>
+	<ion-item>
+		<div class="card" style="margin-top: 10px;text-align:center; padding: 10px;">
+			<div class="item item-text-wrap">
+				<span>instagram-timeline</span>
+				<div class="" style="width:55px;float:right;overflow:hidden">						
+						<a style="margin:0px;display:inline-block;" class="button button-balanced add-btn-component" 
+								ng-show="!selection.instagram" ng-click="addComponent('instagram-timeline')">
+							<span class="icon ion-plus"></span>
+						</a>
+						<a style="margin:0px;display:inline-block;" class="button button-assertive add-btn-component" 
+								ng-show="selection.instagram" ng-click="removeComponent('instagram-timeline')">
+							<span class="icon ion-minus"></span>
+						</a>						
+					</div>
+			</div>
+		</div>
+	</ion-item>
+	<ion-item>
+		<div class="card" style="margin-top: 10px;text-align:center; padding: 10px;">
+			<div class="item item-text-wrap">
+				<span>github-elements</span>
+				<div class="" style="width:55px;float:right;overflow:hidden">						
+						<a style="margin:0px;display:inline-block;" class="button button-balanced add-btn-component" 
+								ng-show="!selection.github" ng-click="addComponent('github-events')">
+							<span class="icon ion-plus"></span>
+						</a>
+						<a style="margin:0px;display:inline-block;" class="button button-assertive add-btn-component" 
+								ng-show="selection.github" ng-click="removeComponent('github-events')">
+							<span class="icon ion-minus"></span>
+						</a>						
+					</div>
+			</div>
+		</div>
+	</ion-item>
+</ion-list>
+<button class="button button-positive button-block" style="width:94%; margin: 10px 3%;" ng-click="showDashboard()">
+  Ir al Dashboard
+</button>

@@ -1,0 +1,18 @@
+<ion-view title="Github-Events" ng-controller="GithubCtrl">  
+  <ion-nav-buttons side="right">        
+    <button class="icon ion-android-menu button-assertive-900 button no-text button-clear" menu-toggle="right"></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="left">        
+    <a class="icon ion-power button-assertive-900" style="font-size:30px; margin-left: 10px; margin-top:5px;" ng-click="showLogOutMenu()"></a>
+  </ion-nav-buttons>
+  <ion-content scroll="false" style="color: #323232;">
+    <github-events username="Mortega5" mostrar=30 language="es" style="height:100%;"></github-events>   
+  </ion-content>
+  <ion-footer-bar class="bar-assertive footer-buttons">          
+    <button class="button no-text button-clear button-dark icon ion-arrow-left-b" ng-if="thereIsLeft" ng-click="goBack()"></button>
+    <button class="button no-text button-clear button-dark icon ion-close" ng-if="!thereIsLeft"></button>
+    <button class="col col-central light no-text button-clear button-dark icon ion-star" style="font-size:25px; color: #FFF;" ng-click="modal.show()"></button>
+    <button class="button no-text button-clear button-dark icon ion-arrow-right-b" ng-if="thereIsRigth" ng-click="goNext()"></button>
+    <button class="button no-text button-clear button-dark icon ion-close" ng-if="!thereIsRigth"></button>
+  </ion-footer-bar>
+</ion-view>
